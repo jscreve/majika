@@ -1,2 +1,2 @@
-# majika-monitoring
-Monitoring of Majika
+# majika
+
