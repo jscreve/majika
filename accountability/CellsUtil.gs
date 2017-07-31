@@ -109,6 +109,46 @@ function updateCellByKey(clientRefColumnName, columnToUpdateName, clientReferenc
   return 0;\
 \}\
 \
+function updateCellByKeyOnColumn(columnToUpdateName, sheet, sheetValues, columnValues, value) \{\
+  var columnToUpdateIndex = getColumnIndexByName(sheet.getName(), columnToUpdateName, sheetValues);\
+  if(columnToUpdateIndex < 0) \{\
+    return null;\
+  \}\
+  columnValues[0][columnToUpdateIndex] = value;\
+  return 0;\
+\}\
+\
+function getColumnRangeFromIndex(sheet, clientRowIndex) \{\
+  var nbColumns = sheet.getLastColumn();\
+  return sheet.getRange(clientRowIndex + 1, 1, 1, nbColumns);\
+\}\
+\
+function saveRangeValues(range, values, formulas) \{\
+  for(var i = 0; i < formulas.length; i++) \{\
+    for(var j = 0; j < formulas[i].length; j++) \{\
+      if(formulas[i][j]) \{\
+        values[i][j] = formulas[i][j];\
+      \}\
+    \}\
+  \}\
+  range.setValues(values);\
+\}\
+\
+function getRowIndex(clientRefColumnName, clientReference, sheet, sheetValues) \{\
+  if(sheetValues == undefined) \{\
+    sheetValues = sheet.getDataRange().getValues();\
+  \}\
+  var clientReferenceColumnIndex = getColumnIndexByName(sheet.getName(), clientRefColumnName, sheetValues);\
+  var regexp = '^' + escapeRegExp(clientReference) + '$';\
+  var clientRowIndex = ArrayLib.indexOf(sheetValues, clientReferenceColumnIndex, regexp);\
+  return clientRowIndex;\
+\}\
+\
+function getColumnRangeFromReference(clientRefColumnName, clientReference, sheet, sheetValues) \{\
+  var rowIndex = getRowIndex(clientRefColumnName, clientReference, sheet, sheetValues);\
+  return getColumnRangeFromIndex(sheet, rowIndex);\
+\}\
+\
 function updateCellByKeyAndSecondaryKey(clientRefColumnName, keyColumnName, columnToUpdateName, clientReference, key, value, sheet, sheetValues) \{\
   if(sheetValues == undefined) \{\
     sheetValues = sheet.getDataRange().getValues();\
@@ -142,8 +182,7 @@ function getCellByKeyAndSecondaryKey(clientRefColumnName, keyColumnName, columnT
   if(clientRowIndex < 0 || columnToGetIndex < 0) \{\
     return null;\
   \}\
-  var cell = sheet.getRange(clientRowIndex + 1, columnToGetIndex + 1);\
-  return cell.getValue();\
+  return sheetValues[clientRowIndex][columnToGetIndex];\
 \}\
 \
 function getCellByKey(clientRefColumnName, columnName, clientReference, sheet, sheetValues) \{\
@@ -158,8 +197,7 @@ function getCellByKey(clientRefColumnName, columnName, clientReference, sheet, s
   if(clientRowIndex < 0 || columnIndex < 0) \{\
     return null;\
   \}\
-  var cell = sheet.getRange(clientRowIndex + 1, columnIndex + 1);\
-  return cell.getValue();\
+  return sheetValues[clientRowIndex][columnIndex];\
 \}\
 \
 function copyLastRow(sheet) \{\

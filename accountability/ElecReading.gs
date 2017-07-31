@@ -6,7 +6,9 @@
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 
 \f0\fs24 \cf0 \
-function manageCounting(event) \{\
+function manageCounting(event, contactSheet, contactSheetValues) \{\
+  \
+  var t1 = new Date().getTime();\
   //extract data from event\
   if(LOGGING)\
     Logger.log(event.values);\
@@ -21,8 +23,6 @@ function manageCounting(event) \{\
     date = new Date();\
   \}\
   var formattedDate = Utilities.formatDate(date, "EAT", "dd/MM/yyyy");\
-  if(LOGGING)\
-    Logger.log('formatted Date : ' + formattedDate);\
   var month = date.getMonth();\
   var year = date.getYear();\
   var clientReference = event.values[1].toUpperCase();\
@@ -34,6 +34,11 @@ function manageCounting(event) \{\
   var billForMonthSheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(billSheetName);\
   var previousBillForMonthSheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(previousBillSheetName);\
   \
+  if(contactSheet == null) \{\
+    contactSheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(CLIENT_CONTACT_SHEET);\
+    contactSheetValues = contactSheet.getDataRange().getValues();\
+  \}\
+\
   var isNewlyCreatedSheet = false;\
   \
   if(billForMonthSheet == null) \{\
@@ -50,7 +55,6 @@ function manageCounting(event) \{\
     \}\
   \}\
   var billForMonthSheetValues = billForMonthSheet.getDataRange().getValues();\
-\
   \
   //we reference kWh from previous month, fetch values\
   var previousBillForMonthSheetValues = null;\
@@ -67,49 +71,60 @@ function manageCounting(event) \{\
   addRowInBillingIfRequired(billForMonthSheet, billForMonthSheetValues, clientReference, isNewlyCreatedSheet);\
   billForMonthSheetValues = billForMonthSheet.getDataRange().getValues();\
   \
+  //get row and range\
+  var rowRange = getColumnRangeFromReference('Reference', clientReference, billForMonthSheet, billForMonthSheetValues);\
+  var rowValues = rowRange.getValues();\
+  var rowFormulas = rowRange.getFormulas();\
+  \
   //update kWh in Bill\
-  updateToKWh(billForMonthSheet, billForMonthSheetValues, clientReference, kWh);\
+  updateToKWh(billForMonthSheet, billForMonthSheetValues, rowValues, clientReference, kWh);\
 \
   //update client name in bill  \
-  updateClientName(clientReference, billForMonthSheet, billForMonthSheetValues);\
-\
+  updateClientName(clientReference, billForMonthSheet, billForMonthSheetValues, rowValues, contactSheet, contactSheetValues);\
+  \
   //update to date\
-  updateCellByKey('Reference', 'ToDate', clientReference, formattedDate, billForMonthSheet, billForMonthSheetValues);\
-\
+  updateCellByKeyOnColumn('ToDate', billForMonthSheet, billForMonthSheetValues, rowValues, formattedDate);\
+  \
   //update month\
-  updateCellByKey('Reference', 'Month', clientReference, getMonthAsAString(month), billForMonthSheet, billForMonthSheetValues);\
+  updateCellByKeyOnColumn('Month', billForMonthSheet, billForMonthSheetValues, rowValues, getMonthAsAString(month));\
   \
   //update FormattedDate\
   var billDate = Utilities.formatDate(date, "EAT", "dd/MM/yyyy");\
-  updateCellByKey('Reference', 'FormattedDate', clientReference, billDate, billForMonthSheet, billForMonthSheetValues);\
+  updateCellByKeyOnColumn('FormattedDate', billForMonthSheet, billForMonthSheetValues, rowValues, billDate);\
     \
   //update Document Title\
   var documentTitle = 'Facture_'.concat(clientReference);\
-  updateCellByKey('Reference', 'Document Title', clientReference, documentTitle, billForMonthSheet, billForMonthSheetValues);\
-\
+  updateCellByKeyOnColumn('Document Title', billForMonthSheet, billForMonthSheetValues, rowValues, documentTitle);\
+  \
   //update from date and from kWh\
-  updateFromFields(billForMonthSheet, billForMonthSheetValues, previousBillForMonthSheet, previousBillForMonthSheetValues, clientReference, formattedDate, kWh, isFirstCounting);\
-  \
-  //update hardware rental prices\
-  //updateHardwarePrices(billForMonthSheet, billForMonthSheetValues, clientReference, isFirstCounting);\
-  \
+  updateFromFields(billForMonthSheet, billForMonthSheetValues, previousBillForMonthSheet, previousBillForMonthSheetValues, rowValues, clientReference, formattedDate, kWh, isFirstCounting);\
+    \
   //clean up cells for PDF generation plugin\
-  cleanUpCellsForPDFPlugin(billForMonthSheet, billForMonthSheetValues, clientReference);\
+  cleanUpCellsForPDFPlugin(billForMonthSheet, billForMonthSheetValues, rowValues, clientReference);\
 \
-  //update user account\
-  updateUserAccount(clientReference, billForMonthSheet, billForMonthSheetValues, month, year);\
+  var clientAccountSheet = getClientAccountSheet(month, year);  \
+  var clientAccountSheetValues = clientAccountSheet.getDataRange().getValues();\
+\
+  //update bill sheet from user account\
+  updateBillFromUserAccount(clientReference, billForMonthSheet, billForMonthSheetValues, clientAccountSheet, clientAccountSheetValues, rowValues, month, year);\
   \
+  //save bill data\
+  saveRangeValues(rowRange, rowValues, rowFormulas);\
+  billForMonthSheetValues = billForMonthSheet.getDataRange().getValues();\
+\
+  //update user account sheet\
+  updateUserAccount(clientReference, billForMonthSheet, billForMonthSheetValues, clientAccountSheet, clientAccountSheetValues, month, year);\
+    \
   //send a mail with client amount due, paid, energy usage for the current month\
-  sendUserAccountStatus(billForMonthSheet, billForMonthSheetValues, clientReference, month, year);\
+  if(SEND_EMAIL)\
+    sendUserAccountStatus(billForMonthSheet, billForMonthSheetValues, clientReference, month, year);\
 \}\
 \
-function updateClientName(clientReference, billForMonthSheet, billForMonthSheetValues) \{\
-  //update client name\
-  var contactSheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(CLIENT_CONTACT_SHEET);\
-  var clientName = getCellByKey('Reference', 'Name', clientReference, contactSheet);\
-  var clientLastName = getCellByKey('Reference', 'Last Name', clientReference, contactSheet);\
-  updateCellByKey('Reference', 'Name', clientReference, clientName, billForMonthSheet, billForMonthSheetValues);\
-  updateCellByKey('Reference', 'Last Name', clientReference, clientLastName, billForMonthSheet, billForMonthSheetValues);\
+function updateClientName(clientReference, billForMonthSheet, billForMonthSheetValues, rowValues, contactSheet, contactSheetValues) \{\
+  var clientName = getCellByKey('Reference', 'Name', clientReference, contactSheet, contactSheetValues);\
+  var clientLastName = getCellByKey('Reference', 'Last Name', clientReference, contactSheet, contactSheetValues);\
+  updateCellByKeyOnColumn('Name', billForMonthSheet, billForMonthSheetValues, rowValues, clientName);\
+  updateCellByKeyOnColumn('Last Name', billForMonthSheet, billForMonthSheetValues, rowValues, clientReference);\
 \}\
 \
 function addRowInBillingIfRequired(billForMonthSheet, billForMonthSheetValues, clientReference, isNewlyCreatedSheet) \{\
@@ -129,31 +144,19 @@ function addRowInBillingIfRequired(billForMonthSheet, billForMonthSheetValues, c
   \}\
 \}\
 \
-/*\
-function updateHardwarePrices(billForMonthSheet, billForMonthSheetValues, clientReference, isFirstCounting) \{\
-  var counterRental = COUNTER_RENTAL_PRICE;\
-  var redevance = REDEVANCE_PRICE;\
-  if(isFirstCounting == true) \{\
-    counterRental = 0;\
-    redevance = 0;\
-  \}\
-  updateCellByKey('Reference', 'Location compteur', clientReference, counterRental, billForMonthSheet, billForMonthSheetValues);\
-  updateCellByKey('Reference', 'Redevance', clientReference, redevance, billForMonthSheet, billForMonthSheetValues);\
-\}*/\
-\
-function cleanUpCellsForPDFPlugin(billForMonthSheet, billForMonthSheetValues, clientReference) \{\
-  updateCellByKey('Reference', 'Data Merge Status', clientReference, '', billForMonthSheet, billForMonthSheetValues);\
-  updateCellByKey('Reference', 'Document URL', clientReference, '', billForMonthSheet, billForMonthSheetValues);\
+function cleanUpCellsForPDFPlugin(billForMonthSheet, billForMonthSheetValues, rowValues, clientReference) \{\
+  updateCellByKeyOnColumn('Data Merge Status', billForMonthSheet, billForMonthSheetValues, rowValues, '');\
+  updateCellByKeyOnColumn('Document URL', billForMonthSheet, billForMonthSheetValues, rowValues, '');\
 \}\
 \
-function updateToKWh(billForMonthSheet, billForMonthSheetValues, clientReference, kWh) \{\
+function updateToKWh(billForMonthSheet, billForMonthSheetValues, rowValues, clientReference, kWh) \{\
   //update ToKwh\
   if(LOGGING)\
     Logger.log('updateToKWh, client Reference : ' + clientReference);\
-  updateCellByKey('Reference', 'TokWh', clientReference, kWh, billForMonthSheet, billForMonthSheetValues);\
+  updateCellByKeyOnColumn('TokWh', billForMonthSheet, billForMonthSheetValues, rowValues, kWh);\
 \}\
 \
-function updateFromFields(billForMonthSheet, billForMonthSheetValues, previousBillForMonthSheet, previousBillForMonthSheetValues, clientReference, currentDate, countedKwh, firstCounting)\{\
+function updateFromFields(billForMonthSheet, billForMonthSheetValues, previousBillForMonthSheet, previousBillForMonthSheetValues, rowValues, clientReference, currentDate, countedKwh, firstCounting)\{\
   //update from kwH and from date from previous sheet\
   var foundPreviousValue = false;\
   if(previousBillForMonthSheet != null) \{\
@@ -167,52 +170,84 @@ function updateFromFields(billForMonthSheet, billForMonthSheetValues, previousBi
       Logger.log('get previous bill, toDate : ' + toDate);\
     \}\
     if(toKWh != null && toDate != null) \{\
-      updateCellByKey('Reference', 'FromkWh', clientReference, toKWh, billForMonthSheet, billForMonthSheetValues);\
-      updateCellByKey('Reference', 'FromDate', clientReference, toDate, billForMonthSheet, billForMonthSheetValues);\
+      updateCellByKeyOnColumn('FromkWh', billForMonthSheet, billForMonthSheetValues, rowValues, toKWh);\
+      updateCellByKeyOnColumn('FromDate', billForMonthSheet, billForMonthSheetValues, rowValues, toDate);\
       foundPreviousValue = true;\
     \}\
   \}\
   //if not previous value found and if first couting, set previous values to current values.\
   if(foundPreviousValue == false && firstCounting == true) \{\
-    updateCellByKey('Reference', 'FromkWh', clientReference, countedKwh, billForMonthSheet, billForMonthSheetValues);\
-    updateCellByKey('Reference', 'FromDate', clientReference, currentDate, billForMonthSheet, billForMonthSheetValues);\
+    updateCellByKeyOnColumn('FromkWh', billForMonthSheet, billForMonthSheetValues, rowValues, countedKwh);\
+    updateCellByKeyOnColumn('FromDate', billForMonthSheet, billForMonthSheetValues, rowValues, currentDate);\
   \}\
 \}\
 \
-function updateUserAccount(clientReference, billForMonthSheet, billForMonthSheetValues, month, year) \{\
+function getClientAccountSheet(month, year) \{\
   //create new sheet for client account if required\
   var out = getOrCreateAccountSheet(month, year);\
-  var clientAccountSheet = out.sheet;\
-  var isNewClientAccountSheet = out.isNewSheet;\
-  var clientAccountSheetValues = clientAccountSheet.getDataRange().getValues();\
+  return out.sheet;\
+\}\
+\
+function updateBillFromUserAccount(clientReference, billForMonthSheet, billForMonthSheetValues, clientAccountSheet, clientAccountSheetValues, rowValues, month, year) \{\
+  var amountDueInClient = getCellByKey('Reference', 'Due', clientReference, clientAccountSheet, clientAccountSheetValues);\
+  if(amountDueInClient == null) \{\
+    var previousMonthSold = getPreviousMonthSoldAccount(clientReference, month, year);\
+    if(previousMonthSold == null) \{\
+      previousMonthSold = 0;\
+    \}\
+  \} else \{\
+    previousMonthSold = getCellByKey('Reference', 'Previous Sold', clientReference, clientAccountSheet, clientAccountSheetValues);\
+  \}\
   \
+  //get paid amount\
+  var paidAmount = getCellByKey('Reference', 'Paid', clientReference, clientAccountSheet, clientAccountSheetValues);\
+\
+  //update previous on current bill sheet\
+  updateCellByKeyOnColumn('Previous Sold', billForMonthSheet, billForMonthSheetValues, rowValues, previousMonthSold);\
+\
+  //update paid amount on current bill sheet\
+  updateCellByKeyOnColumn('Paid', billForMonthSheet, billForMonthSheetValues, rowValues, paidAmount);\
+\}\
+\
+function updateUserAccount(clientReference, billForMonthSheet, billForMonthSheetValues, clientAccountSheet, clientAccountSheetValues, month, year) \{\
   //update client account sheet\
   var amountDue = getCellByKey('Reference', 'TotalPrice', clientReference, billForMonthSheet, billForMonthSheetValues);\
   var previousMonthSold = 0;\
+  var clientRowRange;\
+  var clientRowValues;\
   //create it if not stored yet for current month\
-  if(updateCellByKey('Reference', 'Due', clientReference, amountDue, clientAccountSheet, clientAccountSheetValues) == null) \{\
+  var amountDueInClient = getCellByKey('Reference', 'Due', clientReference, clientAccountSheet, clientAccountSheetValues);\
+  if(amountDueInClient == null) \{\
     //client not found, create a row \
     copyLastRow(clientAccountSheet);\
+    clientRowRange = getColumnRangeFromIndex(clientAccountSheet, clientAccountSheet.getLastRow() - 1);\
+    clientRowValues = clientRowRange.getValues();\
     clientAccountSheetValues = clientAccountSheet.getDataRange().getValues();\
     //fetch previous total amount if any for previous month\
     var previousMonthSold = getPreviousMonthSoldAccount(clientReference, month, year);\
     if(previousMonthSold == null) \{\
       previousMonthSold = 0;\
     \}\
-    var clientRefCell = clientAccountSheet.getRange(clientAccountSheet.getLastRow(), getColumnIndexByName(clientAccountSheet.getName(), 'Previous Sold', clientAccountSheetValues) + 1);\
-    clientRefCell.setValue(previousMonthSold);\
+    updateCellByKeyOnColumn('Previous Sold', clientAccountSheet, clientAccountSheetValues, clientRowValues, previousMonthSold);\
+    \
     //update client reference\
-    clientRefCell = clientAccountSheet.getRange(clientAccountSheet.getLastRow(), getColumnIndexByName(clientAccountSheet.getName(), 'Reference', clientAccountSheetValues) + 1);\
-    clientRefCell.setValue(clientReference);\
+    updateCellByKeyOnColumn('Reference', clientAccountSheet, clientAccountSheetValues, clientRowValues, clientReference);\
+    \
     //update paid amount\
-    clientRefCell = clientAccountSheet.getRange(clientAccountSheet.getLastRow(), getColumnIndexByName(clientAccountSheet.getName(), 'Paid', clientAccountSheetValues) + 1);\
-    clientRefCell.setValue(0);\
+    updateCellByKeyOnColumn('Paid', clientAccountSheet, clientAccountSheetValues, clientRowValues, 0);\
+    \
     //update amount due\
-    clientRefCell = clientAccountSheet.getRange(clientAccountSheet.getLastRow(), getColumnIndexByName(clientAccountSheet.getName(), 'Due', clientAccountSheetValues) + 1);\
-    clientRefCell.setValue(amountDue);\
+    updateCellByKeyOnColumn('Due', clientAccountSheet, clientAccountSheetValues, clientRowValues, amountDue);\
+    \
+    //save values\
+    clientRowRange.setValues(clientRowValues);\
+    \
     //refresh values\
     clientAccountSheetValues = clientAccountSheet.getDataRange().getValues();\
   \} else \{\
+    clientRowRange = getColumnRangeFromReference('Reference', clientReference, clientAccountSheet, clientAccountSheetValues);\
+    clientRowValues = clientRowRange.getValues();\
+    updateCellByKeyOnColumn('Due', clientAccountSheet, clientAccountSheetValues, clientRowValues, amountDue);\
     previousMonthSold = getCellByKey('Reference', 'Previous Sold', clientReference, clientAccountSheet, clientAccountSheetValues);\
   \}\
   \
@@ -220,13 +255,8 @@ function updateUserAccount(clientReference, billForMonthSheet, billForMonthSheet
   var paidAmount = getCellByKey('Reference', 'Paid', clientReference, clientAccountSheet, clientAccountSheetValues);\
   \
   //update total\
-  updateCellByKey('Reference', 'Total', clientReference, amountDue+previousMonthSold-paidAmount, clientAccountSheet, clientAccountSheetValues);  \
-  \
-  //update previous on current bill sheet\
-  updateCellByKey('Reference', 'Previous Sold', clientReference, previousMonthSold, billForMonthSheet, billForMonthSheetValues);  \
-\
-  //update paid amount on current bill sheet\
-  updateCellByKey('Reference', 'Paid', clientReference, paidAmount, billForMonthSheet, billForMonthSheetValues); \
+  updateCellByKeyOnColumn('Total', clientAccountSheet, clientAccountSheetValues, clientRowValues, amountDue+previousMonthSold-paidAmount);\
+  clientRowRange.setValues(clientRowValues);\
 \}\
 \
 function sendUserAccountStatus(billForMonthSheet, billForMonthSheetValues, clientReference, month, year) \{\

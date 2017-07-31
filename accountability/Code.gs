@@ -7,22 +7,30 @@
 
 \f0\fs24 \cf0 function onEdit(event) \{\
   var lock = LockService.getScriptLock();\
+  Logger.log(event);\
   try \{\
-    lock.waitLock(10000);\
-    Logger.log(event);\
+    //attempt to lock for 10 secs then \
+    lock.tryLock(10000);\
+    if (!lock.hasLock()) \{\
+      //abnormal termination\
+      Logger.log('Could not obtain lock after 10 seconds, processing anyway');\
+      lock.releaseLock();\
+      lock.tryLock(2000);\
+    \}\
     //check event source\
     if(event.namedValues && event.namedValues['R\'e9f\'e9rence client ?']) \{\
-      Logger.log('Manage counting');\
+      if(LOGGING)\
+        Logger.log('Manage counting');\
       manageCounting(event);\
     \} else if(event.namedValues && event.namedValues['Quel est votre nom ?']) \{\
-      Logger.log('Manage new client');\
+      if(LOGGING)\
+        Logger.log('Manage new client');\
       manageNewClient(event);\
     \} else \{\
-      Logger.log('Manage payment');\
+      if(LOGGING)\
+        Logger.log('Manage payment');\
       managePayment(event);\
     \}  \
-  \} catch (e) \{\
-    Logger.log('Could not obtain lock after 10 seconds.');\
   \} finally \{\
     lock.releaseLock();\
   \}\
@@ -33,35 +41,56 @@ function importPayment() \{\
   var fi = fSource.getFilesByName('payment.csv');\
   var ss = SpreadsheetApp.openById(SHEET_ID);\
   SpreadsheetApp.setActiveSpreadsheet(ss);\
+  var currentMonth = new Date().getMonth();\
+  var countingDate = new Date();\
   if(fi.hasNext()) \{\
     var file = fi.next();\
     var csv = file.getBlob().getDataAsString();\
-    var csvData = CSVToArray(csv, ';');\
-    for (var i=0, lenCsv=csvData.length; i<lenCsv; i++ ) \{\
+    var csvData = CSVToArray(csv, ';');        \
+    for (var i = 3, lenCsv=csvData.length; i<lenCsv; i++ ) \{\
       var event = \{\};\
-      event.values = csvData[i];\
+      event.values = [new Date(), csvData[i][1], csvData[i][currentMonth+2], Utilities.formatDate(countingDate, "EAT", "MM/dd/yyyy")];\
+      if(event.values[2] == null || event.values[2].length === 0) \{\
+        event.values[2] = "0";\
+      \} else \{\
+        //trim spaces\
+        event.values[2] = event.values[2].replace(/\\s/g, "");\
+        Logger.log('payment read ; ' + event.values[2]);\
+      \}\
       managePayment(event);\
     \}\
   \}\
 \};\
 \
 function importCounterData() \{\
+  var t1 = new Date().getTime();\
+  \
   var fSource = DriveApp.getFolderById(IMPORT_FOLDER_ID);\
   var fi = fSource.getFilesByName('counter.csv');\
   var ss = SpreadsheetApp.openById(SHEET_ID);\
   SpreadsheetApp.setActiveSpreadsheet(ss);\
+  var currentMonth = new Date().getMonth();\
+  var countingDate = new Date();\
+  countingDate.setDate(20);\
+  \
+  var contactSheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(CLIENT_CONTACT_SHEET);\
+  var contactSheetValues = contactSheet.getDataRange().getValues();\
+  \
   if(fi.hasNext()) \{\
     var file = fi.next();\
     var csv = file.getBlob().getDataAsString();\
     var csvData = CSVToArray(csv, ';');\
-    for (var i=0, lenCsv=csvData.length; i<lenCsv; i++ ) \{\
+    for (var i= 3, lenCsv=csvData.length; i<lenCsv; i++ ) \{\
       var event = \{\};\
-      event.values = csvData[i];\
-      manageCounting(event);\
-    \}\
+      event.values = [new Date(), csvData[i][1], csvData[i][currentMonth+2], 'Non', Utilities.formatDate(countingDate, "EAT", "MM/dd/yyyy")];\
+      if(event.values[2] !== null && event.values[2].length !== 0) \{\
+        manageCounting(event, contactSheet, contactSheetValues);\
+      \}\
+    \}    \
   \}\
+  \
+  var t2 = new Date().getTime();\
+  \
+  Logger.log('Total time : ' + (t2-t1)/1000);\
 \};\
-\
-\
-\
 }

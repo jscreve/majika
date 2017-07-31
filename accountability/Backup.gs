@@ -38,10 +38,11 @@
 \
 function moveCopiedForms(sourceFolder, destinationFolder) \{\
   var files = sourceFolder.getFilesByType('application/vnd.google-apps.form');\
+  Logger.log('Moving form files, files ' + files);\
   while (files.hasNext()) \{\
     var file = files.next();\
     Logger.log('File : ' + file.getName());\
-    //only move copied foems\
+    //only move copied forms\
     if(file.getName().indexOf('Copy') != -1) \{\
       Logger.log('Moving : ' + file.getName());\
       destinationFolder.addFile(file);\

@@ -18,7 +18,8 @@
   \
   //get new reference\
   var lastReferenceNumber = parseInt(getCellByKey('Village', 'MaxRef', village, clientSheet));\
-  Logger.log('last reference : ' + lastReferenceNumber);\
+  if(LOGGING)\
+    Logger.log('last reference : ' + lastReferenceNumber);\
   var newReferenceNumber = lastReferenceNumber + 1;\
   var newReference = village.substring(0, 3).toUpperCase().concat(newReferenceNumber);\
   updateCellByKey('Village', 'MaxRef', village, newReferenceNumber, clientSheet);\

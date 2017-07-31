@@ -1,35 +1,44 @@
+
+/*
+              Datalogger Téléinfo 2 compteurs sur Arduino
+
+              Compteur 1: consommation
+              Compteur 2: production solaire en tarif BASE
+
+              Juin 2011:
+              v0.2  * passage automatique à l'heure d'été
+                      correctif erreur abo BBR
+                      modification ecriture sur SD (utilisation de teleinfoFile.print à la place s'une variable STRING
+                      qui plante l'Arduino avec les abonnements BBR
+              v0.2a * ajout mode sans puissance apparente pour ancien compteur et calcul de celle-ci pour les logiciels d'analyse
+              v0.2b * pour Arduino 1.0 (mise à jour de la RTC et utilisation de la librairie SD livrée avec la 1.0)
+              v0.2c * modif type de variable pour éviter d'avoir 2 enregistrements à la même minute (surtout sur des proc + rapide)
+              v0.3  * détection automatique du type d'abonnement sur le compteur 1
+              v0.3a * Fonction de mise à l'heure par l'usb (interface série) en 1200 bauds 7 bits parité pair
+                      Procédure:
+                      1- carte débranchée, enlevez la pile de son support (pour réinitialiser l'horloge)
+                      2- enlevez le cavalier du shield téléinfo
+                      3- configurer votre logiciel émulateur de terminal (termite,Hyperterminale...) en 1200 bauds 7 bits parité pair
+                      4- mettre sous tension la carte.
+                      -- Le programme détectera le reset de l'horloge et vous demandera de rentrer l'heure et la date. --
+
+              v0.3b * Correction bug calcul PAP compteur 2, enregistrement journalier compteur 2
+              v0.3c * Triphasé sur compteur 2
+              v0.3d * correction bug retour ligne sur compteur 2 (entête fichier)
+              v0.3e * Correction bug si pas de compteur 2
+*/
+
 #include <SD.h>
 #include <SPI.h>
 #include <Wire.h>
 #include <RTClib.h>
-#include <OneWire.h>
-#include <DallasTemperature.h>
-#include <SoftwareSerial.h>
 
-// Data wire is plugged into pin 3 and 4 on the Arduino
-#define ONE_WIRE_BUS_BATTERY 3
-#define ONE_WIRE_BUS_CENTRAL 4
-//#define echo_USB //envoie toutes les trames téléinfo sur l'USB
+const char version_logiciel[6] = "V0.3e";
+
+#define echo_USB //envoie toutes les trames téléinfo sur l'USB
 #define message_système_USB //envoie des messages sur l'USB (init SD, heure au demarrage, et echo des erreures)
 
-// Setup a oneWire instance to communicate with any OneWire devices
-// (not just Maxim/Dallas temperature ICs)
-OneWire oneWireBattery(ONE_WIRE_BUS_BATTERY);
-OneWire oneWireCentral(ONE_WIRE_BUS_CENTRAL);
-
-// Pass our oneWire reference to Dallas Temperature.
-DallasTemperature sensorsBattery(&oneWireBattery);
-DallasTemperature sensorsCentral(&oneWireCentral);
-
-// arduino>>bluetooth
-// D5   >>>  Rx
-// D4   >>>  Tx
-SoftwareSerial bluetooth(9, 10); // RX, TX
-
-int LEDPin = 13; //LED PIN on Arduino
-
-// Electric counter
-const char version_logiciel[6] = "V0.3e";
+//*****************************************************************************************
 byte inByte = 0 ;        // caractère entrant téléinfo
 char buffteleinfo[21] = "";
 byte bufflen = 0;
@@ -93,20 +102,12 @@ RTC_DS1307 RTC;
 // ************** initialisation *******************************
 void setup()
 {
-  //Temperature part
-  bluetooth.begin(9600);
-
-  // Start up the library
-  sensorsBattery.begin();
-  sensorsCentral.begin();
-
-  //Teleinfo
   // initialisation du port 0-1 lecture Téléinfo
   //Serial.begin(1200, SERIAL_7E2);
-  Serial.begin(1200, SERIAL_7E2);
+  Serial.begin(1200);
   // parité paire E
   // 7 bits data
-  //UCSR0C = B00100100;
+  UCSR0C = B00100100;
 #ifdef message_système_USB
   Serial.print(F("-- Teleinfo USB Arduino "));
   Serial.print(version_logiciel);
@@ -153,177 +154,141 @@ void setup()
 
 // ************** boucle principale *******************************
 
-void loop()
+void loop()                     // Programme en boucle
 {
-  //Teleinfo part, read it as soon as possible
+
   if (!(RTC.isrunning()) && (reg_horloge < 7)) {      // si l'horloge n'est pas configurée
-    checkRTCConfiguration();
+    //if(true) {
+    digitalWrite(LEC_CPT1, LOW);
+    if (!mem_reg_horloge) {
+      switch (reg_horloge) { // debut de la structure
+        case 1: Serial.print (F("Entrer Heure: "));
+          break;
+        case 2: Serial.print (F("Entrer Minute: "));
+          break;
+        case 3: Serial.print (F("Entrer Seconde: "));
+          break;
+        case 4: Serial.print (F("Entrer Jour: "));
+          break;
+        case 5: Serial.print (F("Entrer Mois: "));
+          break;
+        case 6: Serial.print (F("Entrer Annee 20xx: "));
+          break;
+      }
+      mem_reg_horloge = true;
+    }
+    if (Serial.available() > 0) { // si caractère dans la file d'attente
+      //---- lecture du nombre reçu
+      while (Serial.available() > 0) { // tant que buffer pas vide pour lire d'une traite tous les caractères reçus
+        inByte = Serial.read(); // renvoie le 1er octet présent dans la file attente série (-1 si aucun)
+        if (((inByte > 47) && (inByte < 58)) || (inByte == 10 )) {
+          ReceptionOctet = inByte - 48; // transforme valeur ASCII en valeur décimale
+          if ((ReceptionOctet >= 0) && (ReceptionOctet <= 9)) ReceptionNombre = (ReceptionNombre * 10) + ReceptionOctet;
+          // si valeur reçue correspond à un chiffre on calcule nombre
+        }
+        else presence_teleinfo = -1;
+      } // fin while
+      if (inByte == 10) {
+        if ((ReceptionNombre > val_max[reg_horloge - 1]) || (ReceptionNombre == -1)) {
+          Serial.println(F("Erreur"));
+          ReceptionNombre = 0;
+          mem_reg_horloge = true;
+        }
+        else {
+          switch (reg_horloge) { // debut de la structure
+            case 1: heure = ReceptionNombre;
+              break;
+            case 2: minute = ReceptionNombre;
+              break;
+            case 3: seconde = ReceptionNombre;
+              break;
+            case 4: jour = ReceptionNombre;
+              break;
+            case 5: mois = ReceptionNombre;
+              break;
+            case 6: annee = 2000 + ReceptionNombre;
+              break;
+          }
+
+          mem_reg_horloge = false;
+          ReceptionNombre = 0;
+          ++reg_horloge;
+
+          if (reg_horloge > 6) {
+            RTCsetTime();
+            Serial.println(F("Reglage heure OK - installer le cavalier pour la teleinfo"));
+            digitalWrite(LEC_CPT1, HIGH);
+          }
+        }
+      }
+    }
   }
+
   else {
-    saveTeleInfo();
-  }
 
-  //Temperature part
-  //write result to bluetooth
-  if (bluetooth.available() > 0) {
-    Serial.println (F("Bluetooth available"));
-    int bluetoothInputData = bluetooth.read();
-    Serial.print(F("Bluetooth data :"));
-    Serial.print(bluetoothInputData);
+    DateTime now = RTC.now();     // lecture de l'horloge
+    minute = now.minute();
+    heure = now.hour();
+    seconde = now.second();
 
-    if (bluetoothInputData == 49) { // if number 1 is read we send temp battery data
-      digitalWrite(LEDPin, 1);
-      sensorsBattery.requestTemperatures(); // Send the command to get temperatures
-      bluetooth.print(sensorsBattery.getTempCByIndex(0));
-      bluetooth.print("END");
-    }
-    if (bluetoothInputData == 50) { // if number 2 is read we send temp central data
-      digitalWrite(LEDPin, 1);
-      sensorsCentral.requestTemperatures(); // Send the command to get temperatures
-      bluetooth.print(sensorsCentral.getTempCByIndex(0));
-      bluetooth.print("END");
-    }
-    if (bluetoothInputData == 51) { // if number 3 is read we send teleinfo data
-      digitalWrite(LEDPin, 1);
-      String realTimeTeleInfo = getRealTimeTeleInfo();
-      Serial.println(realTimeTeleInfo);
-      bluetooth.print(realTimeTeleInfo);
-      bluetooth.print("END");
-    }
-  } else {
-    digitalWrite(LEDPin, 0);
-  }
-}
-
-void saveTeleInfo() {
-  DateTime now = RTC.now();     // lecture de l'horloge
-  minute = now.minute();
-  heure = now.hour();
-  seconde = now.second();
-
-  if ((heure == 0) && (minute == 0) && (seconde == 0))
-  {
-    annee = now.year();
-    mois = now.month();
-    jour = now.day();
-    jour_semaine = now.dayOfWeek();
-  }
-
-  if ((heure == 23) && (minute == 59) && (seconde == 10)) // pour être sur de pas tomber pendant l'enregistrement toutes les minutes
-  {
-    if ((mem_sauv_journee == 0) && (compteursluOK)) // un seul enregistrement par jour !
+    if ((heure == 0) && (minute == 0) && (seconde == 0))
     {
-      fichier_annee();
-      mem_sauv_journee = 1;
+      annee = now.year();
+      mois = now.month();
+      jour = now.day();
+      jour_semaine = now.dayOfWeek();
     }
-  }
-  else mem_sauv_journee = 0;
 
-  if (seconde == 1)
-  {
-    if ((mem_sauv_minute == 0) && (compteursluOK)) // un seul enregistrement par minute !
+    if ((heure == 23) && (minute == 59) && (seconde == 10)) // pour être sur de pas tomber pendant l'enregistrement toutes les minutes
     {
-      enregistre();
-      mem_sauv_minute = 1;
+      if ((mem_sauv_journee == 0) && (compteursluOK)) // un seul enregistrement par jour !
+      {
+        fichier_annee();
+        mem_sauv_journee = 1;
+      }
     }
-  }
-  else mem_sauv_minute = 0;
+    else mem_sauv_journee = 0;
+
+    if (seconde == 1)
+    {
+      if ((mem_sauv_minute == 0) && (compteursluOK)) // un seul enregistrement par minute !
+      {
+        enregistre();
+        mem_sauv_minute = 1;
+      }
+    }
+    else mem_sauv_minute = 0;
 
 #ifdef message_système_USB
-  if ((donnee_ok_cpt[1] == B00000111) && (mem_affichage_cpt2_present)) {
-    if (mem_affichage_cpt2_present) Serial.println(F("- Compteur 2 detecte"));
-    mem_affichage_cpt2_present = false;
-  }
-  else if ((!cpt2_present) && (mem_affichage_cpt2_present)) {
-    if (mem_affichage_cpt2_present) Serial.println(F("- Compteur 2 non present !"));
-    mem_affichage_cpt2_present = false;
-  }
+    if ((donnee_ok_cpt[1] == B00000111) && (mem_affichage_cpt2_present)) {
+      if (mem_affichage_cpt2_present) Serial.println(F("- Compteur 2 detecte"));
+      mem_affichage_cpt2_present = false;
+    }
+    else if ((!cpt2_present) && (mem_affichage_cpt2_present)) {
+      if (mem_affichage_cpt2_present) Serial.println(F("- Compteur 2 non present !"));
+      mem_affichage_cpt2_present = false;
+    }
 #endif
 
-  if ((donnee_ok_cpt[0] == verif_cpt_lu) and (cpt2_present)) {
-    if ((type_mono_tri[0] == 1) && (donnee_ok_cpt_ph[0] == B10000001)) bascule_compteur();
-    else if ((type_mono_tri[0] == 3) && (donnee_ok_cpt_ph[0] == B10000111)) bascule_compteur();
-  }
-  else if ((donnee_ok_cpt[1] == B00000001) or ((compteur_actif == 2) and (!cpt2_present))) {
-    if ((type_mono_tri[1] == 1) && (donnee_ok_cpt_ph[1] == B10000001)) bascule_compteur();
-    else if ((type_mono_tri[1] == 3) && (donnee_ok_cpt_ph[1] == B10000111)) bascule_compteur();
-    compteursluOK = true;
-  }
-
-  if (compteur_actif == 2) {
-    if (presence_teleinfo > 200) {
-      cpt2_present = false;
+    if ((donnee_ok_cpt[0] == verif_cpt_lu) and (cpt2_present)) {
+      if ((type_mono_tri[0] == 1) && (donnee_ok_cpt_ph[0] == B10000001)) bascule_compteur();
+      else if ((type_mono_tri[0] == 3) && (donnee_ok_cpt_ph[0] == B10000111)) bascule_compteur();
+    }
+    else if ((donnee_ok_cpt[1] == B00000001) or ((compteur_actif == 2) and (!cpt2_present))) {
+      if ((type_mono_tri[1] == 1) && (donnee_ok_cpt_ph[1] == B10000001)) bascule_compteur();
+      else if ((type_mono_tri[1] == 3) && (donnee_ok_cpt_ph[1] == B10000111)) bascule_compteur();
       compteursluOK = true;
-      bascule_compteur();
     }
-    else cpt2_present = true;
-  }
-  read_teleinfo();
-}
 
-void checkRTCConfiguration() {
-  digitalWrite(LEC_CPT1, LOW);
-  if (!mem_reg_horloge) {
-    switch (reg_horloge) { // debut de la structure
-      case 1: Serial.print (F("Entrer Heure: "));
-        break;
-      case 2: Serial.print (F("Entrer Minute: "));
-        break;
-      case 3: Serial.print (F("Entrer Seconde: "));
-        break;
-      case 4: Serial.print (F("Entrer Jour: "));
-        break;
-      case 5: Serial.print (F("Entrer Mois: "));
-        break;
-      case 6: Serial.print (F("Entrer Annee 20xx: "));
-        break;
+    if (compteur_actif == 2) {
+      if (presence_teleinfo > 200) {
+        cpt2_present = false;
+        compteursluOK = true;
+        bascule_compteur();
+      }
+      else cpt2_present = true;
     }
-    mem_reg_horloge = true;
-  }
-  if (Serial.available() > 0) { // si caractère dans la file d'attente
-    //---- lecture du nombre reçu
-    while (Serial.available() > 0) { // tant que buffer pas vide pour lire d'une traite tous les caractères reçus
-      inByte = Serial.read(); // renvoie le 1er octet présent dans la file attente série (-1 si aucun)
-      if (((inByte > 47) && (inByte < 58)) || (inByte == 10 )) {
-        ReceptionOctet = inByte - 48; // transforme valeur ASCII en valeur décimale
-        if ((ReceptionOctet >= 0) && (ReceptionOctet <= 9)) ReceptionNombre = (ReceptionNombre * 10) + ReceptionOctet;
-        // si valeur reçue correspond à un chiffre on calcule nombre
-      }
-      else presence_teleinfo = -1;
-    } // fin while
-    if (inByte == 10) {
-      if ((ReceptionNombre > val_max[reg_horloge - 1]) || (ReceptionNombre == -1)) {
-        Serial.println(F("Erreur"));
-        ReceptionNombre = 0;
-        mem_reg_horloge = true;
-      }
-      else {
-        switch (reg_horloge) { // debut de la structure
-          case 1: heure = ReceptionNombre;
-            break;
-          case 2: minute = ReceptionNombre;
-            break;
-          case 3: seconde = ReceptionNombre;
-            break;
-          case 4: jour = ReceptionNombre;
-            break;
-          case 5: mois = ReceptionNombre;
-            break;
-          case 6: annee = 2000 + ReceptionNombre;
-            break;
-        }
-
-        mem_reg_horloge = false;
-        ReceptionNombre = 0;
-        ++reg_horloge;
-
-        if (reg_horloge > 6) {
-          RTCsetTime();
-          Serial.println(F("Reglage heure OK - installer le cavalier pour la teleinfo"));
-          digitalWrite(LEC_CPT1, HIGH);
-        }
-      }
-    }
+    read_teleinfo();
   }
 }
 
@@ -605,52 +570,6 @@ void read_teleinfo()
   }
 }
 
-String getRealTimeTeleInfo() {
-  String output = "";
-  output += INDEX1;
-  output += ",";
-  if (num_abo > 1) { // abo_HCHP ou EJP
-    output += INDEX2;
-    output += ",";
-  }
-  if (num_abo > 3) { // abo_BBR
-    output += INDEX3;
-    output += ",";
-    output += INDEX4;
-    output += ",";
-    output += INDEX5;
-    output += ",";
-    output += INDEX6;
-    output += ",";
-  }
-
-  output += IINST[0][0];
-  output += ",";
-  if (type_mono_tri[0] == 3) {
-    output += IINST[0][1];
-    output += ",";
-    output += IINST[0][2];
-    output += ",";
-  }
-  output += papp;
-
-  if (cpt2_present) {
-    output += ",";
-    output += cpt2index;
-    output += ",";
-    output += IINST[1][0];
-    output += ",";
-    if (type_mono_tri[1] == 3) {
-      output += IINST[1][1];
-      output += ",";
-      output += IINST[1][2];
-      output += ",";
-    }
-    output += cpt2puissance;
-  }
-  return output;
-}
-
 ///////////////////////////////////////////////////////////////////
 // Enregistrement trame Teleinfo toutes les minutes
 ///////////////////////////////////////////////////////////////////
@@ -695,6 +614,7 @@ void enregistre()
 
   // si le fichier est bien ouvert-> écriture
   if (teleinfoFile) {
+
     format_date_heure();
 
     teleinfoFile.print(date_heure);
@@ -827,7 +747,6 @@ void fichier_annee()
   }
 }
 
-
 ///////////////////////////////////////////////////////////////////
 // mise en forme Date & heure pour affichage ou enregistrement
 ///////////////////////////////////////////////////////////////////
@@ -867,6 +786,5 @@ void RTCsetTime(void)
 
   Wire.endTransmission();
 }
-
 
 

@@ -18,9 +18,6 @@ function managePayment(event) \{\
   if(billForMonthSheet != null) \{\
     billForMonthSheetValues = billForMonthSheet.getDataRange().getValues();\
   \}\
-  sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('CAJuin2017');\
-  Logger.log('sheet 2 : ' + sheet);\
-\
   var out = getOrCreateAccountSheet(month, year);\
   var clientAccountSheet = out.sheet;\
   var isNewSheet = out.isNewSheet;\
@@ -35,7 +32,8 @@ function managePayment(event) \{\
   //send error mail if bill is already filled up for this client\
   if(billForMonthSheetValues != null) \{\
     var documentURL = getCellByKey('Reference', 'Document URL', clientReference, billForMonthSheet, billForMonthSheetValues);\
-    Logger.log('documentURL :' + documentURL);\
+    if(LOGGING)\
+      Logger.log('documentURL :' + documentURL);\
     if(documentURL !== null && documentURL !== '') \{\
       if(LOGGING)\
         Logger.log('Following client bill is already existing, cannot modify it afterwards :' + clientReference);\
@@ -43,11 +41,15 @@ function managePayment(event) \{\
       return -1;\
     \}\
   \}\
-    \
   var oldPaidAmount = getCellByKey('Reference', 'Paid', clientReference, clientAccountSheet, clientAccountSheetValues);\
+  var rowRange;\
+  var rowValues;\
   //client reference cannot be found\
   if(oldPaidAmount == null) \{\
     copyLastRow(clientAccountSheet); \
+ \
+    rowRange = getColumnRangeFromIndex(clientAccountSheet, clientAccountSheet.getLastRow() - 1);\
+    rowValues = rowRange.getValues();\
     clientAccountSheetValues = clientAccountSheet.getDataRange().getValues();\
     \
     //fetch previous total amount if any for previous month\
@@ -55,37 +57,37 @@ function managePayment(event) \{\
     if(previousMonthSold == null) \{\
       previousMonthSold = 0;\
     \}\
-    var clientRefCell = clientAccountSheet.getRange(clientAccountSheet.getLastRow(), getColumnIndexByName(clientAccountSheet.getName(), 'Previous Sold', clientAccountSheetValues) + 1);\
-    clientRefCell.setValue(previousMonthSold);\
+    updateCellByKeyOnColumn('Previous Sold', clientAccountSheet, clientAccountSheetValues, rowValues, previousMonthSold);\
+\
     //update client reference\
-    clientRefCell = clientAccountSheet.getRange(clientAccountSheet.getLastRow(), getColumnIndexByName(clientAccountSheet.getName(), 'Reference', clientAccountSheetValues) + 1);\
-    clientRefCell.setValue(clientReference);   \
+    updateCellByKeyOnColumn('Reference', clientAccountSheet, clientAccountSheetValues, rowValues, clientReference);\
     \
     //update amount due\
-    var clientRefCell = clientAccountSheet.getRange(clientAccountSheet.getLastRow(), getColumnIndexByName(clientAccountSheet.getName(), 'Due', clientAccountSheetValues) + 1);\
     //fetch amount due from bill if any\
     var amountDue = 0;\
     if(billForMonthSheetValues != null) \{\
       amountDue = getCellByKey('Reference', 'TotalPrice', clientReference, billForMonthSheet, billForMonthSheetValues);\
     \}\
-    clientRefCell.setValue(amountDue);\
+    updateCellByKeyOnColumn('Due', clientAccountSheet, clientAccountSheetValues, rowValues, amountDue);\
     \
     //update paid amount to 0\
     oldPaidAmount = 0;\
-    var clientRefCell = clientAccountSheet.getRange(clientAccountSheet.getLastRow(), getColumnIndexByName(clientAccountSheet.getName(), 'Paid', clientAccountSheetValues) + 1);\
-    clientRefCell.setValue(oldPaidAmount);\
+    updateCellByKeyOnColumn('Paid', clientAccountSheet, clientAccountSheetValues, rowValues, oldPaidAmount);\
+    \
+    //refresh client account sheet values after update\
+    rowRange.setValues(rowValues);\
+    clientAccountSheetValues = clientAccountSheet.getDataRange().getValues();\
   \} else \{\
+    Logger.log('getting old paid amount');\
     oldPaidAmount = parseInt(oldPaidAmount);\
+    rowRange = getColumnRangeFromReference('Reference', clientReference, clientAccountSheet, clientAccountSheetValues);\
+    rowValues = rowRange.getValues();\
   \}\
-  \
-  //refresh client account sheet values after update\
-  clientAccountSheetValues = clientAccountSheet.getDataRange().getValues();\
   \
   //get amount due\
   var amountDue = parseInt(getCellByKey('Reference', 'Due', clientReference, clientAccountSheet, clientAccountSheetValues));\
-  if(LOGGING) \{\
+  if(LOGGING)\
     Logger.log('amountDue : ' + amountDue);\
-  \}\
     \
   //get previous sold\
   var previousSold = parseInt(getCellByKey('Reference', 'Previous Sold', clientReference, clientAccountSheet, clientAccountSheetValues));\
@@ -96,19 +98,25 @@ function managePayment(event) \{\
   var paidAmount = oldPaidAmount + paidAmount;\
   if(LOGGING)\
     Logger.log('paidAmount : ' + paidAmount);\
-  updateCellByKey('Reference', 'Paid', clientReference, paidAmount, clientAccountSheet, clientAccountSheetValues);  \
+  updateCellByKeyOnColumn('Paid', clientAccountSheet, clientAccountSheetValues, rowValues, paidAmount);\
   \
   //update total sold\
   var total = amountDue+previousSold-paidAmount;\
   if(LOGGING)\
     Logger.log('Total : ' + total);\
-  updateCellByKey('Reference', 'Total', clientReference, total, clientAccountSheet, clientAccountSheetValues);  \
+  updateCellByKeyOnColumn('Total', clientAccountSheet, clientAccountSheetValues, rowValues, total);\
+  \
+  rowRange.setValues(rowValues);\
   \
   if(billForMonthSheet != null) \{\
+    var billForMonthRange = getColumnRangeFromReference('Reference', clientReference, billForMonthSheet, billForMonthSheetValues);\
+    var billForMonthRangeValues = billForMonthRange.getValues();\
+    var billForMonthRangeFormulas = billForMonthRange.getFormulas();\
     //update paid amount on bill\
-    updateCellByKey('Reference', 'Paid', clientReference, paidAmount, billForMonthSheet, billForMonthSheetValues);  \
+    updateCellByKeyOnColumn('Paid', billForMonthSheet, billForMonthSheetValues, billForMonthRangeValues, paidAmount);\
     //update previous sold on bill\
-    updateCellByKey('Reference', 'Previous Sold', clientReference, previousSold, billForMonthSheet, billForMonthSheetValues);\
+    updateCellByKeyOnColumn('Previous Sold', billForMonthSheet, billForMonthSheetValues, billForMonthRangeValues, previousSold);\
+    saveRangeValues(billForMonthRange, billForMonthRangeValues, billForMonthRangeFormulas);\
   \}\
 \}\
 \
