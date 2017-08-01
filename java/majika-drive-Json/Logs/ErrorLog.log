@@ -1,0 +1,3 @@
+2017-08-01 11:26:14.526 | ERROR | main       | dline.csv.CsvHandler:93    | Error: java.net.ConnectException: Connection refused: connect
+2017-08-01 11:26:15.663 | ERROR | main       | dline.csv.CsvHandler:93    | Error: java.net.ConnectException: Connection refused: connect
+2017-08-01 11:26:16.700 | ERROR | main       | dline.csv.CsvHandler:93    | Error: java.net.ConnectException: Connection refused: connect

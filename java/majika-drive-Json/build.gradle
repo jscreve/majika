@@ -1,0 +1,24 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+mainClassName = 'cmdline.Application'
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+version = '1.2'
+
+jar { manifest { attributes 'Main-Class': 'cmdline.Application' } }
+
+repositories {
+    jcenter()
+}
+
+
+dependencies {
+    compile fileTree(dir: 'C:\\Users\\etienne\\Documents\\StageDiego\\Library\\', include: ['*.jar'])
+    compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.8.2'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.8.2'
+    compile 'com.google.api-client:google-api-client:1.22.0'
+    compile 'com.google.oauth-client:google-oauth-client-jetty:1.22.0'
+    compile 'com.google.apis:google-api-services-drive:v3-rev76-1.22.0'
+    compile 'commons-net:commons-net:3.6'
+}
