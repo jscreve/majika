@@ -16,8 +16,8 @@ import java.util.zip.ZipOutputStream;
  * Created by etienne on 20/07/2017.
  */
 public class ZipCreation {
-    private String dir;
-    private static final String separateur = "\\";
+
+    private static final String separateur = "/";
     private static final Logger logger = LogManager.getLogger();
     private String pathDir;
     private Date date;
@@ -30,8 +30,9 @@ public class ZipCreation {
 
 
     public String setZipPath() {
+        String dir;
         try {
-            FileInputStream input = new FileInputStream("config.properties");
+            InputStream input = getClass().getClassLoader().getResourceAsStream("config.properties");
             prop.load(input); // open the connection to the properties file
             pathDir = prop.getProperty("pathDirFile");
             date = new Date();

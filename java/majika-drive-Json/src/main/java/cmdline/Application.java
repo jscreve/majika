@@ -2,7 +2,9 @@ package cmdline;
 
 import cmdline.csv.ApplicationCsv;
 import cmdline.ftp.AppFtp;
+import cmdline.ftpZip.AppFtpZip;
 import cmdline.json.DriveSample;
+import cmdline.test.TestJava;
 import cmdline.zip.DriveSampleZip;
 
 import java.io.IOException;
@@ -23,9 +25,18 @@ public class Application {
                 case "zip":
                     new DriveSampleZip();
                     break;
-                default: System.out.println("This is not a proper arguments");
-                        break;
+                case "test":
+                    new TestJava();
+                    break;
+                case "ftpZip":
+                    new AppFtpZip();
+                    break;
+                default:
+                    System.out.println("This is not a proper arguments");
+                    break;
             }
-        }catch(IOException i){System.out.println(i);}
+        } catch (IOException i) {
+            System.out.println(i);
+        }
     }
 }

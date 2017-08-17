@@ -16,6 +16,8 @@ package cmdline.zip;
 
 import com.google.api.client.googleapis.media.MediaHttpUploader;
 import com.google.api.client.googleapis.media.MediaHttpUploaderProgressListener;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.text.NumberFormat;
@@ -26,22 +28,27 @@ import java.text.NumberFormat;
  * @author rmistry@google.com (Ravi)
  */
 public class FileUploadProgressListenerZip implements MediaHttpUploaderProgressListener {
-
+  private Logger logger = LogManager.getLogger();
   @Override
   public void progressChanged(MediaHttpUploader uploader) throws IOException {
+
     switch (uploader.getUploadState()) {
       case INITIATION_STARTED:
-        ViewZip.header2("Upload Initiation has started.");
+        //ViewZip.header2("Upload Initiation has started.");
+        logger.info("Upload Initiation has started.");
         break;
       case INITIATION_COMPLETE:
-        ViewZip.header2("Upload Initiation is Complete.");
+       //ViewZip.header2("Upload Initiation is Complete.");
+        logger.info("Upload Initiation is Complete.");
         break;
       case MEDIA_IN_PROGRESS:
-        ViewZip.header2("Upload is In Progress: "
-            + NumberFormat.getPercentInstance().format(uploader.getProgress()));
+        //ViewZip.header2("Upload is In Progress: " + NumberFormat.getPercentInstance().format(uploader.getProgress()));
+        logger.info("Upload is In Progress: "
+                + NumberFormat.getPercentInstance().format(uploader.getProgress()));
         break;
       case MEDIA_COMPLETE:
-        ViewZip.header2("Upload is Complete!");
+        //ViewZip.header2("Upload is Complete!");
+        logger.info("Upload is Complete!");
         break;
     }
   }

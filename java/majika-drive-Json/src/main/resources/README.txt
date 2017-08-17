@@ -13,11 +13,12 @@ connecter le raspberry au routeur et les 3onduleur au routeur. // 10min
         -ipAdresseSolEast=192.168.0.205
 -Mettre du crédit sur la clé 3G (#322*6#) // 5min
 -Installer la clé 3G Telma (sudo nano /etc/rc.local)//5min
--Tester le programmeArduino sur le raspberry et modifier les Noms et adresses du config.properties //20min
+
 -Installer le prgrm version 1.1 qui est la version sans Arduino
     -Installer les 3 crontabs et envoyer le zip au bout de 15min //25min
     -Envoyer le Json toute les minutes
 
+-Tester le programmeArduino sur le raspberry et modifier les Noms et adresses du config.properties //20min
 -Installer le prgrm version 1.2 qui est la version avec Arduino
     -Changer le nom du dossier utilisé juste avant
     -prendre le config.file dans le dossier ArduinoConfigFile
@@ -33,7 +34,7 @@ Envoyer en fin de journée 16h ou 17h le zip
 Fin des relevé au plus tard à 17h35
 
 crontab -e
-* * * * * sudo /pi/CentraleSolaireData/Programmes/
+* * * * * /home/pi/CentraleSolaireData/Programmes/majika-drive-sample-1.3/bin/majika-drive-sample csv
 */10 * * * * sudo /pi/CentraleSolaireData/Programmes/
 0 0 * * * sudo /pi/CentraleSolaireData/Programmes/
 

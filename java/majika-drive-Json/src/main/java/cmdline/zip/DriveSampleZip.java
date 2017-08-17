@@ -20,8 +20,10 @@ import com.google.api.client.extensions.jetty.auth.oauth2.LocalServerReceiver;
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow;
 import com.google.api.client.googleapis.auth.oauth2.GoogleClientSecrets;
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
+import com.google.api.client.googleapis.media.MediaHttpDownloader;
 import com.google.api.client.googleapis.media.MediaHttpUploader;
 import com.google.api.client.http.FileContent;
+import com.google.api.client.http.GenericUrl;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
@@ -69,7 +71,7 @@ public class DriveSampleZip {
     //private static final String UPLOAD_FILE_PATH = "/home/pi/test.txt";
 
     private static String UPLOAD_FILE_PATH = zipPath2;
-    private static final String DIR_FOR_DOWNLOADS = "/Users/etienne/Documents";
+    private static final String DIR_FOR_DOWNLOADS = "/Users/etienne/Documents/";
     private static final java.io.File UPLOAD_FILE = new java.io.File(UPLOAD_FILE_PATH);
 
     /**
@@ -119,16 +121,17 @@ public class DriveSampleZip {
             uploadFile(false);
 
             ViewZip.header1("Success!");
+           //downloadFile(false);
             try {
                 System.in.read();
             } catch (IOException e) {
-                logger.error(e);
+                logger.error("Main Method",e);
             }
             return;
         } catch (IOException e) {
-            logger.error(e);
+            logger.error("Main Method",e);
         } catch (Throwable t) {
-            logger.error(t);
+            logger.error("Main Method",t);
         }
 
         System.exit(1);
@@ -216,5 +219,43 @@ public class DriveSampleZip {
 
         return insert.execute();
     }
+
+    private static void downloadFile(boolean useDirectDownload)
+            throws IOException {
+        // create parent directory (if necessary)
+        java.io.File parentDir = new java.io.File(DIR_FOR_DOWNLOADS);
+        if (!parentDir.exists() && !parentDir.mkdirs()) {
+            throw new IOException("Unable to create parent directory");
+        }
+         //SiteWeb's folder Id
+        File filou = new File();
+        File file = drive.files().get("0B3OcPk9CLrpYd2dtckRra0ptcm8").execute();
+        String pageToken = null;
+        do {
+            FileList result = drive.files().list()
+                    .setQ("mimeType='application/java-archive'")
+                    .setSpaces("drive")
+                    .setFields("nextPageToken, files(id, name)")
+                    .setPageToken(pageToken)
+                    .execute();
+            for(File fil: result.getFiles()) {
+                logger.info(fil.getName().substring(0,6));
+                if(fil.getName().substring(0,6).equals("majika")) { //only execute this line if the file is named ups.json
+                    logger.info("Found it :" +fil.getId() +" Name:" +fil.getName());
+                    filou=fil;
+                }
+            }
+            pageToken = result.getNextPageToken();
+        } while (pageToken != null);
+
+        OutputStream out = new FileOutputStream(new java.io.File(parentDir,filou.getName()));
+
+        MediaHttpDownloader downloader =
+                new MediaHttpDownloader(httpTransport, drive.getRequestFactory().getInitializer());
+        downloader.setDirectDownloadEnabled(useDirectDownload);
+        downloader.setProgressListener(new FileDownloadProgressListener());
+        downloader.download(new GenericUrl(filou.getWebContentLink()),out);
+    }
+
 
 }

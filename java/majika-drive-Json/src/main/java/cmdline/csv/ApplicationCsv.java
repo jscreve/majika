@@ -3,6 +3,7 @@ package cmdline.csv;
 /**
  * Created by etienne on 28/07/2017.
  */
+
 import de.re.easymodbus.modbusclient.ModbusClient;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -42,7 +43,7 @@ public class ApplicationCsv {
 
     private void init() {
         try {
-            FileInputStream input = new FileInputStream("config.properties");
+            InputStream input = getClass().getClassLoader().getResourceAsStream("config.properties");
             prop.load(input);
             tabNVarSol = prop.getProperty("tabNomVariableSolCsv").split(",");
             tabNVarSPS = prop.getProperty("tabNomVariableSPSCsv").split(",");
@@ -51,21 +52,20 @@ public class ApplicationCsv {
             tabAd10SPS = prop.getProperty("divisePar10SPS").split(",");
             tabAd10Sol = prop.getProperty("divisePar10Sol").split(",");
 
+
             modbusClientSolEast = new ModbusClient(prop.getProperty("ipAdresseSolEast"), 502);
             modbusClientSolWest = new ModbusClient(prop.getProperty("ipAdresseSolWest"), 502);
             modbusClientSPS = new ModbusClient(prop.getProperty("ipAdresseSPS"), 502);
 
             //Initialisation des fichiers .csv à créer
-            CsvHandler SPSCsv = new CsvHandler(modbusClientSPS, tabNVarSPS, tabAdSPS, tabAd10SPS);
-            CsvHandler SolOuestCsv = new CsvHandler(modbusClientSolWest, tabNVarSol, tabAdSol, tabAd10Sol);
-            CsvHandler SolEstCsv = new CsvHandler(modbusClientSolEast, tabNVarSol, tabAdSol, tabAd10Sol);
+            CsvHandler UPS = new CsvHandler();
+
             //Connection aux onduleurs et relevé des data
-            SolOuestCsv.setFileCsv(prop.getProperty("pathDirFile"),prop.getProperty("nameSolWest"));
-            SolEstCsv.setFileCsv(prop.getProperty("pathDirFile"),prop.getProperty("nameSolEast"));
-            SPSCsv.setFileCsv(prop.getProperty("pathDirFile"),prop.getProperty("nameSPS"));
+            UPS.setFileCsv(prop.getProperty("pathDirFile"), prop.getProperty("pathArduinoPython"), tabNVarSPS, tabNVarSol, modbusClientSPS, modbusClientSolEast, modbusClientSolWest, tabAdSPS, tabAdSol, tabAd10SPS, tabAd10Sol);
+
             input.close();
         } catch (Exception e1) {
-            logger.error("Error in init() : " + e1);
+            logger.error("Error in init() : ", e1);
         }
     }
 
