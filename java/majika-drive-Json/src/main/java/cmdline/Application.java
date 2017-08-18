@@ -5,6 +5,7 @@ import cmdline.ftp.AppFtp;
 import cmdline.ftpZip.AppFtpZip;
 import cmdline.json.DriveSample;
 import cmdline.test.TestJava;
+import cmdline.updateProgram.ProgramUpdate;
 import cmdline.zip.DriveSampleZip;
 
 import java.io.IOException;
@@ -30,6 +31,9 @@ public class Application {
                     break;
                 case "ftpZip":
                     new AppFtpZip();
+                    break;
+                case "updateProgram":
+                    new ProgramUpdate();
                     break;
                 default:
                     System.out.println("This is not a proper arguments");

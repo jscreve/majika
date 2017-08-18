@@ -38,10 +38,8 @@ public class AppFtp {
                 InputStream input = getClass().getClassLoader().getResourceAsStream("config.properties");
                 prop.load(input);
                 ftpClient.connect(server, port);
-
                 ftpClient.login(user, pass);
                 ftpClient.enterLocalPassiveMode();
-
                 ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
 
                 // APPROACH #1: uploads first file using an InputStream

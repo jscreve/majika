@@ -66,34 +66,7 @@ public class AppFtpZip {
             if (done) {
                 logger.info("File Uploaded");
             }
-            //##################################
-            //##########DOWNLOAD PART###########
-            //##################################
 
-
-            String remoteFile1 = "/majika/DevelopperFolder/majika-drive-sample-1.0.jar";
-
-            File downloadJar = new File(prop.getProperty("jarPath") +"majika-drive-sample-1.0.jar");
-            OutputStream outputStream1 = new BufferedOutputStream(new FileOutputStream(downloadJar));
-            logger.info("Start Downloading Jar File");
-            boolean successJar = ftpClient.retrieveFile(remoteFile1, outputStream1);
-            outputStream1.close();
-
-            if (successJar) {
-                logger.info("Jar File has been downloaded successfully.");
-            }
-
-            String remoteFileConf = "/majika/DevelopperFolder/config.properties";
-
-            File downloadConf = new File(prop.getProperty("jarPath") +"config.properties");
-            OutputStream outputStream = new BufferedOutputStream(new FileOutputStream(downloadConf));
-            logger.info("Start downloading Config.properties");
-            boolean successConf = ftpClient.retrieveFile(remoteFileConf, outputStream);
-            outputStream.close();
-
-            if (successConf) {
-                logger.info("Conf.properties has been downloaded successfully.");
-            }
         } catch (IOException ex) {
             logger.error("Connection Internet off", ex);
         } finally {

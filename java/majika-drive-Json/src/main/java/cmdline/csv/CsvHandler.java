@@ -23,10 +23,7 @@ public class CsvHandler {
     private Logger logger = LogManager.getLogger();
     Properties prop = new Properties();
 
-    //Fonction définissant les 3variables à la fois, permet de créer pour les 3 onduleurs
-    public CsvHandler() {
-
-    }
+    public CsvHandler() {}
 
     /**
      * @param pathDir Directroy indicated from the config file, where te csv will be created
@@ -41,7 +38,7 @@ public class CsvHandler {
         //Path pour créer un dossier chaque jour(utile pour zipper)
         String dirDaily = setDirdaily(dir, date, month);
         //Nom et Path pour créer le fichier
-        String allPath = dirDaily + separateur + "UPS_" + month.format(date).toString() + csvEnd;
+        String allPath = dirDaily + separateur + "UPS_" + month.format(date) + csvEnd;
         //Heure et jour dans le fichier .Csv
         SimpleDateFormat day = new SimpleDateFormat("dd.MM.yyyy");
         SimpleDateFormat hour = new SimpleDateFormat("HH:mm");
@@ -68,8 +65,8 @@ public class CsvHandler {
                 }
             }
             out.println();  //Saute de ligne
-            out.print(day.format(date).toString() + ";"); //Ecrit la date du jour
-            out.print(hour.format(date).toString() + ";");
+            out.print(day.format(date) + ";"); //Ecrit la date du jour
+            out.print(hour.format(date) + ";");
 
 
             //######################################
@@ -78,33 +75,33 @@ public class CsvHandler {
                 try {
                     modbusClientSPS.Connect();
 
-                    FileWriter arduinoWF = new FileWriter("/home/pi/CentraleSolaireData/Programmes/majika-drive-sample-1.0/bin/arduino");
-                    BufferedWriter arduinoWB = new BufferedWriter(arduinoWF);
+                    //FileWriter arduinoWF = new FileWriter("/home/pi/CentraleSolaireData/Programmes/majika-drive-sample-1.0/bin/arduino");
+                    //BufferedWriter arduinoWB = new BufferedWriter(arduinoWF);
 
                  try{
-                    Process p = Runtime.getRuntime().exec(pathArduino);
+                    /*Process p = Runtime.getRuntime().exec(pathArduino);
                     BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
-                    String returnedValue = in.readLine();
-
+                    String returnedValue = in.readLine();*/
+                    String returnedValue = "299999,28.8,29.9,292,191,292,8888";
                     if(returnedValue.equals("Error in socket connection"))
                     {
                         for(int i =0; i<7;i++){
                             out.print(0 +";");
-                            arduinoWB.write("0,");
+                            //arduinoWB.write("0,");
                         }
 
-                    }else{
-                    String[] array = returnedValue.split(",");
-                    String pointToComma="";
-                    arduinoWB.write(returnedValue);
-                    for(String compteur : array)
-                        pointToComma = compteur.replace(".",",");
-                        out.print(pointToComma +";");
-                    }
-                    arduinoWB.close();
-                    arduinoWF.close();
+                    }else {
+                        String[] array = returnedValue.split(",");
+                        String pointToComma = "";
+                        //arduinoWB.write(returnedValue);
+                        for (String compteur : array) {
+                            pointToComma = compteur.replace(".",",");
+                            out.print(pointToComma + ";");
+                        }
+                          //          arduinoWB.close();
+                            //        arduinoWF.close();
 
-                }catch(Exception e){
+                    }}catch(Exception e){
                     logger.error("Arduino Bluetooth",e);
                 }
                     writeToCsv(modbusClientSPS, tabAdresseRegisterSPS, tabAd10SPS, out);
@@ -156,16 +153,19 @@ public class CsvHandler {
                         }
                     }
                 }
+                //Remplace les points du float par une virgule pour que ce soit directement utilisable par le .csv
                 String valString = String.valueOf(valeur).replace(".",",");
+                //le ";" permet de sauter d'une colonne en excel
                 out.print(valString + ";");
+
             }
-        } catch (Exception e) {
+        } catch (Exception e) {logger.error("Impossible to get value from",e);
         }
     }
 
     private String setDirdaily(String dir, Date date, SimpleDateFormat month) {
 
-        String dirDaily = dir + separateur + month.format(date).toString();
+        String dirDaily = dir + separateur + month.format(date);
         File theDirDaily = new File(dirDaily);
         if (!theDirDaily.exists()) {
             try {
@@ -177,10 +177,16 @@ public class CsvHandler {
         return dirDaily;
     }
 
+    /**
+     *
+     * @param pathDir Adresse de création du dossier chaque mois
+     * @param date Utilisation de la même date au lancement du programme
+     * @return retourne l'adresse du dossier avec le mois
+     */
     private String setDirMonthly(String pathDir, Date date) {
 
         SimpleDateFormat df = new SimpleDateFormat("MM_yyyy");
-        String dir = pathDir + df.format(date).toString();
+        String dir = pathDir + df.format(date);
         File theDirMonthly = new File(dir);
         if (!theDirMonthly.exists()) {
             try {

@@ -20,7 +20,7 @@ public class ApplicationCsv {
     private ModbusClient modbusClientSolWest;
     private ModbusClient modbusClientSPS;
 
-    //Initialisation des variables utilisé pour convertir les donnée du config.properties
+    //Initialisation des variables utilisées pour convertir les données du config.properties
     private String[] tabNVarSol;
     private String[] tabNVarSPS;
     private String[] tabAdSol;
@@ -38,11 +38,12 @@ public class ApplicationCsv {
     }
 
     /**
-     *
+     *Cette classe a pour objectif de configurer les variables obtenue à partir du config.properties et de lancer la classe CSVHandler avec ces variables
      */
 
     private void init() {
         try {
+            //La ligne ci dessous permet d'avoir accès directement dans le lib au conf.properties sans indiquer le path
             InputStream input = getClass().getClassLoader().getResourceAsStream("config.properties");
             prop.load(input);
             tabNVarSol = prop.getProperty("tabNomVariableSolCsv").split(",");
@@ -63,6 +64,7 @@ public class ApplicationCsv {
             //Connection aux onduleurs et relevé des data
             UPS.setFileCsv(prop.getProperty("pathDirFile"), prop.getProperty("pathArduinoPython"), tabNVarSPS, tabNVarSol, modbusClientSPS, modbusClientSolEast, modbusClientSolWest, tabAdSPS, tabAdSol, tabAd10SPS, tabAd10Sol);
 
+            //Fermeture de la lecture du conf.properties
             input.close();
         } catch (Exception e1) {
             logger.error("Error in init() : ", e1);
