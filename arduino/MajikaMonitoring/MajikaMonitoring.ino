@@ -102,8 +102,7 @@ void setup()
 
   //Teleinfo
   // initialisation du port 0-1 lecture Téléinfo
-  //Serial.begin(1200, SERIAL_7E2);
-  Serial.begin(1200, SERIAL_7E2);
+  Serial.begin(1200, SERIAL_7E1);
   // parité paire E
   // 7 bits data
   //UCSR0C = B00100100;
@@ -187,6 +186,18 @@ void loop()
       digitalWrite(LEDPin, 1);
       String realTimeTeleInfo = getRealTimeTeleInfo();
       Serial.println(realTimeTeleInfo);
+      bluetooth.print(realTimeTeleInfo);
+      bluetooth.print("END");
+    }
+    if (bluetoothInputData == 52) { // if number 4 is read we send all teleinfo data
+      digitalWrite(LEDPin, 1);
+      sensorsBattery.requestTemperatures(); // Send the command to get temperatures
+      bluetooth.print(sensorsBattery.getTempCByIndex(0));
+      bluetooth.print(",");
+      sensorsCentral.requestTemperatures(); // Send the command to get temperatures
+      bluetooth.print(sensorsCentral.getTempCByIndex(0));
+      bluetooth.print(",");
+      String realTimeTeleInfo = getRealTimeTeleInfo();
       bluetooth.print(realTimeTeleInfo);
       bluetooth.print("END");
     }
