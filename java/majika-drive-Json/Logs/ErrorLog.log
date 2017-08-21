@@ -1,0 +1,27 @@
+2017-08-18 09:06:34 | INFO  | main       | rogram.programUpdate:53    | Start Downloading File
+2017-08-18 09:06:35 | INFO  | main       | rogram.programUpdate:60    | config.properties have been downloaded successfully.
+2017-08-18 09:06:35 | INFO  | main       | rogram.programUpdate:53    | Start Downloading File
+2017-08-18 09:06:38 | INFO  | main       | rogram.programUpdate:60    | majika-drive-sample-1.0.jar have been downloaded successfully.
+2017-08-18 09:06:38 | INFO  | main       | rogram.programUpdate:79    | Start uploading Dwn file
+2017-08-18 09:36:33 | ERROR | main       | dline.csv.CsvHandler:109   | Impossible to Connect to SPS
+java.io.FileNotFoundException: \home\pi\CentraleSolaireData\Programmes\majika-drive-sample-1.0\bin\arduino (Le chemin d’accès spécifié est introuvable)
+	at java.io.FileOutputStream.open0(Native Method) ~[?:1.8.0_131]
+	at java.io.FileOutputStream.open(FileOutputStream.java:270) ~[?:1.8.0_131]
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:213) ~[?:1.8.0_131]
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:101) ~[?:1.8.0_131]
+	at java.io.FileWriter.<init>(FileWriter.java:63) ~[?:1.8.0_131]
+	at cmdline.csv.CsvHandler.setFileCsv(CsvHandler.java:78) [main/:?]
+	at cmdline.csv.ApplicationCsv.init(ApplicationCsv.java:65) [main/:?]
+	at cmdline.csv.ApplicationCsv.<init>(ApplicationCsv.java:37) [main/:?]
+	at cmdline.csv.ApplicationCsv.main(ApplicationCsv.java:32) [main/:?]
+2017-08-18 09:36:33 | ERROR | main       | dline.csv.CsvHandler:109   | Impossible to Connect to SPS
+java.io.FileNotFoundException: \home\pi\CentraleSolaireData\Programmes\majika-drive-sample-1.0\bin\arduino (Le chemin d’accès spécifié est introuvable)
+	at java.io.FileOutputStream.open0(Native Method) ~[?:1.8.0_131]
+	at java.io.FileOutputStream.open(FileOutputStream.java:270) ~[?:1.8.0_131]
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:213) ~[?:1.8.0_131]
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:101) ~[?:1.8.0_131]
+	at java.io.FileWriter.<init>(FileWriter.java:63) ~[?:1.8.0_131]
+	at cmdline.csv.CsvHandler.setFileCsv(CsvHandler.java:78) [main/:?]
+	at cmdline.csv.ApplicationCsv.init(ApplicationCsv.java:65) [main/:?]
+	at cmdline.csv.ApplicationCsv.<init>(ApplicationCsv.java:37) [main/:?]
+	at cmdline.csv.ApplicationCsv.main(ApplicationCsv.java:32) [main/:?]
