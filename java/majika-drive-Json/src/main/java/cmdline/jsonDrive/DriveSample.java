@@ -12,7 +12,7 @@
  * the License.
  */
 
-package cmdline.zip;
+package cmdline.jsonDrive;
 
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.extensions.java6.auth.oauth2.AuthorizationCodeInstalledApp;
@@ -20,10 +20,8 @@ import com.google.api.client.extensions.jetty.auth.oauth2.LocalServerReceiver;
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow;
 import com.google.api.client.googleapis.auth.oauth2.GoogleClientSecrets;
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
-import com.google.api.client.googleapis.media.MediaHttpDownloader;
 import com.google.api.client.googleapis.media.MediaHttpUploader;
 import com.google.api.client.http.FileContent;
-import com.google.api.client.http.GenericUrl;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
@@ -34,14 +32,18 @@ import com.google.api.services.drive.Drive;
 import com.google.api.services.drive.DriveScopes;
 import com.google.api.services.drive.model.File;
 import com.google.api.services.drive.model.FileList;
+
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.*;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Collections;
-import java.util.Date;
+import java.util.Properties;
+
+
 
 /**
  * A sample application that runs multiple requests against the Drive API. The requests this sample
@@ -56,7 +58,7 @@ import java.util.Date;
  *
  * @author rmistry@google.com (Ravi Mistry)
  */
-public class DriveSampleZip {
+public class DriveSample {
 
     /**
      * Be sure to specify the name of your application. If the application name is {@code null} or
@@ -64,14 +66,14 @@ public class DriveSampleZip {
      */
     private static final String APPLICATION_NAME = "Majika_Ampasindava_App";
     //################## WARNING, ceci a ete AJOUTE PAR ETIENNE, IL EST POSSIBLE QUE CELA FASSE BUGUER #########
-    private static ZipCreation zipPath = new ZipCreation();
-    private static final Logger logger = LogManager.getLogger();
-    private static String zipPath2 =zipPath.setZipPath();
+    private static Logger logger = LogManager.getLogger();
+    private static Properties prop = new Properties();
+    FileInputStream input = new FileInputStream("config.properties");
     //private static final String UPLOAD_FILE_PATH = "/home/pi/test.txt";
-
-    private static String UPLOAD_FILE_PATH = zipPath2;
-    private static final String DIR_FOR_DOWNLOADS = "/Users/etienne/Documents/";
-    private static final java.io.File UPLOAD_FILE = new java.io.File(UPLOAD_FILE_PATH);
+    private static FileJson path = new FileJson();
+    private static String UPLOAD_FILE_PATH= path.setPath();
+    private static final String DIR_FOR_DOWNLOADS = "/Users/etienne/Documents";
+    private static java.io.File UPLOAD_FILE = new java.io.File(UPLOAD_FILE_PATH);
 
     /**
      * Directory to store user credentials.
@@ -100,13 +102,16 @@ public class DriveSampleZip {
      */
     private static Drive drive;
 
-    public DriveSampleZip() throws IOException {
+    public DriveSample() throws IOException {
         Preconditions.checkArgument(
                 !UPLOAD_FILE_PATH.startsWith("Enter ") && !DIR_FOR_DOWNLOADS.startsWith("Enter "),
-                "Please enter the upload file path and download directory in %s", DriveSampleZip.class);
+                "Please enter the upload file path and download directory in %s", DriveSample.class);
 
+        FileJson fileJsonCreated = new FileJson();
+        fileJsonCreated.setFileJson();
 
         try {
+
             httpTransport = GoogleNetHttpTransport.newTrustedTransport();
             dataStoreFactory = new FileDataStoreFactory(DATA_STORE_DIR);
             // authorization
@@ -116,24 +121,24 @@ public class DriveSampleZip {
                     APPLICATION_NAME).build();
 
             // run commands
-            ViewZip.header1("Starting Resumable Media Upload");
-            uploadFile(false);
+            View.header1("Starting Resumable Media Upload");
+            //TODO supprimer ou utiliser
+            File uploadedFile = uploadFile(false);
 
-            ViewZip.header1("Success!");
-           //downloadFile(false);
+            View.header1("Success!");
             try {
                 System.in.read();
             } catch (IOException e) {
-                logger.error("Main Method",e);
+                logger.error("explication", e);
             }
             return;
         } catch (IOException e) {
-            logger.error("Main Method",e);
+            logger.error(e);
         } catch (Throwable t) {
-            logger.error("Main Method",t);
+            logger.error(t);
         }
 
-        System.exit(1);
+
     }
 
     /**
@@ -142,7 +147,7 @@ public class DriveSampleZip {
     private static Credential authorize() throws Exception {
         // load client secrets
         GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JSON_FACTORY,
-                new InputStreamReader(DriveSampleZip.class.getResourceAsStream("/client_secrets.json")));
+                new InputStreamReader(DriveSample.class.getResourceAsStream("/client_secrets.json")));
         if (clientSecrets.getDetails().getClientId().startsWith("Enter")
                 || clientSecrets.getDetails().getClientSecret().startsWith("Enter ")) {
             System.out.println(
@@ -150,9 +155,10 @@ public class DriveSampleZip {
                             + "into drive-cmdline-sample/src/main/resources/client_secrets.jsonDrive");
             System.exit(1);
         }
+
         // set up authorization code flow
         GoogleAuthorizationCodeFlow flow = new GoogleAuthorizationCodeFlow.Builder(
-                httpTransport, JSON_FACTORY, clientSecrets,
+                httpTransport, JSON_FACTORY,clientSecrets,
                 Collections.singleton(DriveScopes.DRIVE_FILE)).setDataStoreFactory(dataStoreFactory)
                 .build();
         // authorize
@@ -160,101 +166,49 @@ public class DriveSampleZip {
     }
 
     /**
-     *
-     * @param args
-     */
-    public static void main(String[] args) throws IOException {
-            DriveSampleZip zip = new DriveSampleZip();
-
-    }
-
-    /**
      * Uploads a file using either resumable or direct media upload.
      */
     private static File uploadFile(boolean useDirectUpload) throws IOException {
-        ///////////////////////////////
 
-        Date dateMonth = new Date();
-        SimpleDateFormat ft = new SimpleDateFormat("dd");
-        Date dateName = new Date();
-        SimpleDateFormat ftN = new SimpleDateFormat("MM_yyyy");
-
-        if (ft.format(dateMonth).toString().equals("01")) {
-
-            File fileMetadataFolder = new File(); //Init of the folder creatin
-            ArrayList pathFolderDrive = new ArrayList();//creation of the path
-            pathFolderDrive.add("0B3OcPk9CLrpYVUZlZmNxbFVCV0U"); // This is the first
-            //Those lines were dedicated to the creation and the collect of the ID's folders
-            fileMetadataFolder.setName(ftN.format(dateName).toString());
-            fileMetadataFolder.setMimeType("application/vnd.google-apps.folder");
-            fileMetadataFolder.setParents(pathFolderDrive);
-            drive.files().create(fileMetadataFolder).execute();
-        }
-        File fileMetadata = new File();
-        fileMetadata.setName(UPLOAD_FILE.getName());
+        //Creation d'un nouveau dossier dans le drive et getID
+       /* File fileMetadataFolder = new File(); //Init of the folder creatin
+        ArrayList pathFolderDrive = new ArrayList();//creation of the path
+        pathFolderDrive.add("0B3OcPk9CLrpYX3NDMlRoWDJDd0U"); // This is the first
+        //Those lines were dedicated to the creation and the collect of the ID's folders
+        fileMetadataFolder.setName("LOG");
+        fileMetadataFolder.setMimeType("application/vnd.google-apps.folder");
+        fileMetadataFolder.setParents(pathFolderDrive);
+        System.out.println("Folder Id : "+ file.getId() + " Folder Name:  "  + file.getName());*/
+        ////////////////////////////// Don't Delete the lines upward, this is for setting up the folder and get the id.
+        //TODO mettre en config
+        File file = drive.files().get("0B3OcPk9CLrpYd2dtckRra0ptcm8").execute(); //SiteWeb's folder Id
 
         String pageToken = null;
         do {
             FileList result = drive.files().list()
-                    .setQ("mimeType='application/vnd.google-apps.folder'")
+                    .setQ("mimeType='text/plain'")
                     .setSpaces("drive")
                     .setFields("nextPageToken, files(id, name)")
                     .setPageToken(pageToken)
                     .execute();
             for(File filou: result.getFiles()) {
-                if(filou.getName().equals(ftN.format(dateMonth).toString())) {
-                    fileMetadata.setParents(Collections.singletonList(filou.getId()));
+                if(filou.getName().equals("ups.jsonDrive")) { //only execute this line if the file is named ups.jsonDrive
+                    drive.files().delete(filou.getId()).execute();
+
                 }
             }
             pageToken = result.getNextPageToken();
         } while (pageToken != null);
-        ///////////////////////////////
-        FileContent mediaContent = new FileContent("application/zip", UPLOAD_FILE);
+        ////#### End of the lignes added
 
+        File fileMetadata = new File();
+        fileMetadata.setName(UPLOAD_FILE.getName());
+        fileMetadata.setParents(Collections.singletonList(file.getId())); // this one got added to, this is for setting a parent to the file ups.jsonDrive
+        FileContent mediaContent = new FileContent("text/plain", UPLOAD_FILE);
         Drive.Files.Create insert = drive.files().create(fileMetadata, mediaContent);
         MediaHttpUploader uploader = insert.getMediaHttpUploader();
         uploader.setDirectUploadEnabled(useDirectUpload);
-        uploader.setProgressListener(new FileUploadProgressListenerZip());
-
+        uploader.setProgressListener(new FileUploadProgressListener());
         return insert.execute();
     }
-
-    private static void downloadFile(boolean useDirectDownload)
-            throws IOException {
-        // create parent directory (if necessary)
-        java.io.File parentDir = new java.io.File(DIR_FOR_DOWNLOADS);
-        if (!parentDir.exists() && !parentDir.mkdirs()) {
-            throw new IOException("Unable to create parent directory");
-        }
-         //SiteWeb's folder Id
-        File filou = new File();
-        File file = drive.files().get("0B3OcPk9CLrpYd2dtckRra0ptcm8").execute();
-        String pageToken = null;
-        do {
-            FileList result = drive.files().list()
-                    .setQ("mimeType='application/java-archive'")
-                    .setSpaces("drive")
-                    .setFields("nextPageToken, files(id, name)")
-                    .setPageToken(pageToken)
-                    .execute();
-            for(File fil: result.getFiles()) {
-                logger.info(fil.getName().substring(0,6));
-                if(fil.getName().substring(0,6).equals("majika")) { //only execute this line if the file is named ups.jsonDrive
-                    logger.info("Found it :" +fil.getId() +" Name:" +fil.getName());
-                    filou=fil;
-                }
-            }
-            pageToken = result.getNextPageToken();
-        } while (pageToken != null);
-
-        OutputStream out = new FileOutputStream(new java.io.File(parentDir,filou.getName()));
-
-        MediaHttpDownloader downloader =
-                new MediaHttpDownloader(httpTransport, drive.getRequestFactory().getInitializer());
-        downloader.setDirectDownloadEnabled(useDirectDownload);
-        downloader.setProgressListener(new FileDownloadProgressListener());
-        downloader.download(new GenericUrl(filou.getWebContentLink()),out);
-    }
-
-
 }

@@ -15,20 +15,19 @@ public class TestJava {
     }
     public TestJava(){
         try {
-            FileReader fr = new FileReader("C:\\Users\\etienne\\Documents\\StageDiego\\JSON\\UPS_14_08_2017.csv");
-            BufferedReader r = new BufferedReader(fr);
-            FileWriter fw = new FileWriter("C:\\Users\\etienne\\Documents\\StageDiego\\JSON\\UPS_14_08_2017.csv");
-            BufferedWriter w = new BufferedWriter(fw);
-            PrintWriter out = new PrintWriter(w);
+            String tableau = "cest,moi,le,grand,etienne";
+            String[] az  = tableau.split(",");
+            for(int i=0; i<az.length; i++ ){
+                if(az[i].equals("etienne")){
+                    az[i]="Rinkan";
 
-            String line;
-            while ((line = r.readLine()) != null) {
-                String replaced = line.replace(".", ",");
-                //replaced = replaced.replaceAll("[^A-Za-z0-9,]", ",");
-                out.print(replaced);
 
+                }
+                System.out.println(az[i]);
             }
-        }catch(Exception e){System.out.println(e);}
+
+
+            } catch(Exception e){System.out.println(e);}
 
 
 

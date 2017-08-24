@@ -1,27 +1,92 @@
-2017-08-18 09:06:34 | INFO  | main       | rogram.programUpdate:53    | Start Downloading File
-2017-08-18 09:06:35 | INFO  | main       | rogram.programUpdate:60    | config.properties have been downloaded successfully.
-2017-08-18 09:06:35 | INFO  | main       | rogram.programUpdate:53    | Start Downloading File
-2017-08-18 09:06:38 | INFO  | main       | rogram.programUpdate:60    | majika-drive-sample-1.0.jar have been downloaded successfully.
-2017-08-18 09:06:38 | INFO  | main       | rogram.programUpdate:79    | Start uploading Dwn file
-2017-08-18 09:36:33 | ERROR | main       | dline.csv.CsvHandler:109   | Impossible to Connect to SPS
+2017-08-24 09:29:03 | ERROR | main       | dline.csv.CsvHandler:116   | Impossible to Connect to SPS
+java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.connect0(Native Method) ~[?:1.8.0_131]
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:79) ~[?:1.8.0_131]
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350) ~[?:1.8.0_131]
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206) ~[?:1.8.0_131]
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188) ~[?:1.8.0_131]
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172) ~[?:1.8.0_131]
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392) ~[?:1.8.0_131]
+	at java.net.Socket.connect(Socket.java:589) ~[?:1.8.0_131]
+	at java.net.Socket.connect(Socket.java:538) ~[?:1.8.0_131]
+	at java.net.Socket.<init>(Socket.java:434) ~[?:1.8.0_131]
+	at java.net.Socket.<init>(Socket.java:211) ~[?:1.8.0_131]
+	at de.re.easymodbus.modbusclient.ModbusClient.Connect(ModbusClient.java:88) ~[EasyModbusJavaClient.jar:?]
+	at cmdline.csv.CsvHandler.setFileCsv(CsvHandler.java:81) [main/:?]
+	at cmdline.csv.ApplicationCsv.init(ApplicationCsv.java:67) [main/:?]
+	at cmdline.csv.ApplicationCsv.<init>(ApplicationCsv.java:26) [main/:?]
+	at cmdline.csv.ApplicationCsv.main(ApplicationCsv.java:21) [main/:?]
+2017-08-24 09:29:04 | ERROR | main       | dline.csv.CsvHandler:124   | Impossible to connect to East
+java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.connect0(Native Method) ~[?:1.8.0_131]
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:79) ~[?:1.8.0_131]
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350) ~[?:1.8.0_131]
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206) ~[?:1.8.0_131]
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188) ~[?:1.8.0_131]
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172) ~[?:1.8.0_131]
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392) ~[?:1.8.0_131]
+	at java.net.Socket.connect(Socket.java:589) ~[?:1.8.0_131]
+	at java.net.Socket.connect(Socket.java:538) ~[?:1.8.0_131]
+	at java.net.Socket.<init>(Socket.java:434) ~[?:1.8.0_131]
+	at java.net.Socket.<init>(Socket.java:211) ~[?:1.8.0_131]
+	at de.re.easymodbus.modbusclient.ModbusClient.Connect(ModbusClient.java:88) ~[EasyModbusJavaClient.jar:?]
+	at cmdline.csv.CsvHandler.setFileCsv(CsvHandler.java:120) [main/:?]
+	at cmdline.csv.ApplicationCsv.init(ApplicationCsv.java:67) [main/:?]
+	at cmdline.csv.ApplicationCsv.<init>(ApplicationCsv.java:26) [main/:?]
+	at cmdline.csv.ApplicationCsv.main(ApplicationCsv.java:21) [main/:?]
+2017-08-24 09:29:05 | ERROR | main       | dline.csv.CsvHandler:132   | Impossible to connect to West
+java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.connect0(Native Method) ~[?:1.8.0_131]
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:79) ~[?:1.8.0_131]
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350) ~[?:1.8.0_131]
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206) ~[?:1.8.0_131]
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188) ~[?:1.8.0_131]
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172) ~[?:1.8.0_131]
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392) ~[?:1.8.0_131]
+	at java.net.Socket.connect(Socket.java:589) ~[?:1.8.0_131]
+	at java.net.Socket.connect(Socket.java:538) ~[?:1.8.0_131]
+	at java.net.Socket.<init>(Socket.java:434) ~[?:1.8.0_131]
+	at java.net.Socket.<init>(Socket.java:211) ~[?:1.8.0_131]
+	at de.re.easymodbus.modbusclient.ModbusClient.Connect(ModbusClient.java:88) ~[EasyModbusJavaClient.jar:?]
+	at cmdline.csv.CsvHandler.setFileCsv(CsvHandler.java:128) [main/:?]
+	at cmdline.csv.ApplicationCsv.init(ApplicationCsv.java:67) [main/:?]
+	at cmdline.csv.ApplicationCsv.<init>(ApplicationCsv.java:26) [main/:?]
+	at cmdline.csv.ApplicationCsv.main(ApplicationCsv.java:21) [main/:?]
+2017-08-24 09:29:19 | ERROR | main       | dline.csv.CsvHandler:116   | Impossible to Connect to SPS
 java.io.FileNotFoundException: \home\pi\CentraleSolaireData\Programmes\majika-drive-sample-1.0\bin\arduino (Le chemin d’accès spécifié est introuvable)
 	at java.io.FileOutputStream.open0(Native Method) ~[?:1.8.0_131]
 	at java.io.FileOutputStream.open(FileOutputStream.java:270) ~[?:1.8.0_131]
 	at java.io.FileOutputStream.<init>(FileOutputStream.java:213) ~[?:1.8.0_131]
 	at java.io.FileOutputStream.<init>(FileOutputStream.java:101) ~[?:1.8.0_131]
 	at java.io.FileWriter.<init>(FileWriter.java:63) ~[?:1.8.0_131]
-	at cmdline.csv.CsvHandler.setFileCsv(CsvHandler.java:78) [main/:?]
-	at cmdline.csv.ApplicationCsv.init(ApplicationCsv.java:65) [main/:?]
-	at cmdline.csv.ApplicationCsv.<init>(ApplicationCsv.java:37) [main/:?]
-	at cmdline.csv.ApplicationCsv.main(ApplicationCsv.java:32) [main/:?]
-2017-08-18 09:36:33 | ERROR | main       | dline.csv.CsvHandler:109   | Impossible to Connect to SPS
+	at cmdline.csv.CsvHandler.setFileCsv(CsvHandler.java:83) [main/:?]
+	at cmdline.csv.ApplicationCsv.init(ApplicationCsv.java:67) [main/:?]
+	at cmdline.csv.ApplicationCsv.<init>(ApplicationCsv.java:26) [main/:?]
+	at cmdline.csv.ApplicationCsv.main(ApplicationCsv.java:21) [main/:?]
+2017-08-24 09:31:52 | ERROR | main       | dline.csv.CsvHandler:116   | Impossible to Connect to SPS
 java.io.FileNotFoundException: \home\pi\CentraleSolaireData\Programmes\majika-drive-sample-1.0\bin\arduino (Le chemin d’accès spécifié est introuvable)
 	at java.io.FileOutputStream.open0(Native Method) ~[?:1.8.0_131]
 	at java.io.FileOutputStream.open(FileOutputStream.java:270) ~[?:1.8.0_131]
 	at java.io.FileOutputStream.<init>(FileOutputStream.java:213) ~[?:1.8.0_131]
 	at java.io.FileOutputStream.<init>(FileOutputStream.java:101) ~[?:1.8.0_131]
 	at java.io.FileWriter.<init>(FileWriter.java:63) ~[?:1.8.0_131]
-	at cmdline.csv.CsvHandler.setFileCsv(CsvHandler.java:78) [main/:?]
-	at cmdline.csv.ApplicationCsv.init(ApplicationCsv.java:65) [main/:?]
-	at cmdline.csv.ApplicationCsv.<init>(ApplicationCsv.java:37) [main/:?]
-	at cmdline.csv.ApplicationCsv.main(ApplicationCsv.java:32) [main/:?]
+	at cmdline.csv.CsvHandler.setFileCsv(CsvHandler.java:84) [main/:?]
+	at cmdline.csv.ApplicationCsv.init(ApplicationCsv.java:67) [main/:?]
+	at cmdline.csv.ApplicationCsv.<init>(ApplicationCsv.java:26) [main/:?]
+	at cmdline.csv.ApplicationCsv.main(ApplicationCsv.java:21) [main/:?]
+2017-08-24 09:39:58 | ERROR | main       | dline.csv.CsvHandler:113   | Arduino Bluetooth
+java.io.IOException: Cannot run program "python3": CreateProcess error=2, Le fichier spécifié est introuvable
+	at java.lang.ProcessBuilder.start(ProcessBuilder.java:1048) ~[?:1.8.0_131]
+	at java.lang.Runtime.exec(Runtime.java:620) ~[?:1.8.0_131]
+	at java.lang.Runtime.exec(Runtime.java:450) ~[?:1.8.0_131]
+	at java.lang.Runtime.exec(Runtime.java:347) ~[?:1.8.0_131]
+	at cmdline.csv.CsvHandler.setFileCsv(CsvHandler.java:90) [main/:?]
+	at cmdline.csv.ApplicationCsv.init(ApplicationCsv.java:67) [main/:?]
+	at cmdline.csv.ApplicationCsv.<init>(ApplicationCsv.java:26) [main/:?]
+	at cmdline.csv.ApplicationCsv.main(ApplicationCsv.java:21) [main/:?]
+Caused by: java.io.IOException: CreateProcess error=2, Le fichier spécifié est introuvable
+	at java.lang.ProcessImpl.create(Native Method) ~[?:1.8.0_131]
+	at java.lang.ProcessImpl.<init>(ProcessImpl.java:386) ~[?:1.8.0_131]
+	at java.lang.ProcessImpl.start(ProcessImpl.java:137) ~[?:1.8.0_131]
+	at java.lang.ProcessBuilder.start(ProcessBuilder.java:1029) ~[?:1.8.0_131]
+	... 7 more

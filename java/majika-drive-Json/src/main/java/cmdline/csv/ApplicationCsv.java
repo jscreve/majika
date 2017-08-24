@@ -15,21 +15,10 @@ public class ApplicationCsv {
     private Properties prop = new Properties();
     private Logger logger = LogManager.getLogger();
 
-    //Initialisation Connection Modbus TCP/IP, pour relever les données
-    private ModbusClient modbusClientSolEast;
-    private ModbusClient modbusClientSolWest;
-    private ModbusClient modbusClientSPS;
 
-    //Initialisation des variables utilisées pour convertir les données du config.properties
-    private String[] tabNVarSol;
-    private String[] tabNVarSPS;
-    private String[] tabAdSol;
-    private String[] tabAdSPS;
-    private String[] tabAd10SPS;
-    private String[] tabAd10Sol;
 
     public static void main(String[] args) {
-        ApplicationCsv applicationCsv = new ApplicationCsv();
+        new ApplicationCsv();
 
     }
 
@@ -42,10 +31,23 @@ public class ApplicationCsv {
      */
 
     private void init() {
+        //Initialisation Connection Modbus TCP/IP, pour relever les données
+        ModbusClient modbusClientSolEast;
+        ModbusClient modbusClientSolWest;
+        ModbusClient modbusClientSPS;
+
+        //Initialisation des variables utilisées pour convertir les données du config.properties
+        String[] tabNVarSol;
+        String[] tabNVarSPS;
+        String[] tabAdSol;
+        String[] tabAdSPS;
+        String[] tabAd10SPS;
+        String[] tabAd10Sol;
         try {
             //La ligne ci dessous permet d'avoir accès directement dans le lib au conf.properties sans indiquer le path
             InputStream input = getClass().getClassLoader().getResourceAsStream("config.properties");
             prop.load(input);
+            //Conversion des différentes lignes reçu par le config.properties en tableau(l'utilisation est plus simple
             tabNVarSol = prop.getProperty("tabNomVariableSolCsv").split(",");
             tabNVarSPS = prop.getProperty("tabNomVariableSPSCsv").split(",");
             tabAdSol = prop.getProperty("tabAdresseSolCsv").split(",");
@@ -53,7 +55,7 @@ public class ApplicationCsv {
             tabAd10SPS = prop.getProperty("divisePar10SPS").split(",");
             tabAd10Sol = prop.getProperty("divisePar10Sol").split(",");
 
-
+            //Initialisation pour la connection aux 3 onduleurs en indiquant leur adresse IP et le port de connexion
             modbusClientSolEast = new ModbusClient(prop.getProperty("ipAdresseSolEast"), 502);
             modbusClientSolWest = new ModbusClient(prop.getProperty("ipAdresseSolWest"), 502);
             modbusClientSPS = new ModbusClient(prop.getProperty("ipAdresseSPS"), 502);
@@ -61,7 +63,7 @@ public class ApplicationCsv {
             //Initialisation des fichiers .csv à créer
             CsvHandler UPS = new CsvHandler();
 
-            //Connection aux onduleurs et relevé des data
+            //Connection aux onduleurs et relevé des data en utilisant le methode setFileCsv qui regroupe toutes les autres methodes
             UPS.setFileCsv(prop.getProperty("pathDirFile"), prop.getProperty("pathArduinoPython"), tabNVarSPS, tabNVarSol, modbusClientSPS, modbusClientSolEast, modbusClientSolWest, tabAdSPS, tabAdSol, tabAd10SPS, tabAd10Sol);
 
             //Fermeture de la lecture du conf.properties

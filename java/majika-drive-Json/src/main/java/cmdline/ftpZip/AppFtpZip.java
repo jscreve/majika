@@ -1,7 +1,5 @@
 package cmdline.ftpZip;
 
-import cmdline.csv.ApplicationCsv;
-import cmdline.ftp.FileJsonFtp;
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.logging.log4j.LogManager;
@@ -23,6 +21,9 @@ public class AppFtpZip {
 
     }
 
+    /**
+     * Comme pour le ftpJson, on se connecte au serveur FTP, mais cette fois ci au lieu d'envoyer un fichier Json on envoie un fichier .zip
+     */
     public AppFtpZip() {
 
         Logger logger = LogManager.getLogger();
@@ -47,7 +48,7 @@ public class AppFtpZip {
 
             ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
 
-            String dirMonthly = folderMonthly.format(date).toString();
+            String dirMonthly = folderMonthly.format(date);
             if (!ftpClient.changeWorkingDirectory("/majika/CsvZip/" + dirMonthly)) {
                 ftpClient.makeDirectory("/majika/CsvZip/" + dirMonthly);
             }
