@@ -90,9 +90,11 @@ public class CsvHandler {
                         Process p = Runtime.getRuntime().exec(pathArduino);// execution d'une ligne de commande qui se trouve dans le config.properties
                         BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));//lecture du renvoie
                         String returnedValue = in.readLine();//Transfert dans une variable toutes la chaîne de caractère
+                        //String returnedValue = "29999,28.9,29.8,29.1,27.1,101,102,103,9999";
                         if (returnedValue.equals("Error in socket connection"))// Dans le cas ou la connexion à été interrompu toutes les valeurs sont initialisées à 0
                         {
-                            for (int i = 0; i < 7; i++) {// Pour le moment il n'y a que 7 données retournée par l'Arduino, à changer si ajout de sonde ou de compteur.
+                            String[] nbrVariableArduino = prop.getProperty("arduinoNomVariable").split(",");
+                            for (int i = 0; i < nbrVariableArduino.length; i++) {//Le fait de prendre les nom de variables permet de determiner à l'avance grâce au config properties le nombre de données reçue
                                 out.print(0 + ";");//Ecriture dans le csv
                                 arduinoWB.write("0,");//Ecriture dans le fichier
                             }
@@ -105,8 +107,8 @@ public class CsvHandler {
                                 pointToComma = compteur.replace(".", ",");// remplacement des . par des ,
                                 out.print(pointToComma + ";");//On ecrit dans le csv les valeurs retournées
                             }
-                            arduinoWB.close();//On oublie pas de fermer le fichier dans lequel on a écrit pour laisser place à la lecture
-                            arduinoWF.close();
+                        arduinoWB.close();//On oublie pas de fermer le fichier dans lequel on a écrit pour laisser place à la lecture
+                        arduinoWF.close();
 
                         }
                     } catch (Exception e) {
@@ -142,7 +144,7 @@ public class CsvHandler {
             fw.close();
             input.close();
         } catch (IOException e) {
-            logger.error("Error: ", e);
+            logger.error("IOError", e);
         } catch (Exception e) {
             logger.error("Error", e);
         }
@@ -151,7 +153,6 @@ public class CsvHandler {
 
     private void writeToCsv(ModbusClient modbusClient, String[] tabAdresseRegister, String[] tabAd10, PrintWriter out) {
         try {
-            String [] tableau = {"24","25","26"};
             for (i = 0; i < tabAdresseRegister.length; i++) {// lit jusqu'a la derniere valeur du tableau
                 //
                 valeur = modbusClient.ReadHoldingRegisters(Integer.parseInt(tabAdresseRegister[i]), 1)[0];//Integer.parseInt est primordial car il permet de convertir un String en un Int, la methode Holding register n'accepte que des int
@@ -159,30 +160,24 @@ public class CsvHandler {
                 for (String add : tabAd10) {
                     if (tabAdresseRegister[i].equals(add)) {
                         valeur = valeur / 10;
-                        if (tabAdresseRegister[i].equals("23")) {// Il n'y a qu'une valeur dans les solaires (la fréquence) qui doit etre divisé par 100
+                        if (tabAdresseRegister[i].equals("23") && tabAdresseRegister[0].equals("10")) {// Il n'y a qu'une valeur dans les solaires (la fréquence) qui doit etre divisé par 100
                             //Attention à modifier cette methode de division si l'adresse 23 est utilisé dans l'SPS
                             valeur = valeur / 10;
                         }
                     }
                 }
 
-                if(tabAdresseRegister[0].equals("10")) {
-                    for (String puissanceAdresseVariable : tableau) {
-                        if (tabAdresseRegister[i].equals(puissanceAdresseVariable)) {
+                    //Cette condition if check si c'est bien un onduleur d'ou la comparaison avec 10 qui est la premiere valeur lu des onduleurs et si c'est bien 24 25 ou 26
+                    if(tabAdresseRegister[0].equals("10") && (tabAdresseRegister[i].equals("24") || tabAdresseRegister[i].equals("25") || tabAdresseRegister[i].equals("26")))
+                    {
                             valeur = valeur * 10;
-                        }
                     }
-                }
-
                 //Remplace les points du float par une virgule pour que ce soit directement utilisable par le .csv
                 String valString = String.valueOf(valeur).replace(".", ",");
                 //le ";" permet de sauter d'une colonne en excel
                 out.print(valString + ";");
 
             }
-
-
-
 
         } catch (Exception e) {
             logger.error("Impossible to get value from", e);
@@ -202,9 +197,15 @@ public class CsvHandler {
         File theDirDaily = new File(dirDaily);
         if (!theDirDaily.exists()) {
             try {
-                theDirDaily.mkdir();// On crée le dossier du jour
+                boolean done = theDirDaily.mkdir();// On crée le dossier du jour
+                if(done)
+                {
+                    logger.info("Folder created the :" + Daily.format(date));
+                }
+
+
             } catch (SecurityException se) {
-                logger.error("ErrorDirDaily :" + se);
+                logger.error("ErrorMkDirDaily", se);
             }
         }
         return dirDaily;// On retourne le chemin qui servira à la création du chemin pour le .csv
@@ -222,9 +223,13 @@ public class CsvHandler {
         File theDirMonthly = new File(dir);
         if (!theDirMonthly.exists()) {
             try {
-                theDirMonthly.mkdir();
+                boolean done = theDirMonthly.mkdir();
+                if(done)
+                {
+                    logger.info("Monthly folder created the :" + df.format(date));
+                }
             } catch (SecurityException de) {
-                logger.error("ErrorDirMonth : " + de);
+                logger.error("ErrorDirMonth",de);
             }
         }
         return dir;

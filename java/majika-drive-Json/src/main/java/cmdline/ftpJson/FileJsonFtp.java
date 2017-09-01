@@ -32,7 +32,7 @@ public class FileJsonFtp {
     private String[] tabAdArduino;
 
     /**
-     * This is the main method called by the main class to create and get data in the jsonDrive file
+     * This is the main method called by the main class to create and get data in the json file
      */
 
     public void setFileJson() {
@@ -103,7 +103,7 @@ public class FileJsonFtp {
             }
 
             obj.put("Date", list);
-            FileWriter file = new FileWriter(prop.getProperty("pathDirFile") + "ups.jsonDrive");
+            FileWriter file = new FileWriter(prop.getProperty("pathDirFile") + "ups.json");
             file.write(obj.toJSONString());// Ecrit l'objet dans le fichier Json
             file.flush();
 
@@ -120,7 +120,7 @@ public class FileJsonFtp {
         try {
             InputStream input = getClass().getClassLoader().getResourceAsStream("config.properties");
             prop.load(input);
-            pathDir = prop.getProperty("pathDirFile") + "ups.jsonDrive";
+            pathDir = prop.getProperty("pathDirFile") + "ups.json";
             input.close();
         } catch (IOException i) {
             logger.error("properties", i);

@@ -43,7 +43,7 @@ public class ProgramUpdate {
             String infoDownloading = "Files ";
             for (FTPFile ftpfile : ftplist) {
                 if (ftpfile.isFile() && !ftpfile.getName().equals("Success.txt")) {
-                    System.out.println(ftpfile.getName());
+                    //System.out.println(ftpfile.getName());
                     String remoteFile1 = "/majika/DevelopperFolder/" + ftpfile.getName();
 
                     File downloadJar = new File(prop.getProperty("jarPath") + ftpfile.getName());
@@ -55,7 +55,7 @@ public class ProgramUpdate {
                     infoDownloading = infoDownloading + ":" + ftpfile.getName();
 
                     if (successJar) {
-                        logger.info(ftpfile.getName() + " have been downloaded successfully.");
+                        logger.info(ftpfile.getName() + " has been downloaded successfully.");
                     }
                 }
             }
