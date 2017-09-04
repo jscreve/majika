@@ -1,0 +1,31 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+mainClassName = 'org.majika.monitoring.Application'
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+version = '1.0'
+
+jar { manifest { attributes 'Main-Class': 'org.majika.monitoring.Application' } }
+
+repositories {
+    mavenLocal()
+    jcenter()
+}
+
+startScripts {
+    classpath += files('src/dist/config')
+}
+
+dependencies {
+    runtime files('src/dist/lib/config')
+    compile 'modbus:modbus:1.0.0'
+    compile 'com.googlecode.json-simple:json-simple:1.1.1'
+    compile 'org.apache.logging.log4j:log4j-api:2.8.2'
+    compile 'org.apache.logging.log4j:log4j-core:2.8.2'
+    compile 'com.google.api-client:google-api-client:1.22.0'
+    compile 'com.google.oauth-client:google-oauth-client-jetty:1.22.0'
+    compile 'com.google.apis:google-api-services-drive:v3-rev76-1.22.0'
+    compile 'commons-net:commons-net:3.6'
+    testCompile 'org.mockito:mockito-core:2.9.0'
+}
