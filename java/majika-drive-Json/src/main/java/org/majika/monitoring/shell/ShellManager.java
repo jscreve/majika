@@ -29,6 +29,7 @@ public class ShellManager {
         try {
             InputStream input = getClass().getClassLoader().getResourceAsStream("config.properties");
             prop.load(input);
+            input.close();
             shellRemoteFolder =  prop.getProperty("shellRemoteFolder");
             shellResultFile =  prop.getProperty("shellResultFile");
         }  catch (IOException ex) {

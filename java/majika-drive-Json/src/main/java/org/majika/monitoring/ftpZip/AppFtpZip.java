@@ -28,6 +28,7 @@ public class AppFtpZip {
         try {
             InputStream input = getClass().getClassLoader().getResourceAsStream("config.properties");
             prop.load(input);
+            input.close();
             csvZipRemoteDirectory = prop.getProperty("csvZipRemoteDirectory");
         }  catch (IOException ex) {
             logger.error("Could not load properties file", ex);

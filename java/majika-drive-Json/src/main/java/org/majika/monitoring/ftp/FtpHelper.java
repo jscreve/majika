@@ -24,11 +24,14 @@ public class FtpHelper {
     }
 
     public static FTPClient connectToFTP(Properties properties) throws IOException {
-        if(ftpClient == null || !ftpClient.isConnected()) {
-            String ftpServer = properties.getProperty("ftpServer");
-            String ftpUser = properties.getProperty("ftpUser");
-            String ftpPass = properties.getProperty("ftpPass");
+        String ftpServer = properties.getProperty("ftpServer");
+        String ftpUser = properties.getProperty("ftpUser");
+        String ftpPass = properties.getProperty("ftpPass");
+        return connectToFTP(ftpServer, ftpUser, ftpPass);
+    }
 
+    public static FTPClient connectToFTP(String ftpServer, String ftpUser, String ftpPass) throws IOException {
+        if(ftpClient == null || !ftpClient.isConnected()) {
             ftpClient = new FTPClient();
             int port = 21;
             ftpClient.connect(ftpServer, port);

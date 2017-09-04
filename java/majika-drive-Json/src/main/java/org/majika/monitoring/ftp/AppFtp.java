@@ -3,7 +3,6 @@ package org.majika.monitoring.ftp;
 import java.io.*;
 import java.util.Properties;
 
-import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -14,9 +13,14 @@ import org.apache.logging.log4j.Logger;
 public class AppFtp {
 
     private static Logger logger = LogManager.getLogger(AppFtp.class);
-    private Properties prop = new Properties();
+
+    private FileJsonFtp fJs = new FileJsonFtp();
+    private String pathDirFile;
     private String jsonRemoteDirectory;
     private String jsonFileName;
+    private String ftpServer;
+    private String ftpUser;
+    private String ftpPass;
 
     public static void main(String[] args) {
         new AppFtp();
@@ -28,9 +32,15 @@ public class AppFtp {
     public AppFtp() {
         try {
             InputStream input = getClass().getClassLoader().getResourceAsStream("config.properties");
+            Properties prop = new Properties();
             prop.load(input);
+            input.close();
+            pathDirFile = prop.getProperty("pathDirFile");
             jsonRemoteDirectory = prop.getProperty("jsonRemoteDirectory");
             jsonFileName = prop.getProperty("jsonFileName");
+            ftpServer = prop.getProperty("ftpServer");
+            ftpUser = prop.getProperty("ftpUser");
+            ftpPass = prop.getProperty("ftpPass");
         }  catch (IOException ex) {
             logger.error("Could not load properties file", ex);
         }
@@ -39,15 +49,13 @@ public class AppFtp {
     public void executeFTPCommand() {
         FTPClient ftpClient = null;
         try{Thread.sleep(5000);}catch(Exception e){logger.error("Couldnt wait",e);}
-        FileJsonFtp fJs = new FileJsonFtp();
         fJs.setFileJson();
         try {
-            ftpClient = FtpHelper.connectToFTP(prop);
+            ftpClient = FtpHelper.connectToFTP(ftpServer, ftpUser, ftpPass);
             // APPROACH #1: uploads first file using an InputStream
-            File firstLocalFile = new File(prop.getProperty("pathDirFile") + jsonFileName);
+            File firstLocalFile = new File(pathDirFile + jsonFileName);
             String firstRemoteFile = jsonRemoteDirectory + jsonFileName;
             InputStream inputStream = new FileInputStream(firstLocalFile);
-
             logger.info("Start uploading Json file");
             boolean done = ftpClient.storeFile(firstRemoteFile, inputStream);
             inputStream.close();
@@ -68,6 +76,38 @@ public class AppFtp {
                 logger.error("Disconnection FTP", ex);
             }
         }
-
     }
+
+    public String getJsonRemoteDirectory() {
+        return jsonRemoteDirectory;
+    }
+
+    public void setJsonRemoteDirectory(String jsonRemoteDirectory) {
+        this.jsonRemoteDirectory = jsonRemoteDirectory;
+    }
+
+    public String getJsonFileName() {
+        return jsonFileName;
+    }
+
+    public void setJsonFileName(String jsonFileName) {
+        this.jsonFileName = jsonFileName;
+    }
+
+    public String getPathDirFile() {
+        return pathDirFile;
+    }
+
+    public void setPathDirFile(String pathDirFile) {
+        this.pathDirFile = pathDirFile;
+    }
+
+    public FileJsonFtp getfJs() {
+        return fJs;
+    }
+
+    public void setfJs(FileJsonFtp fJs) {
+        this.fJs = fJs;
+    }
+
 }

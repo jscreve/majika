@@ -45,14 +45,11 @@ public class FileJsonFtp {
     private String[] array;
     private String[] tabAdArduino;
 
-    /**
-     * This is the main method called by the main class to create and get data in the json file
-     */
-
-    public void setFileJson() {
+    public FileJsonFtp() {
         try {
             InputStream input = getClass().getClassLoader().getResourceAsStream("config.properties");
             prop.load(input); // open the connection to the properties file
+            input.close();
             tabAdSPS = prop.getProperty("tabAdresseSPSJson").split(",");
             tabAdSol = prop.getProperty("tabAdresseSolJson").split(",");
             tabAd10SPS = prop.getProperty("divisePar10SPS").split(",");
@@ -62,21 +59,36 @@ public class FileJsonFtp {
             modbusClientSolEast = new ModbusClient(prop.getProperty("ipAdresseSolEast"), 502);
             modbusClientSolWest = new ModbusClient(prop.getProperty("ipAdresseSolWest"), 502);
             modbusClientSPS = new ModbusClient(prop.getProperty("ipAdresseSPS"), 502);
+        } catch (IOException e1) {
+            logger.error("Error reading properties file", e1);
+        }
+    }
 
+    /**
+     * This is the main method called by the main class to create and get data in the json file
+     */
+
+    public void setFileJson() {
+        try {
             Date date = new Date();
             SimpleDateFormat ft = new SimpleDateFormat("HH:mm dd.MM.yyyy");
-            list.add(ft.format(date).toString());
+            //Liste pour la date du fichier Json
+            list.add(ft.format(date));
 
             try {
                 modbusClientSPS.Connect();
+                //Même technique que pour le csv
                 dataUPS(prop.getProperty("nameSPS"), modbusClientSPS, tabAdNameSPS, tabAdSPS, tabAd10SPS, dataSPS, listSPS);
                 modbusClientSPS.Disconnect();
-            } catch (Exception e) {
+            } catch (Exception e) {//Dans le cas où les données n'ont pas pu être récupéré, on revoie la valeur 0 sur chacune des valeurs
                 for (int i = 0; i < tabAdNameSPS.length; i++) {
                     dataSPS.put(tabAdNameSPS[i], 0);
                 }
+                //l'onduleur SPS affiche en plus des solaire le OUTSPS avec la moyenne effectuée en Amont
                 dataSPS.put("OUTSPS", 0);
+                //Enregistre les données dans la liste
                 listSPS.add(dataSPS);
+                //L'inscrit dans l'objet principale avec le nom du sps
                 obj.put(prop.getProperty("nameSPS"), listSPS);
                 logger.error("SPS", e);
             }
@@ -85,14 +97,14 @@ public class FileJsonFtp {
                 modbusClientSolEast.Connect();
                 dataUPS(prop.getProperty("nameSolEast"), modbusClientSolEast, tabAdNameSol, tabAdSol, tabAd10Sol, dataEast, listSolE);
                 modbusClientSolEast.Disconnect();
-            } catch (Exception e) {
+            } catch (Exception e) {//Même fonctionnement que pour le SPS à part que c'est Power à la place de OUTSPS
                 for (int i = 0; i < tabAdNameSol.length; i++) {
                     dataEast.put(tabAdNameSol[i], 0);
                 }
                 dataEast.put("Power", 0);
                 listSolE.add(dataEast);
                 obj.put(prop.getProperty("nameSolEast"), listSolE);
-                //logger.error("SolEast",e);
+                logger.error("SolEast",e);
             }
 
             try {
@@ -111,24 +123,12 @@ public class FileJsonFtp {
 
             obj.put("Date", list);
             FileWriter file = new FileWriter(prop.getProperty("pathDirFile") + "ups.json");
-            file.write(obj.toJSONString());
+            file.write(obj.toJSONString());// Ecrit l'objet dans le fichier Json
             file.flush();
 
         } catch (IOException e1) {
             logger.error("Error Json File", e1);
         }
-    }
-
-    public String setPath() {
-        try {
-            InputStream input = getClass().getClassLoader().getResourceAsStream("config.properties");
-            prop.load(input);
-            pathDir = prop.getProperty("pathDirFile") + "ups.json";
-            input.close();
-        } catch (IOException i) {
-            logger.error("properties", i);
-        }
-        return pathDir;
     }
 
     /**
@@ -155,13 +155,13 @@ public class FileJsonFtp {
     }
 
     /**
-     * @param name
-     * @param mod
-     * @param tabNomVar
-     * @param tabAdrVar
-     * @param tabAdr10Var
-     * @param data
-     * @param liste
+     * @param name, Nom des onduleurs
+     * @param mod, connection modbus aux onduleurs
+     * @param tabNomVar,Nom variable de soit sps soit solaire
+     * @param tabAdrVar, Adresse variable de soit sps soit solaire
+     * @param tabAdr10Var, Divise par 10 comme indiqué dans la documentation
+     * @param data, Objet de chaque onduleur
+     * @param liste, Liste de chaque onduleur
      */
     private void dataUPS(String name, ModbusClient mod, String[] tabNomVar, String[] tabAdrVar, String[] tabAdr10Var, JSONObject data, JSONArray liste) {
         tabAdArduino = prop.getProperty("arduinoNomVariable").split(",");
@@ -179,9 +179,11 @@ public class FileJsonFtp {
                 }
                 data.put(tabNomVar[i], valeur);
             }
+            //Dans le cas ou ce n'est pas le SPS, on utilise la methode Power
             if (!name.equals(prop.getProperty("nameSPS"))) {
                 data.put("Power", threePhasesSol(mod));
             }
+            //Dans le cas ou c'est le SPS on lit le fichier Arduino crée par le csv et on fait la moyenne pour OUTSPS
             if (name.equals(prop.getProperty("nameSPS"))) {
                 int VA1, VA2, VA3 = 0;
                 float VA = 0;
@@ -206,7 +208,7 @@ public class FileJsonFtp {
                 VA3 = mod.ReadHoldingRegisters(39, 1)[0];
                 VA = (VA1 + VA2 + VA3) / 3;
                 data.put("OUTSPS", VA);
-                try {
+                try {// Dans le SPS on ajoute l'execution de la commande de temperature du raspberry Pi pour avoir un Visuel sur son fonctionnement
                     Process i = Runtime.getRuntime().exec("cat /sys/class/thermal/thermal_zone0/temp");
                     BufferedReader rp = new BufferedReader(new InputStreamReader(i.getInputStream()));
                     double returned = Double.parseDouble(rp.readLine()) / 1000;
@@ -216,7 +218,6 @@ public class FileJsonFtp {
                 }
 
             }
-
             liste.add(data);
             obj.put(name, liste);
         } catch (ModbusException m) {
