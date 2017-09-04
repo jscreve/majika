@@ -20,14 +20,11 @@ public class Zip {
     private Date date;
     private SimpleDateFormat month;
     private SimpleDateFormat df;
+    static final int BUFFER = 2048;
     private Properties prop = new Properties();
     public static void FilePath() {
     }
 
-    /**
-     * Cette méthode prend tous les fichiers dans un dossier indiqué depuis la methode FileOutputStream et les compresse dans un zip
-     * @return, la methode retourne un String qui est le chemin retournée
-     */
 
     public String setZipPath() {
         String dir;
@@ -40,11 +37,10 @@ public class Zip {
             //Path pour créer un dossier chaque mois
 
             df = new SimpleDateFormat("MM_yyyy");
-            dir = pathDir + df.format(date) + separateur + month.format(date);
+            dir = pathDir + df.format(date).toString() + separateur + month.format(date).toString();
 
             final Path sourceDir = Paths.get(dir);
             String zipFileName = dir.concat(".zip");
-            //Cette partie compresse le fichier .csv dans le dossier indiquer
             try {
                 final ZipOutputStream outputStream = new ZipOutputStream(new FileOutputStream(zipFileName));
                 Files.walkFileTree(sourceDir, new SimpleFileVisitor<Path>() {
@@ -68,6 +64,6 @@ public class Zip {
             }
             input.close(); // close the connection to the properties file
         }catch(IOException i){logger.error("Properties",i);}
-        return pathDir + df.format(date) + separateur + month.format(date) + ".zip";
+        return pathDir + df.format(date).toString() + separateur + month.format(date).toString() + ".zip";
     }
 }

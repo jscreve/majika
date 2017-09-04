@@ -24,9 +24,6 @@ public class AppFtpZip {
         new AppFtpZip();
     }
 
-    /**
-     * Comme pour le ftpJson, on se connecte au serveur FTP, mais cette fois ci au lieu d'envoyer un fichier Json on envoie un fichier .zip
-     */
     public AppFtpZip() {
         try {
             InputStream input = getClass().getClassLoader().getResourceAsStream("config.properties");
@@ -44,26 +41,10 @@ public class AppFtpZip {
         SimpleDateFormat zipFormat = new SimpleDateFormat("dd_MM_yyyy");
         SimpleDateFormat folderMonthly = new SimpleDateFormat("MM_yyyy");
         try {
-<<<<<<< HEAD:java/majika-drive-Json/src/main/java/org/majika/monitoring/ftpZip/AppFtpZip.java
             ftpClient = FtpHelper.connectToFTP(prop);
             String dirMonthly = folderMonthly.format(date).toString();
             if (!ftpClient.changeWorkingDirectory(csvZipRemoteDirectory + dirMonthly)) {
                 ftpClient.makeDirectory(csvZipRemoteDirectory + dirMonthly);
-=======
-            InputStream input = getClass().getClassLoader().getResourceAsStream("config.properties");
-            prop.load(input);
-
-
-            ftpClient.connect(server, port);
-            ftpClient.login(user, pass);
-            ftpClient.enterLocalPassiveMode();
-
-            ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
-
-            String dirMonthly = folderMonthly.format(date);
-            if (!ftpClient.changeWorkingDirectory("/majika/CsvZip/" + dirMonthly)) {
-                ftpClient.makeDirectory("/majika/CsvZip/" + dirMonthly);
->>>>>>> 40ff8341652f726965b6134ffd4ecac5dd8d8243:java/majika-drive-Json/src/main/java/cmdline/ftpZip/AppFtpZip.java
             }
             // APPROACH #1: uploads first file using an InputStream
             File firstLocalFile = new File(zip.setZipPath());

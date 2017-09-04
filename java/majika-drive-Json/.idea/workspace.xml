@@ -2,201 +2,32 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c4ea0d70-b810-49ff-8cb9-73546f9cf4c1" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_googlecode_json_simple_json_simple_1_1_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__junit_junit_4_10.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__modbus_modbus_1_0_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_hamcrest_hamcrest_core_1_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/majika/monitoring/Application.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/majika/monitoring/ftp/FtpHelper.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/majika/monitoring/shell/ShellManager.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/java/org/majika/monitoring/shell/ShellManagerTest.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ErrorLog.log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Logs/2017-08/app-2017-08-01-1.log.gz" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Logs/2017-08/app-2017-08-01-2.log.gz" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Logs/2017-08/app-2017-08-07-1.log.gz" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Logs/2017-08/app-2017-08-07-2.log.gz" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Logs/2017-08/app-2017-08-08-1.log.gz" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Logs/2017-08/app-2017-08-09-1.log.gz" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Logs/2017-08/app-2017-08-10-1.log.gz" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Logs/2017-08/app-2017-08-17-1.log.gz" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/cmdline/Application.class" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/cmdline/csv/ApplicationCsv.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/cmdline/csv/CsvHandler.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/cmdline/ftp/AppFtp.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/cmdline/ftp/FileJsonFtp.class" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/cmdline/ftpZip/AppFtpZip.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/cmdline/ftpZip/Zip$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/cmdline/ftpZip/Zip.class" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/cmdline/test/TestJava.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/cmdline/updateProgram/ProgramUpdate.class" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/cmdline/zip/DriveSampleZip.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/cmdline/zip/FileUploadProgressListenerZip$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/cmdline/zip/FileUploadProgressListenerZip.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/cmdline/zip/ViewZip.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/cmdline/zip/ZipCreation$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/cmdline/zip/ZipCreation.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/config.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.0/lib/EasyModbusJavaClient.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.1.tar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.1.zip" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.1/bin/Log.log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.1/bin/config.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.1/bin/majika-drive-sample" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.1/bin/majika-drive-sample.bat" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.1/lib/EasyModbusJavaClient.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.1/lib/commons-codec-1.3.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.1/lib/commons-logging-1.1.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.1/lib/google-api-client-1.22.0.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.1/lib/google-api-services-drive-v3-rev76-1.22.0.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.1/lib/google-http-client-1.22.0.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.1/lib/google-http-client-jackson2-1.22.0.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.1/lib/google-oauth-client-1.22.0.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.1/lib/google-oauth-client-java6-1.22.0.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.1/lib/google-oauth-client-jetty-1.22.0.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.1/lib/guava-jdk5-17.0.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.1/lib/httpclient-4.0.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.1/lib/httpcore-4.0.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.1/lib/jackson-core-2.1.3.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.1/lib/jetty-6.1.26.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.1/lib/jetty-util-6.1.26.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.1/lib/json-simple-1.1.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.1/lib/jsr305-1.3.9.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.1/lib/log4j-api-2.8.2.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.1/lib/log4j-core-2.8.2.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.1/lib/majika-drive-sample-1.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.1/lib/servlet-api-2.5-20081211.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.2.tar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.2.zip" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.2/bin/ErrorLog.log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.2/bin/Logs/ErrorLog.log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.2/bin/config.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.2/bin/majika-drive-sample" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.2/bin/majika-drive-sample.bat" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.2/lib/EasyModbusJavaClient.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.2/lib/commons-codec-1.3.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.2/lib/commons-logging-1.1.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.2/lib/commons-net-3.6.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.2/lib/config.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.2/lib/config/config.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.2/lib/config/fetchData.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.2/lib/config/log4j2.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.2/lib/fetchData.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.2/lib/google-api-client-1.22.0.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.2/lib/google-api-services-drive-v3-rev76-1.22.0.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.2/lib/google-http-client-1.22.0.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.2/lib/google-http-client-jackson2-1.22.0.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.2/lib/google-oauth-client-1.22.0.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.2/lib/google-oauth-client-java6-1.22.0.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.2/lib/google-oauth-client-jetty-1.22.0.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.2/lib/guava-jdk5-17.0.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.2/lib/httpclient-4.0.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.2/lib/httpcore-4.0.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.2/lib/jackson-core-2.1.3.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.2/lib/jetty-6.1.26.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.2/lib/jetty-util-6.1.26.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.2/lib/json-simple-1.1.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.2/lib/jsr305-1.3.9.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.2/lib/log4j-api-2.8.2.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.2/lib/log4j-core-2.8.2.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.2/lib/log4j2.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.2/lib/majika-drive-sample-1.2.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.2/lib/servlet-api-2.5-20081211.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-BOO.tar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-BOO.zip" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-BOO/bin/majika-drive-sample" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-BOO/bin/majika-drive-sample.bat" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-BOO/lib/EasyModbusJavaClient.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-BOO/lib/commons-codec-1.3.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-BOO/lib/commons-logging-1.1.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-BOO/lib/commons-net-3.6.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-BOO/lib/config.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-BOO/lib/config/config.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-BOO/lib/config/fetchData.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-BOO/lib/config/log4j2.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-BOO/lib/fetchData.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-BOO/lib/google-api-client-1.22.0.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-BOO/lib/google-api-services-drive-v3-rev76-1.22.0.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-BOO/lib/google-http-client-1.22.0.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-BOO/lib/google-http-client-jackson2-1.22.0.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-BOO/lib/google-oauth-client-1.22.0.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-BOO/lib/google-oauth-client-java6-1.22.0.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-BOO/lib/google-oauth-client-jetty-1.22.0.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-BOO/lib/guava-jdk5-17.0.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-BOO/lib/httpclient-4.0.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-BOO/lib/httpcore-4.0.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-BOO/lib/jackson-core-2.1.3.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-BOO/lib/jetty-6.1.26.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-BOO/lib/jetty-util-6.1.26.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-BOO/lib/json-simple-1.1.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-BOO/lib/jsr305-1.3.9.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-BOO/lib/log4j-api-2.8.2.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-BOO/lib/log4j-core-2.8.2.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-BOO/lib/log4j2.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-BOO/lib/majika-drive-sample-BOO.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-BOO/lib/servlet-api-2.5-20081211.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/config.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/majika-drive-sample/client_secrets.json" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/cmdline/Application.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/cmdline/json/DriveSample.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/cmdline/json/FileJson.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/cmdline/json/FileUploadProgressListener.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/cmdline/json/View.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/cmdline/ftpJson/AppFtp.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/cmdline/ftpJson/FileJsonFtp.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/cmdline/jsonDrive/DriveSample.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/cmdline/jsonDrive/FileJson.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/cmdline/jsonDrive/FileUploadProgressListener.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/cmdline/jsonDrive/View.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/cmdline/updateProgram/ProgramUpdate.java" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/cmdline/zip/DriveSampleZip.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/cmdline/zip/FileDownloadProgressListener.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/cmdline/zip/FileUploadProgressListenerZip.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/cmdline/zip/ViewZip.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/cmdline/zip/ZipCreation.java" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Logs/ErrorLog.log" afterPath="$PROJECT_DIR$/logs/ErrorLog.log" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/cmdline/csv/ApplicationCsv.java" afterPath="$PROJECT_DIR$/src/main/java/org/majika/monitoring/csv/ApplicationCsv.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/cmdline/csv/CsvHandler.java" afterPath="$PROJECT_DIR$/src/main/java/org/majika/monitoring/csv/CsvHandler.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/cmdline/ftp/AppFtp.java" afterPath="$PROJECT_DIR$/src/main/java/org/majika/monitoring/ftp/AppFtp.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/cmdline/ftp/FileJsonFtp.java" afterPath="$PROJECT_DIR$/src/main/java/org/majika/monitoring/ftp/FileJsonFtp.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/cmdline/ftpZip/AppFtpZip.java" afterPath="$PROJECT_DIR$/src/main/java/org/majika/monitoring/ftpZip/AppFtpZip.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/cmdline/ftpZip/Zip.java" afterPath="$PROJECT_DIR$/src/main/java/org/majika/monitoring/ftpZip/Zip.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/cmdline/test/TestJava.java" afterPath="$PROJECT_DIR$/src/main/java/org/majika/monitoring/test/TestJava.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/cmdline/updateProgram/ProgramUpdate.java" afterPath="$PROJECT_DIR$/src/main/java/org/majika/monitoring/updateProgram/ProgramUpdate.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileHashes.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.0.tar" afterPath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.0.tar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.0.zip" afterPath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.0.zip" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.0/lib/commons-codec-1.3.jar" afterPath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.0/lib/commons-codec-1.3.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.0/lib/commons-logging-1.1.1.jar" afterPath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.0/lib/commons-logging-1.1.1.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.0/lib/httpcore-4.0.1.jar" afterPath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.0/lib/httpcore-4.0.1.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.0/lib/jackson-core-2.1.3.jar" afterPath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.0/lib/jackson-core-2.1.3.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.0/lib/jetty-6.1.26.jar" afterPath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.0/lib/jetty-6.1.26.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.0/lib/jetty-util-6.1.26.jar" afterPath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.0/lib/jetty-util-6.1.26.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.0/lib/json-simple-1.1.1.jar" afterPath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.0/lib/json-simple-1.1.1.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.0/lib/jsr305-1.3.9.jar" afterPath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.0/lib/jsr305-1.3.9.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.0/lib/majika-drive-sample-1.0.jar" afterPath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.0/lib/majika-drive-sample-1.0.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.0/lib/servlet-api-2.5-20081211.jar" afterPath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.0/lib/servlet-api-2.5-20081211.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/libs/majika-drive-sample-1.0.jar" afterPath="$PROJECT_DIR$/build/libs/majika-drive-sample-1.0.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_fasterxml_jackson_core_jackson_core_2_1_3.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_fasterxml_jackson_core_jackson_core_2_1_3.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_code_findbugs_jsr305_1_3_9.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_code_findbugs_jsr305_1_3_9.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__commons_codec_commons_codec_1_3.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__commons_codec_commons_codec_1_3.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__commons_logging_commons_logging_1_1_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__commons_logging_commons_logging_1_1_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_httpcomponents_httpclient_4_0_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_httpcomponents_httpclient_4_0_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_httpcomponents_httpcore_4_0_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_httpcomponents_httpcore_4_0_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_mortbay_jetty_jetty_6_1_26.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_mortbay_jetty_jetty_6_1_26.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_mortbay_jetty_jetty_util_6_1_26.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_mortbay_jetty_jetty_util_6_1_26.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_mortbay_jetty_servlet_api_2_5_20081211.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_mortbay_jetty_servlet_api_2_5_20081211.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules/majika-drive-sample_main.iml" afterPath="$PROJECT_DIR$/.idea/modules/majika-drive-sample_main.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules/majika-drive-sample_test.iml" afterPath="$PROJECT_DIR$/.idea/modules/majika-drive-sample_test.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.gradle" afterPath="$PROJECT_DIR$/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.0/bin/majika-drive-sample" afterPath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.0/bin/majika-drive-sample" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.0/bin/majika-drive-sample.bat" afterPath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.0/bin/majika-drive-sample.bat" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.0/lib/config.properties" afterPath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.0/lib/config.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.0/lib/config/config.properties" afterPath="$PROJECT_DIR$/build/distributions/majika-drive-sample-1.0/lib/config/config.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/resources/main/README.txt" afterPath="$PROJECT_DIR$/build/resources/main/README.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/resources/main/log4j2.xml" afterPath="$PROJECT_DIR$/build/resources/main/log4j2.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/scripts/majika-drive-sample" afterPath="$PROJECT_DIR$/build/scripts/majika-drive-sample" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/scripts/majika-drive-sample.bat" afterPath="$PROJECT_DIR$/build/scripts/majika-drive-sample.bat" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/tmp/jar/MANIFEST.MF" afterPath="$PROJECT_DIR$/build/tmp/jar/MANIFEST.MF" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/dist/lib/config/config.properties" afterPath="$PROJECT_DIR$/src/dist/lib/config/config.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/dist/lib/config/log4j2.xml" afterPath="$PROJECT_DIR$/src/dist/lib/config/log4j2.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/majika/monitoring/csv/ApplicationCsv.java" afterPath="$PROJECT_DIR$/src/main/java/org/majika/monitoring/csv/ApplicationCsv.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/majika/monitoring/csv/CsvHandler.java" afterPath="$PROJECT_DIR$/src/main/java/org/majika/monitoring/csv/CsvHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/majika/monitoring/ftpZip/AppFtpZip.java" afterPath="$PROJECT_DIR$/src/main/java/org/majika/monitoring/ftpZip/AppFtpZip.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/majika/monitoring/ftpZip/Zip.java" afterPath="$PROJECT_DIR$/src/main/java/org/majika/monitoring/ftpZip/Zip.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/majika/monitoring/test/TestJava.java" afterPath="$PROJECT_DIR$/src/main/java/org/majika/monitoring/test/TestJava.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/README.txt" afterPath="$PROJECT_DIR$/src/main/resources/README.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/log4j2.xml" afterPath="$PROJECT_DIR$/src/main/resources/log4j2.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -246,102 +77,15 @@
     </system>
   </component>
   <component name="FileEditorManager">
-<<<<<<< HEAD
     <leaf>
-      <file leaf-file-name="ApplicationCsv.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/majika/monitoring/csv/ApplicationCsv.java">
+      <file leaf-file-name="ShellManagerTest.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/test/java/org/majika/monitoring/shell/ShellManagerTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="890">
-              <caret line="69" column="12" lean-forward="false" selection-start-line="69" selection-start-column="12" selection-end-line="69" selection-end-column="12" />
-=======
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="config.properties" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/dist/lib/config/config.properties">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="22" column="43" lean-forward="false" selection-start-line="22" selection-start-column="43" selection-end-line="22" selection-end-column="43" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FileJsonFtp.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/cmdline/ftpJson/FileJsonFtp.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1887">
-              <caret line="121" column="29" lean-forward="false" selection-start-line="121" selection-start-column="29" selection-end-line="121" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ProgramUpdate.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/cmdline/updateProgram/ProgramUpdate.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="850">
-              <caret line="58" column="21" lean-forward="false" selection-start-line="58" selection-start-column="21" selection-end-line="58" selection-end-column="21" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="log4j2.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/log4j2.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" column="130" lean-forward="false" selection-start-line="14" selection-start-column="50" selection-end-line="14" selection-end-column="130" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AppFtp.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/cmdline/ftpJson/AppFtp.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="11" column="10" lean-forward="false" selection-start-line="11" selection-start-column="9" selection-end-line="11" selection-end-column="10" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="README.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/README.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/build.gradle">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="26" column="28" lean-forward="false" selection-start-line="26" selection-start-column="28" selection-end-line="26" selection-end-column="28" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Application.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/cmdline/Application.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="387">
-              <caret line="42" column="9" lean-forward="true" selection-start-line="42" selection-start-column="9" selection-end-line="42" selection-end-column="9" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CsvHandler.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/cmdline/csv/CsvHandler.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1377">
-              <caret line="89" column="62" lean-forward="false" selection-start-line="89" selection-start-column="62" selection-end-line="89" selection-end-column="62" />
->>>>>>> 40ff8341652f726965b6134ffd4ecac5dd8d8243
-              <folding />
+            <state relative-caret-position="375">
+              <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -379,17 +123,12 @@
       <find>url</find>
       <find>filej</find>
       <find>write</find>
-<<<<<<< HEAD
       <find>FileJson</find>
       <find>config.properties</find>
       <find>ErrorLog.</find>
       <find>Properties</find>
       <find>prop</find>
       <find>storeRemoteFile</find>
-=======
-      <find>array</find>
-      <find>jsondrive</find>
->>>>>>> 40ff8341652f726965b6134ffd4ecac5dd8d8243
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -603,7 +342,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="4511491771000" />
+        <entry key="$PROJECT_DIR$" value="4513525080000" />
         <entry key="$PROJECT_DIR$/build.gradle" value="3546475570" />
       </map>
     </option>
@@ -789,17 +528,14 @@
         <option value="$PROJECT_DIR$/src/main/java/cmdline/json/FileJson.java" />
         <option value="$PROJECT_DIR$/src/main/java/cmdline/ftp/FileJson.java" />
         <option value="$PROJECT_DIR$/config.properties" />
+        <option value="$PROJECT_DIR$/src/main/resources/README.txt" />
         <option value="$PROJECT_DIR$/src/main/resources/cmdline/log4j2.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/cmdline/config.properties" />
-<<<<<<< HEAD
-=======
-        <option value="$PROJECT_DIR$/build.gradle" />
->>>>>>> 40ff8341652f726965b6134ffd4ecac5dd8d8243
         <option value="$PROJECT_DIR$/src/main/java/cmdline/zip/FileUploadProgressListenerZip.java" />
         <option value="$PROJECT_DIR$/src/main/java/cmdline/zip/FileDownloadProgressListener.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cmdline/zip/ZipCreation.java" />
         <option value="$PROJECT_DIR$/src/main/java/cmdline/json/DriveSample.java" />
         <option value="$PROJECT_DIR$/src/main/java/cmdline/zip/HttpDownloadManager.java" />
-<<<<<<< HEAD
         <option value="$PROJECT_DIR$/src/main/java/cmdline/ftpZip/Zip.java" />
         <option value="$PROJECT_DIR$/src/dist/lib/config/fetchData.py" />
         <option value="$PROJECT_DIR$/src/main/java/cmdline/ftp/FileJsonFtp.java" />
@@ -825,27 +561,6 @@
         <option value="$PROJECT_DIR$/src/main/java/org/majika/monitoring/shell/ShellManager.java" />
         <option value="$PROJECT_DIR$/src/test/java/ShellManagerTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/org/majika/monitoring/shell/ShellManagerTest.java" />
-=======
-        <option value="$PROJECT_DIR$/src/main/java/cmdline/zip/DriveSampleZip.java" />
-        <option value="$PROJECT_DIR$/src/dist/lib/config/fetchData.py" />
-        <option value="$PROJECT_DIR$/src/main/java/cmdline/ftp/FileJsonFtp.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cmdline/ftp/AppFtp.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cmdline/updateProgram/programUpdate.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cmdline/Application.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cmdline/ftpZip/AppFtpZip.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cmdline/ftpZip/Zip.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cmdline/zip/ZipCreation.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cmdline/csv/ApplicationCsv.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cmdline/ftpJson/AppFtp.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cmdline/csv/CsvHandler.java" />
-        <option value="$PROJECT_DIR$/src/dist/lib/config/config.properties" />
-        <option value="$PROJECT_DIR$/src/main/resources/README.txt" />
-        <option value="$PROJECT_DIR$/src/main/java/cmdline/ftpJson/FileJsonFtp.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/log4j2.xml" />
-        <option value="$PROJECT_DIR$/src/dist/lib/config/log4j2.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/cmdline/updateProgram/ProgramUpdate.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cmdline/test/TestJava.java" />
->>>>>>> 40ff8341652f726965b6134ffd4ecac5dd8d8243
       </list>
     </option>
   </component>
@@ -925,9 +640,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-<<<<<<< HEAD
       <pane id="AndroidView" />
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -1062,216 +777,6 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
-      <pane id="Scratches" />
-=======
-      <pane id="Scratches" />
-      <pane id="ProjectPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="majika-drive-sample" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="majika-drive-Json" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="majika-drive-sample" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="majika-drive-Json" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="majika-drive-sample" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="majika-drive-Json" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cmdline" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="majika-drive-sample" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="majika-drive-Json" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cmdline" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="updateProgram" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="majika-drive-sample" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="majika-drive-Json" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cmdline" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ftpZip" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="majika-drive-sample" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="majika-drive-Json" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cmdline" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ftpJson" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="majika-drive-sample" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="majika-drive-Json" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cmdline" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="csv" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="majika-drive-sample" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="majika-drive-Json" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dist" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="config" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
->>>>>>> 40ff8341652f726965b6134ffd4ecac5dd8d8243
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1288,24 +793,20 @@
     <property name="add_unversioned_files" value="$PROJECT_DIR$/Logs/ErrorLog.log&#10;true" />
   </component>
   <component name="RecentsManager">
-<<<<<<< HEAD
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources" />
-=======
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\etienne\Documents\StageDiego\java\majika-drive-Json\src\main\java\cmdline\zip" />
-      <recent name="C:\Users\etienne\Documents\StageDiego\java\majika-drive-Json\src\dist\lib" />
->>>>>>> 40ff8341652f726965b6134ffd4ecac5dd8d8243
       <recent name="C:\Users\etienne\Documents\StageDiego\java\majika-drive-Json\src\dist\config" />
-      <recent name="C:\Users\etienne\Documents\StageDiego\java\majika-drive-Json\src\dist" />
       <recent name="C:\Users\etienne\Documents\StageDiego\java\majika-drive-Json\src\main\resources" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="org.majika.monitoring.shell" />
       <recent name="cmdline.ftp" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\etienne\Documents\StageDiego\java\majika-drive-Json\src\main\java\cmdline\zip" />
+      <recent name="C:\Users\etienne\Documents\StageDiego\java\majika-drive-Json\src\dist\lib" />
       <recent name="C:\Users\etienne\Documents\StageDiego\java\majika-drive-Json\src\dist\config" />
+      <recent name="C:\Users\etienne\Documents\StageDiego\java\majika-drive-Json\src\dist" />
       <recent name="C:\Users\etienne\Documents\StageDiego\java\majika-drive-Json\src\main\resources" />
     </key>
   </component>
@@ -1741,7 +1242,7 @@
       <workItem from="1504189954859" duration="3451000" />
       <workItem from="1504255513946" duration="2180000" />
       <workItem from="1504265946369" duration="12767000" />
-      <workItem from="1504502904710" duration="403000" />
+      <workItem from="1504508374984" duration="98000" />
     </task>
     <servers />
   </component>
@@ -1778,11 +1279,10 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28582000" />
+    <option name="totallyTimeSpent" value="28277000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="40" y="23" width="1880" height="1177" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1791,37 +1291,20 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-<<<<<<< HEAD
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30769232" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30769232" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21542554" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21542554" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23776595" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-=======
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24342105" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29355782" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14787701" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
->>>>>>> 40ff8341652f726965b6134ffd4ecac5dd8d8243
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-<<<<<<< HEAD
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39728507" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
-=======
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39802632" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
-      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
->>>>>>> 40ff8341652f726965b6134ffd4ecac5dd8d8243
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1832,11 +1315,7 @@
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32886904" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-<<<<<<< HEAD
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3285068" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-=======
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32730263" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
->>>>>>> 40ff8341652f726965b6134ffd4ecac5dd8d8243
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1847,21 +1326,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-<<<<<<< HEAD
       <option name="time" value="31" />
-=======
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/cmdline/zip/DriveSampleZip.java</url>
-          <line>221</line>
-          <properties class="cmdline.zip.DriveSampleZip" method="downloadFile">
-            <option name="EMULATED" value="true" />
-          </properties>
-          <option name="timeStamp" value="17" />
-        </line-breakpoint>
-      </breakpoints>
-      <option name="time" value="21" />
->>>>>>> 40ff8341652f726965b6134ffd4ecac5dd8d8243
     </breakpoint-manager>
     <watches-manager>
       <configuration name="GradleRunConfiguration">
@@ -1875,80 +1340,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-<<<<<<< HEAD
-=======
-    <entry file="file://$PROJECT_DIR$/gradlew.bat">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gradlew">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1071">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files (x86)/Java/jdk1.8.0_131/src.zip!/java/io/File.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="122">
-          <caret line="276" column="0" lean-forward="false" selection-start-line="276" selection-start-column="0" selection-end-line="276" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/config.properties" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/cmdline/jsonDrive/View.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="58">
-          <caret line="21" column="13" lean-forward="false" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files (x86)/Java/jdk1.8.0_131/src.zip!/java/lang/String.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="656" column="0" lean-forward="false" selection-start-line="656" selection-start-column="0" selection-end-line="656" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files (x86)/Java/jdk1.8.0_131/src.zip!/java/net/URL.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="103">
-          <caret line="489" column="0" lean-forward="false" selection-start-line="489" selection-start-column="0" selection-end-line="489" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files (x86)/Java/jdk1.8.0_131/jre/lib/rt.jar!/sun/misc/URLClassPath.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="103">
-          <caret line="170" column="0" lean-forward="false" selection-start-line="170" selection-start-column="0" selection-end-line="170" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files (x86)/Java/jdk1.8.0_131/src.zip!/java/security/AccessController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="651" column="8" lean-forward="false" selection-start-line="651" selection-start-column="8" selection-end-line="651" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files (x86)/Java/jdk1.8.0_131/src.zip!/java/net/URLClassLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="103">
-          <caret line="360" column="0" lean-forward="false" selection-start-line="360" selection-start-column="0" selection-end-line="360" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files (x86)/Java/jdk1.8.0_131/src.zip!/java/lang/ClassLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="103">
-          <caret line="356" column="0" lean-forward="false" selection-start-line="356" selection-start-column="0" selection-end-line="356" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
->>>>>>> 40ff8341652f726965b6134ffd4ecac5dd8d8243
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.oauth-client/google-oauth-client/1.22.0/c6ede026328eec7ca8bbdbf811f412f300566bf2/google-oauth-client-1.22.0-sources.jar!/com/google/api/client/auth/oauth2/AuthorizationCodeFlow.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="112">
@@ -1974,46 +1365,8 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Log.log" />
-<<<<<<< HEAD
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-net/commons-net/3.6/961dc27eabbe71bf32478baffe0e1be915ce7689/commons-net-3.6-sources.jar!/org/apache/commons/net/SocketClient.java" />
     <entry file="jar://C:/Program Files (x86)/Java/jdk1.8.0_131/src.zip!/java/net/DualStackPlainSocketImpl.java" />
-=======
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-net/commons-net/3.6/961dc27eabbe71bf32478baffe0e1be915ce7689/commons-net-3.6-sources.jar!/org/apache/commons/net/SocketClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="303" column="16" lean-forward="false" selection-start-line="303" selection-start-column="16" selection-end-line="303" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files (x86)/Java/jdk1.8.0_131/src.zip!/java/net/DualStackPlainSocketImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="282" column="22" lean-forward="false" selection-start-line="282" selection-start-column="22" selection-end-line="282" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-net/commons-net/3.6/961dc27eabbe71bf32478baffe0e1be915ce7689/commons-net-3.6-sources.jar!/org/apache/commons/net/ftp/FTPCmd.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="112" column="0" lean-forward="false" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-net/commons-net/3.6/961dc27eabbe71bf32478baffe0e1be915ce7689/commons-net-3.6-sources.jar!/org/apache/commons/net/ftp/FTPClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="2010" column="72" lean-forward="true" selection-start-line="2010" selection-start-column="72" selection-end-line="2010" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cmdline/jsonDrive/FileJson.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="101" column="5" lean-forward="true" selection-start-line="101" selection-start-column="5" selection-end-line="101" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
->>>>>>> 40ff8341652f726965b6134ffd4ecac5dd8d8243
     <entry file="file://$PROJECT_DIR$/src/main/resources/client_secrets.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -2033,7 +1386,6 @@
         </state>
       </provider>
     </entry>
-<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/main/resources/README.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="362">
@@ -2043,9 +1395,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cmdline/json/FileUploadProgressListener.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/org/majika/monitoring/ftpZip/Zip.java">
-=======
-    <entry file="file://$PROJECT_DIR$/src/main/java/cmdline/zip/FileUploadProgressListenerZip.java">
->>>>>>> 40ff8341652f726965b6134ffd4ecac5dd8d8243
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="660">
           <caret line="54" column="49" lean-forward="false" selection-start-line="54" selection-start-column="49" selection-end-line="54" selection-end-column="49" />
@@ -2054,7 +1403,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/majika/monitoring/csv/CsvHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
         <state relative-caret-position="1515">
           <caret line="109" column="30" lean-forward="false" selection-start-line="109" selection-start-column="30" selection-end-line="109" selection-end-column="30" />
         </state>
@@ -2074,21 +1422,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/logs/errorLog.log" />
     <entry file="file://$PROJECT_DIR$/.gitignore">
-=======
-        <state relative-caret-position="112">
-          <caret line="381" column="29" lean-forward="false" selection-start-line="381" selection-start-column="29" selection-end-line="381" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cmdline/jsonDrive/DriveSample.java">
->>>>>>> 40ff8341652f726965b6134ffd4ecac5dd8d8243
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/main/resources/log4j2.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
@@ -2097,9 +1436,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/majika/monitoring/test/TestJava.java">
-=======
-    <entry file="file://$PROJECT_DIR$/src/main/java/cmdline/zip/FileDownloadProgressListener.java">
->>>>>>> 40ff8341652f726965b6134ffd4ecac5dd8d8243
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
           <caret line="27" column="13" lean-forward="true" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
@@ -2107,7 +1443,6 @@
         </state>
       </provider>
     </entry>
-<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
@@ -2168,6 +1503,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="361">
           <caret line="91" column="11" lean-forward="false" selection-start-line="91" selection-start-column="11" selection-end-line="91" selection-end-column="11" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2186,16 +1522,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/ShellManagerTest.java" />
-    <entry file="file://$PROJECT_DIR$/src/test/java/org/majika/monitoring/shell/ShellManagerTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-net/commons-net/3.6/961dc27eabbe71bf32478baffe0e1be915ce7689/commons-net-3.6-sources.jar!/org/apache/commons/net/ftp/FTPCmd.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="542">
@@ -2214,139 +1540,19 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="359">
           <caret line="375" column="4" lean-forward="false" selection-start-line="375" selection-start-column="4" selection-end-line="375" selection-end-column="29" />
-=======
-    <entry file="file://$PROJECT_DIR$/src/dist/lib/config/fetchData.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cmdline/zip/DriveSampleZip.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/majika/monitoring/csv/ApplicationCsv.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="68" column="3" lean-forward="false" selection-start-line="68" selection-start-column="3" selection-end-line="68" selection-end-column="3" />
-          <folding>
-            <element signature="e#0#10938#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cmdline/zip/ViewZip.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="23" column="13" lean-forward="false" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cmdline/zip/ZipCreation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="45" column="50" lean-forward="false" selection-start-line="45" selection-start-column="50" selection-end-line="45" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cmdline/ftpZip/AppFtpZip.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="61">
-          <caret line="62" column="0" lean-forward="false" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cmdline/ftpZip/Zip.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
-          <caret line="53" column="44" lean-forward="false" selection-start-line="53" selection-start-column="44" selection-end-line="53" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cmdline/csv/ApplicationCsv.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="13" column="13" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#496#497#0" expanded="false" />
-            <element signature="e#518#519#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files (x86)/Java/jdk1.8.0_131/src.zip!/java/util/Scanner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="1539" column="0" lean-forward="false" selection-start-line="1539" selection-start-column="0" selection-end-line="1539" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ErrorLog.log">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/README.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cmdline/ftpJson/FileJsonFtp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1887">
-          <caret line="121" column="29" lean-forward="false" selection-start-line="121" selection-start-column="29" selection-end-line="121" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cmdline/ftpJson/AppFtp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="11" column="10" lean-forward="false" selection-start-line="11" selection-start-column="9" selection-end-line="11" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/log4j2.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="130" lean-forward="false" selection-start-line="14" selection-start-column="50" selection-end-line="14" selection-end-column="130" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dist/lib/config/log4j2.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="313">
-          <caret line="21" column="78" lean-forward="true" selection-start-line="21" selection-start-column="78" selection-end-line="21" selection-end-column="78" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cmdline/csv/CsvHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1377">
-          <caret line="89" column="62" lean-forward="false" selection-start-line="89" selection-start-column="62" selection-end-line="89" selection-end-column="62" />
+        <state relative-caret-position="132">
+          <caret line="15" column="78" lean-forward="true" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="78" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/dist/lib/config/config.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="43" lean-forward="false" selection-start-line="22" selection-start-column="43" selection-end-line="22" selection-end-column="43" />
-          <folding />
->>>>>>> 40ff8341652f726965b6134ffd4ecac5dd8d8243
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dist/lib/config/config.properties">
-      <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
         <state relative-caret-position="495">
           <caret line="33" column="33" lean-forward="false" selection-start-line="33" selection-start-column="33" selection-end-line="33" selection-end-column="33" />
         </state>
@@ -2377,40 +1583,16 @@
             <element signature="e#3589#3590#0" expanded="true" />
             <element signature="e#3643#3644#0" expanded="true" />
           </folding>
-=======
-        <state relative-caret-position="850">
-          <caret line="58" column="21" lean-forward="false" selection-start-line="58" selection-start-column="21" selection-end-line="58" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cmdline/test/TestJava.java">
+    <entry file="file://$PROJECT_DIR$/src/test/java/org/majika/monitoring/shell/ShellManagerTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="316">
-          <caret line="29" column="49" lean-forward="false" selection-start-line="29" selection-start-column="49" selection-end-line="29" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="26" column="28" lean-forward="false" selection-start-line="26" selection-start-column="28" selection-end-line="26" selection-end-column="28" />
-          <folding />
->>>>>>> 40ff8341652f726965b6134ffd4ecac5dd8d8243
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/majika/monitoring/csv/ApplicationCsv.java">
-      <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
-        <state relative-caret-position="890">
-          <caret line="69" column="12" lean-forward="false" selection-start-line="69" selection-start-column="12" selection-end-line="69" selection-end-column="12" />
-=======
-        <state relative-caret-position="387">
-          <caret line="42" column="9" lean-forward="true" selection-start-line="42" selection-start-column="9" selection-end-line="42" selection-end-column="9" />
->>>>>>> 40ff8341652f726965b6134ffd4ecac5dd8d8243
-          <folding />
+        <state relative-caret-position="375">
+          <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

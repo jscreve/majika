@@ -8,11 +8,7 @@
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="${pattern}"/>
         </Console>
-<<<<<<< HEAD
         <RollingFile name="RollingFile" fileName="logs/errorLog.log"
-=======
-        <RollingFile name="RollingFile" fileName="/home/pi/CentraleSolaireData/Programmes/majika-drive-sample-1.0/bin/ErrorLog.log"
->>>>>>> 40ff8341652f726965b6134ffd4ecac5dd8d8243
                      filePattern="logs/$${date:yyyy-MM}/${name}-%d{yyyy-MM-dd}-%i.log.gz">
             <PatternLayout>
                 <pattern>${pattern}</pattern>
