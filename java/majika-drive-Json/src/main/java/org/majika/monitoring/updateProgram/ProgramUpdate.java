@@ -44,7 +44,7 @@ public class ProgramUpdate {
             String infoDownloading = "Files ";
             for (FTPFile ftpfile : ftplist) {
                 if (ftpfile.isFile() && !ftpfile.getName().equals(successProgramUploadFileName)) {
-                    System.out.println(ftpfile.getName());
+                    logger.debug(ftpfile.getName());
                     String remoteFile1 = programUpdateRemoteFolder + ftpfile.getName();
 
                     File downloadJar = new File(prop.getProperty("jarPath") + ftpfile.getName());

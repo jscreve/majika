@@ -4,9 +4,7 @@ import org.majika.monitoring.csv.ApplicationCsv;
 import org.majika.monitoring.ftp.AppFtp;
 import org.majika.monitoring.ftpZip.AppFtpZip;
 import org.majika.monitoring.shell.ShellManager;
-import org.majika.monitoring.test.TestJava;
 import org.majika.monitoring.updateProgram.ProgramUpdate;
-import java.io.IOException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -22,7 +20,8 @@ public class Application {
         if(args.length > 0) {
             switch (args[0]) {
                 case "csv":
-                    new ApplicationCsv();
+                    ApplicationCsv applicationCsv = new ApplicationCsv();
+                    applicationCsv.fetchData();
                     break;
                 case "ftp":
                     AppFtp appFtp = new AppFtp();
@@ -31,9 +30,6 @@ public class Application {
                 case "zip":
                     //we don't store on Drive anymore
                     //new DriveSampleZip();
-                    break;
-                case "test":
-                    new TestJava();
                     break;
                 case "ftpZip":
                     AppFtpZip appFtpZip = new AppFtpZip();

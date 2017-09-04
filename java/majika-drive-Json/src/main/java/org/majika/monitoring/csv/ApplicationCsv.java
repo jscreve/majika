@@ -52,13 +52,12 @@ public class ApplicationCsv {
         } catch(IOException e) {
             logger.error("Error in properties loading", e);
         }
-        fetchData();
     }
 
     /**
      *Cette classe a pour objectif de configurer les variables obtenue à partir du config.properties et de lancer la classe CSVHandler avec ces variables
      */
-    private void fetchData() {
+    public void fetchData() {
         //Initialisation Connection Modbus TCP/IP, pour relever les données
         ModbusClient modbusClientSolEast;
         ModbusClient modbusClientSolWest;

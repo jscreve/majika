@@ -3,12 +3,16 @@ package org.majika.monitoring.shell;
 import org.apache.commons.net.ftp.FTPClient;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.majika.monitoring.csv.ApplicationCsv;
 import org.majika.monitoring.ftp.FtpHelper;
+import org.mockito.junit.MockitoJUnitRunner;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+@RunWith(MockitoJUnitRunner.class)
 public class ShellManagerTest {
 
     private static org.apache.logging.log4j.Logger logger = org.apache.logging.log4j.LogManager.getLogger(ApplicationCsv.class);

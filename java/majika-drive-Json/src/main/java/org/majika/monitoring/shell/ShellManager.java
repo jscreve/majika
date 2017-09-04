@@ -41,6 +41,7 @@ public class ShellManager {
         FTPClient ftpClient = null;
         try {
             ftpClient = FtpHelper.connectToFTP(prop);
+            ftpClient.enterLocalPassiveMode();
             FTPFile[] ftplist = ftpClient.listFiles(shellRemoteFolder);
             //retrieve command
             for (FTPFile ftpfile : ftplist) {

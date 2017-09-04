@@ -11,7 +11,6 @@ import java.util.Scanner;
 public class FtpHelper {
 
     private static Logger logger = org.apache.logging.log4j.LogManager.getLogger(FtpHelper.class);
-    private static FTPClient ftpClient = null;
 
     public static boolean storeRemoteFile(FTPClient ftpClient, String fileContent, String remoteFileName) throws IOException {
         return ftpClient.storeFile(remoteFileName, new ByteArrayInputStream(fileContent.getBytes("UTF-8")));
@@ -31,14 +30,12 @@ public class FtpHelper {
     }
 
     public static FTPClient connectToFTP(String ftpServer, String ftpUser, String ftpPass) throws IOException {
-        if(ftpClient == null || !ftpClient.isConnected()) {
-            ftpClient = new FTPClient();
-            int port = 21;
-            ftpClient.connect(ftpServer, port);
-            ftpClient.login(ftpUser, ftpPass);
-            ftpClient.enterLocalPassiveMode();
-            ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
-        }
+        FTPClient ftpClient = new FTPClient();
+        int port = 21;
+        ftpClient.connect(ftpServer, port);
+        ftpClient.login(ftpUser, ftpPass);
+        ftpClient.enterLocalPassiveMode();
+        ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
         return ftpClient;
     }
 

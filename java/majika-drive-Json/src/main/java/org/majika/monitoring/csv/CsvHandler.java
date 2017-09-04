@@ -23,9 +23,20 @@ public class CsvHandler {
     private double valeur;
     private int i = 0;
     private Logger logger = LogManager.getLogger();
-    Properties prop = new Properties();
+    private String arduinoNomVariable;
+    private String arduinoDir;
 
     public CsvHandler() {
+        try {
+            InputStream input = getClass().getClassLoader().getResourceAsStream("config.properties");
+            Properties prop = new Properties();
+            prop.load(input);
+            input.close();
+            arduinoNomVariable = prop.getProperty("arduinoNomVariable");
+            arduinoDir = prop.getProperty("arduinoDir");
+        } catch(Exception e) {
+            logger.error("Could not load properties file", e);
+        }
     }
 
     /**
@@ -51,10 +62,6 @@ public class CsvHandler {
              BufferedWriter bw = new BufferedWriter(fw);
              PrintWriter out = new PrintWriter(bw);
              FileReader fr = new FileReader(allPath)) {
-
-            InputStream input = getClass().getClassLoader().getResourceAsStream("config.properties");
-            prop.load(input);
-
 
             //Ecrit l'entete seulement si la lettre D (de date) (68 correspondant à la lettre D majuscule) n'est pas déjà écrite
             if ((fr.read() != 68)) {
@@ -82,7 +89,7 @@ public class CsvHandler {
                     modbusClientSPS.Connect();
 
                     //Ecriture dans un fichier arduino, qui sera lu par le programme Json
-                    FileWriter arduinoWF = new FileWriter("/home/pi/CentraleSolaireData/Programmes/majika-drive-sample-1.0/bin/arduino");
+                    FileWriter arduinoWF = new FileWriter(arduinoDir);
                     BufferedWriter arduinoWB = new BufferedWriter(arduinoWF);
 
                     try {
@@ -93,7 +100,7 @@ public class CsvHandler {
                         //String returnedValue = "29999,28.9,29.8,29.1,27.1,101,102,103,9999";
                         if (returnedValue.equals("Error in socket connection"))// Dans le cas ou la connexion à été interrompu toutes les valeurs sont initialisées à 0
                         {
-                            String[] nbrVariableArduino = prop.getProperty("arduinoNomVariable").split(",");
+                            String[] nbrVariableArduino = arduinoNomVariable.split(",");
                             for (int i = 0; i < nbrVariableArduino.length; i++) {//Le fait de prendre les nom de variables permet de determiner à l'avance grâce au config properties le nombre de données reçue
                                 out.print(0 + ";");//Ecriture dans le csv
                                 arduinoWB.write("0,");//Ecriture dans le fichier
@@ -142,7 +149,6 @@ public class CsvHandler {
             fr.close();
             bw.close();
             fw.close();
-            input.close();
         } catch (IOException e) {
             logger.error("IOError", e);
         } catch (Exception e) {
