@@ -1,10 +1,8 @@
 package cmdline;
 
 import cmdline.csv.ApplicationCsv;
-import cmdline.ftp.AppFtp;
+import cmdline.ftpJson.AppFtp;
 import cmdline.ftpZip.AppFtpZip;
-import cmdline.json.DriveSample;
-import cmdline.test.TestJava;
 import cmdline.updateProgram.ProgramUpdate;
 import cmdline.zip.DriveSampleZip;
 
@@ -14,25 +12,26 @@ import java.io.IOException;
  * Created by etienne on 28/07/2017.
  */
 public class Application {
+    /**
+     *
+     * @param args les arguments suivants permettent de choisir un des packages du programme. Cela rend l'utilisation de crontab flexible.
+     */
     public static void main(String[] args) {
         try {
             switch (args[0]) {
-                case "csv":
+                case "csv": //Enregistrement des données toutes les minutes sur un fichier .csv
                     new ApplicationCsv();
                     break;
-                case "ftp":
+                case "ftp": //Envoie du fichier Json pour le site sur un serveur ftpJson
                     new AppFtp();
                     break;
-                case "zip":
+                case "zip": // Envoie du zip sur le drive
                     new DriveSampleZip();
                     break;
-                case "test":
-                    new TestJava();
-                    break;
-                case "ftpZip":
+                case "ftpZip": // Envoie du zip sur le serveur ftpJson
                     new AppFtpZip();
                     break;
-                case "updateProgram":
+                case "updateProgram":// Regarder dans le dossier DevelopperFolder sur le server ftpJson et telecharge les fichier pour les transférer au raspberry PI
                     new ProgramUpdate();
                     break;
                 default:

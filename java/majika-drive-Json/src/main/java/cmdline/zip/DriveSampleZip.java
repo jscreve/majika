@@ -42,7 +42,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
-import java.util.Properties;
 
 /**
  * A sample application that runs multiple requests against the Drive API. The requests this sample
@@ -148,7 +147,7 @@ public class DriveSampleZip {
                 || clientSecrets.getDetails().getClientSecret().startsWith("Enter ")) {
             System.out.println(
                     "Enter Client ID and Secret from https://code.google.com/apis/console/?api=drive "
-                            + "into drive-cmdline-sample/src/main/resources/client_secrets.json");
+                            + "into drive-cmdline-sample/src/main/resources/client_secrets.jsonDrive");
             System.exit(1);
         }
         // set up authorization code flow
@@ -240,7 +239,7 @@ public class DriveSampleZip {
                     .execute();
             for(File fil: result.getFiles()) {
                 logger.info(fil.getName().substring(0,6));
-                if(fil.getName().substring(0,6).equals("majika")) { //only execute this line if the file is named ups.json
+                if(fil.getName().substring(0,6).equals("majika")) { //only execute this line if the file is named ups.jsonDrive
                     logger.info("Found it :" +fil.getId() +" Name:" +fil.getName());
                     filou=fil;
                 }
