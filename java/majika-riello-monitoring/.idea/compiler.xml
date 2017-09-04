@@ -4,6 +4,8 @@
     <bytecodeTargetLevel>
       <module name="majika-drive-sample_main" target="1.8" />
       <module name="majika-drive-sample_test" target="1.8" />
+      <module name="majika-riello-monitoring_main" target="1.8" />
+      <module name="majika-riello-monitoring_test" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

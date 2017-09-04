@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/majika-drive-sample.iml" filepath="$PROJECT_DIR$/.idea/modules/majika-drive-sample.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/majika-drive-sample_main.iml" filepath="$PROJECT_DIR$/.idea/modules/majika-drive-sample_main.iml" group="majika-drive-sample" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/majika-drive-sample_test.iml" filepath="$PROJECT_DIR$/.idea/modules/majika-drive-sample_test.iml" group="majika-drive-sample" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/majika-riello-monitoring.iml" filepath="$PROJECT_DIR$/.idea/modules/majika-riello-monitoring.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/majika-riello-monitoring_main.iml" filepath="$PROJECT_DIR$/.idea/modules/majika-riello-monitoring_main.iml" group="majika-riello-monitoring" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/majika-riello-monitoring_test.iml" filepath="$PROJECT_DIR$/.idea/modules/majika-riello-monitoring_test.iml" group="majika-riello-monitoring" />
     </modules>
   </component>
 </project>
