@@ -2,100 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6eadf7fe-267d-4670-837d-1a82b3087e21" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/.gitignore" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/.gradle/3.3/taskArtifacts/fileHashes.bin" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/.gradle/3.3/taskArtifacts/fileSnapshots.bin" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/.gradle/3.3/taskArtifacts/taskArtifacts.bin" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/.gradle/3.3/taskArtifacts/taskArtifacts.lock" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/.idea/.name" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/.idea/compiler.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/.idea/gradle.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/.idea/libraries/Gradle__com_fasterxml_jackson_core_jackson_core_2_1_3.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/.idea/libraries/Gradle__com_google_api_client_google_api_client_1_22_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/.idea/libraries/Gradle__com_google_apis_google_api_services_drive_v3_rev76_1_22_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/.idea/libraries/Gradle__com_google_code_findbugs_jsr305_1_3_9.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/.idea/libraries/Gradle__com_google_guava_guava_jdk5_17_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/.idea/libraries/Gradle__com_google_http_client_google_http_client_1_22_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/.idea/libraries/Gradle__com_google_http_client_google_http_client_jackson2_1_22_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/.idea/libraries/Gradle__com_google_oauth_client_google_oauth_client_1_22_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/.idea/libraries/Gradle__com_google_oauth_client_google_oauth_client_java6_1_22_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/.idea/libraries/Gradle__com_google_oauth_client_google_oauth_client_jetty_1_22_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/.idea/libraries/Gradle__com_googlecode_json_simple_json_simple_1_1_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/.idea/libraries/Gradle__commons_codec_commons_codec_1_3.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/.idea/libraries/Gradle__commons_logging_commons_logging_1_1_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/.idea/libraries/Gradle__commons_net_commons_net_3_6.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/.idea/libraries/Gradle__junit_junit_4_10.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/.idea/libraries/Gradle__modbus_modbus_1_0_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/.idea/libraries/Gradle__net_bytebuddy_byte_buddy_1_7_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/.idea/libraries/Gradle__net_bytebuddy_byte_buddy_agent_1_7_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/.idea/libraries/Gradle__org_apache_httpcomponents_httpclient_4_0_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/.idea/libraries/Gradle__org_apache_httpcomponents_httpcore_4_0_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/.idea/libraries/Gradle__org_apache_logging_log4j_log4j_api_2_8_2.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/.idea/libraries/Gradle__org_apache_logging_log4j_log4j_core_2_8_2.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/.idea/libraries/Gradle__org_hamcrest_hamcrest_core_1_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/.idea/libraries/Gradle__org_mockito_mockito_core_2_9_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/.idea/libraries/Gradle__org_mortbay_jetty_jetty_6_1_26.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/.idea/libraries/Gradle__org_mortbay_jetty_jetty_util_6_1_26.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/.idea/libraries/Gradle__org_mortbay_jetty_servlet_api_2_5_20081211.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/.idea/libraries/Gradle__org_objenesis_objenesis_2_6.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/.idea/misc.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/.idea/modules.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/.idea/modules/majika-drive-sample.iml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/.idea/modules/majika-drive-sample_main.iml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/.idea/modules/majika-drive-sample_test.iml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/.idea/uiDesigner.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/.idea/vcs.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/.idea/workspace.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/Logs/2017-08/app-2017-08-18-1.log.gz" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/Logs/2017-08/app-2017-08-23-1.log.gz" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/Logs/2017-08/app-2017-08-24-1.log.gz" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/Logs/ErrorLog.log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/build.gradle" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/build/distributions/majika-drive-sample-1.0.tar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/build/distributions/majika-drive-sample-1.0.zip" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/build/libs/majika-drive-sample-1.0.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/build/scripts/majika-drive-sample" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/build/scripts/majika-drive-sample.bat" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/build/tmp/jar/MANIFEST.MF" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/gradle/wrapper/gradle-wrapper.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/gradle/wrapper/gradle-wrapper.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/gradlew" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/gradlew.bat" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/majika-drive-sample.iml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/out/production/classes/org/majika/monitoring/Application.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/out/production/classes/org/majika/monitoring/csv/ApplicationCsv.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/out/production/classes/org/majika/monitoring/csv/CsvHandler.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/out/production/classes/org/majika/monitoring/ftp/AppFtp.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/out/production/classes/org/majika/monitoring/ftp/FileJsonFtp.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/out/production/classes/org/majika/monitoring/ftp/FtpHelper.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/out/production/classes/org/majika/monitoring/ftpZip/AppFtpZip.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/out/production/classes/org/majika/monitoring/ftpZip/Zip$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/out/production/classes/org/majika/monitoring/ftpZip/Zip.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/out/production/classes/org/majika/monitoring/shell/ShellManager.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/out/production/classes/org/majika/monitoring/updateProgram/ProgramUpdate.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/out/test/classes/org/majika/monitoring/ftp/AppFtpTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/out/test/classes/org/majika/monitoring/shell/ShellManagerTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/out/test/resources/ftp.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/out/test/resources/log4j2.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/settings.gradle" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/src/dist/lib/config/config.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/src/dist/lib/config/fetchData.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/src/dist/lib/config/log4j2.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/src/main/java/org/majika/monitoring/Application.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/src/main/java/org/majika/monitoring/csv/ApplicationCsv.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/src/main/java/org/majika/monitoring/csv/CsvHandler.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/src/main/java/org/majika/monitoring/ftp/AppFtp.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/src/main/java/org/majika/monitoring/ftp/FileJsonFtp.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/src/main/java/org/majika/monitoring/ftp/FtpHelper.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/src/main/java/org/majika/monitoring/ftpZip/AppFtpZip.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/src/main/java/org/majika/monitoring/ftpZip/Zip.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/src/main/java/org/majika/monitoring/shell/ShellManager.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/src/main/java/org/majika/monitoring/updateProgram/ProgramUpdate.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/src/main/main.iml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/src/test/java/org/majika/monitoring/ftp/AppFtpTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/src/test/java/org/majika/monitoring/shell/ShellManagerTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/src/test/resources/ftp.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../majika-drive-Json/src/test/resources/log4j2.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/modules/majika-drive-sample.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/modules/majika-drive-sample_main.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/modules/majika-drive-sample_test.iml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileHashes.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileSnapshots.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/settings.gradle" afterPath="$PROJECT_DIR$/settings.gradle" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -112,6 +27,37 @@
       <ProjectState />
     </projectState>
   </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="majika-riello-monitoring" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="majika-riello-monitoring" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="majika-riello-monitoring" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
   <component name="FileEditorManager">
     <leaf>
       <file leaf-file-name="ApplicationCsv.java" pinned="false" current-in-tab="false">
@@ -124,12 +70,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="settings.gradle" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/settings.gradle">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="17" column="44" lean-forward="false" selection-start-line="17" selection-start-column="44" selection-end-line="17" selection-end-column="44" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -155,14 +113,14 @@
         <entry>
           <key>
             <ExternalProjectPojo>
-              <option name="name" value="majika-drive-sample" />
+              <option name="name" value="majika-riello-monitoring" />
               <option name="path" value="$PROJECT_DIR$" />
             </ExternalProjectPojo>
           </key>
           <value>
             <list>
               <ExternalProjectPojo>
-                <option name="name" value="majika-drive-sample" />
+                <option name="name" value="majika-riello-monitoring" />
                 <option name="path" value="$PROJECT_DIR$" />
               </ExternalProjectPojo>
             </list>
@@ -176,7 +134,7 @@
           <value>
             <list>
               <ExternalTaskPojo>
-                <option name="description" value="Displays the components produced by root project 'majika-drive-sample'. [incubating]" />
+                <option name="description" value="Displays the components produced by root project 'majika-riello-monitoring'. [incubating]" />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="components" />
               </ExternalTaskPojo>
@@ -186,7 +144,7 @@
                 <option name="name" value="buildDependents" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Displays the sub-projects of root project 'majika-drive-sample'." />
+                <option name="description" value="Displays the sub-projects of root project 'majika-riello-monitoring'." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="projects" />
               </ExternalTaskPojo>
@@ -196,12 +154,12 @@
                 <option name="name" value="classes" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Displays the dependent components of components in root project 'majika-drive-sample'. [incubating]" />
+                <option name="description" value="Displays the dependent components of components in root project 'majika-riello-monitoring'. [incubating]" />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="dependentComponents" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Displays all buildscript dependencies declared in root project 'majika-drive-sample'." />
+                <option name="description" value="Displays all buildscript dependencies declared in root project 'majika-riello-monitoring'." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="buildEnvironment" />
               </ExternalTaskPojo>
@@ -236,7 +194,7 @@
                 <option name="name" value="jar" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Displays the configuration model of root project 'majika-drive-sample'. [incubating]" />
+                <option name="description" value="Displays the configuration model of root project 'majika-riello-monitoring'. [incubating]" />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="model" />
               </ExternalTaskPojo>
@@ -251,7 +209,7 @@
                 <option name="name" value="processResources" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Displays the tasks runnable from root project 'majika-drive-sample'." />
+                <option name="description" value="Displays the tasks runnable from root project 'majika-riello-monitoring'." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="tasks" />
               </ExternalTaskPojo>
@@ -276,7 +234,7 @@
                 <option name="name" value="compileJava" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Displays the insight into a specific dependency in root project 'majika-drive-sample'." />
+                <option name="description" value="Displays the insight into a specific dependency in root project 'majika-riello-monitoring'." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="dependencyInsight" />
               </ExternalTaskPojo>
@@ -301,7 +259,7 @@
                 <option name="name" value="compileTestJava" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Displays all dependencies declared in root project 'majika-drive-sample'." />
+                <option name="description" value="Displays all dependencies declared in root project 'majika-riello-monitoring'." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="dependencies" />
               </ExternalTaskPojo>
@@ -336,7 +294,7 @@
                 <option name="name" value="distZip" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Displays the properties of root project 'majika-drive-sample'." />
+                <option name="description" value="Displays the properties of root project 'majika-riello-monitoring'." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="properties" />
               </ExternalTaskPojo>
@@ -349,6 +307,7 @@
       <map>
         <entry key="$PROJECT_DIR$/../../../../Development/CloudFoundry/cf-SpringBootTrader" value="2975381244000" />
         <entry key="$PROJECT_DIR$/../../../../Development/IdeaProjects/JaxWSServer" value="2867584770000" />
+        <entry key="$PROJECT_DIR$/settings.gradle" value="578432367" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -367,7 +326,7 @@
                   </entry>
                 </map>
               </option>
-              <option name="name" value="majika-drive-sample" />
+              <option name="name" value="majika-riello-monitoring" />
               <option name="projectBuildClasspath">
                 <list>
                   <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-3.3-all/55gk2rcmfc6p2dg9u9ohc3hw9/gradle-3.3/src/announce" />
@@ -518,6 +477,13 @@
       <projects_view />
     </option>
   </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/settings.gradle" />
+      </list>
+    </option>
+  </component>
   <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsGulpfileManager">
@@ -551,17 +517,6 @@
             <path>
               <item name="majika-riello-monitoring" type="b2602c69:ProjectViewProjectNode" />
               <item name="majika-riello-monitoring" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name=".idea" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="majika-riello-monitoring" type="b2602c69:ProjectViewProjectNode" />
-              <item name="majika-riello-monitoring" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name=".idea" type="462c0819:PsiDirectoryNode" />
-              <item name="modules" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="majika-riello-monitoring" type="b2602c69:ProjectViewProjectNode" />
-              <item name="majika-riello-monitoring" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -569,30 +524,6 @@
               <item name="majika-riello-monitoring" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-            </path>
-            <path>
-              <item name="majika-riello-monitoring" type="b2602c69:ProjectViewProjectNode" />
-              <item name="majika-riello-monitoring" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="majika-riello-monitoring" type="b2602c69:ProjectViewProjectNode" />
-              <item name="majika-riello-monitoring" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="monitoring" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="majika-riello-monitoring" type="b2602c69:ProjectViewProjectNode" />
-              <item name="majika-riello-monitoring" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="monitoring" type="462c0819:PsiDirectoryNode" />
-              <item name="csv" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -610,6 +541,7 @@
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="add_unversioned_files" value="true" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -623,7 +555,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Gradle.majika-riello-monitoring [build]">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="WIDTH" value="400" />
       <option name="HEIGHT" value="300" />
@@ -663,6 +595,18 @@
       </option>
       <envs />
       <patterns />
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType" factoryName="Kotlin">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="majika-drive-sample" />
+      <envs />
     </configuration>
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
       <module name="" />
@@ -704,6 +648,28 @@
       <properties />
       <listeners />
     </configuration>
+    <configuration name="majika-riello-monitoring [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+    </configuration>
+    <recent_temporary>
+      <list size="1">
+        <item index="0" class="java.lang.String" itemvalue="Gradle.majika-riello-monitoring [build]" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
@@ -715,7 +681,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1504527574654</updated>
-      <workItem from="1504527576046" duration="175000" />
+      <workItem from="1504527576046" duration="344000" />
     </task>
     <task id="LOCAL-00001" summary="rename project">
       <created>1504527746291</created>
@@ -728,7 +694,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="175000" />
+    <option name="totallyTimeSpent" value="344000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="40" y="23" width="1880" height="1177" extended-state="6" />
@@ -738,16 +704,16 @@
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32994455" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32994455" sideWeight="0.5021763" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32994455" sideWeight="0.49782372" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24972796" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24972796" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3297062" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -790,6 +756,16 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/settings.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="44" lean-forward="false" selection-start-line="17" selection-start-column="44" selection-end-line="17" selection-end-column="44" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
