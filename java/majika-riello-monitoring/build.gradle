@@ -15,6 +15,7 @@ repositories {
 
 startScripts {
     classpath += files('src/dist/config')
+    defaultJvmOpts += '-Xmx256m'
 }
 
 dependencies {

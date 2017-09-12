@@ -15,7 +15,7 @@ import java.util.zip.ZipOutputStream;
 public class Zip {
 
     private static final String separateur = "/";
-    private static final Logger logger = LogManager.getLogger();
+    private static final Logger logger = LogManager.getLogger(Zip.class);
     private String pathDir;
     private Date date;
     private SimpleDateFormat month;

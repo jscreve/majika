@@ -22,7 +22,7 @@ public class CsvHandler {
 
     private double valeur;
     private int i = 0;
-    private Logger logger = LogManager.getLogger();
+    private Logger logger = LogManager.getLogger(CsvHandler.class);
     private String arduinoNomVariable;
     private String arduinoDir;
 
@@ -34,7 +34,7 @@ public class CsvHandler {
             input.close();
             arduinoNomVariable = prop.getProperty("arduinoNomVariable");
             arduinoDir = prop.getProperty("arduinoDir");
-        } catch(Exception e) {
+        } catch (Exception e) {
             logger.error("Could not load properties file", e);
         }
     }
@@ -45,7 +45,6 @@ public class CsvHandler {
      */
     public void setFileCsv(String pathDir, String pathArduino, String[] tabNomAdresseSPS, String[] tabNomAdresseSol, ModbusClient modbusClientSPS, ModbusClient modbusClientEast, ModbusClient modbusClientWest, String[] tabAdresseRegisterSPS, String[] tabAdresseRegisterSol, String[] tabAd10SPS, String[] tabAd10Sol) {
         //Création du nom du fichier et de son emplacement dans la carte SD
-
         Date date = new Date();
         //Format du nom de dossier du jour
         SimpleDateFormat month = new SimpleDateFormat("dd_MM_yyyy");
@@ -79,8 +78,6 @@ public class CsvHandler {
             out.println();  //Saute de ligne
             out.print(day.format(date) + ";"); //Ecrit la date du jour, le point virgule permet de passer à une autre colonne dans le format excel
             out.print(hour.format(date) + ";");
-
-
             //######################################
             //"Date" ne se trouve que dans le config.properties du SPS et permet donc de reconnaitre le SPS
             if (tabNomAdresseSPS[0].equals("Date")) {
@@ -105,7 +102,6 @@ public class CsvHandler {
                                 out.print(0 + ";");//Ecriture dans le csv
                                 arduinoWB.write("0,");//Ecriture dans le fichier
                             }
-
                         } else {//Si il n'y a pas eu de probleme de communication
                             String[] array = returnedValue.split(",");//Convertit la chaîne de caractere en tableau avec comme séparateur le ","
                             String pointToComma = ""; //Initialisation de la variable
@@ -114,9 +110,8 @@ public class CsvHandler {
                                 pointToComma = compteur.replace(".", ",");// remplacement des . par des ,
                                 out.print(pointToComma + ";");//On ecrit dans le csv les valeurs retournées
                             }
-                        arduinoWB.close();//On oublie pas de fermer le fichier dans lequel on a écrit pour laisser place à la lecture
-                        arduinoWF.close();
-
+                            arduinoWB.close();//On oublie pas de fermer le fichier dans lequel on a écrit pour laisser place à la lecture
+                            arduinoWF.close();
                         }
                     } catch (Exception e) {
                         logger.error("Arduino Bluetooth", e);// A ne pas oublier si il y a des erreurs
@@ -127,7 +122,6 @@ public class CsvHandler {
                 } catch (Exception e) {
                     logger.error("Impossible to Connect to SPS", e);
                 }
-
             }
             try {
                 modbusClientEast.Connect();//Même chose sans la partie Arduino pour l'onduleur Solaire Est
@@ -144,7 +138,6 @@ public class CsvHandler {
             } catch (Exception m) {
                 logger.error("Impossible to connect to West", m);
             }
-
             out.close();// Ne pas oublier de fermet toutes les ouvertures réalisées en debut de methode
             fr.close();
             bw.close();
@@ -172,28 +165,23 @@ public class CsvHandler {
                         }
                     }
                 }
-
-                    //Cette condition if check si c'est bien un onduleur d'ou la comparaison avec 10 qui est la premiere valeur lu des onduleurs et si c'est bien 24 25 ou 26
-                    if(tabAdresseRegister[0].equals("10") && (tabAdresseRegister[i].equals("24") || tabAdresseRegister[i].equals("25") || tabAdresseRegister[i].equals("26")))
-                    {
-                            valeur = valeur * 10;
-                    }
+                //Cette condition if check si c'est bien un onduleur d'ou la comparaison avec 10 qui est la premiere valeur lu des onduleurs et si c'est bien 24 25 ou 26
+                if (tabAdresseRegister[0].equals("10") && (tabAdresseRegister[i].equals("24") || tabAdresseRegister[i].equals("25") || tabAdresseRegister[i].equals("26"))) {
+                    valeur = valeur * 10;
+                }
                 //Remplace les points du float par une virgule pour que ce soit directement utilisable par le .csv
                 String valString = String.valueOf(valeur).replace(".", ",");
                 //le ";" permet de sauter d'une colonne en excel
                 out.print(valString + ";");
-
             }
-
         } catch (Exception e) {
             logger.error("Impossible to get value from", e);
         }
     }
 
     /**
-     *
-     * @param dir Premier chemin indiquant là ou seront les Csv
-     * @param date La meme date pour tout le programme
+     * @param dir   Premier chemin indiquant là ou seront les Csv
+     * @param date  La meme date pour tout le programme
      * @param Daily Le format de date du jour pour le nom du dossier et le futur nom du fichier.csv
      * @return
      */
@@ -204,12 +192,9 @@ public class CsvHandler {
         if (!theDirDaily.exists()) {
             try {
                 boolean done = theDirDaily.mkdir();// On crée le dossier du jour
-                if(done)
-                {
+                if (done) {
                     logger.info("Folder created the :" + Daily.format(date));
                 }
-
-
             } catch (SecurityException se) {
                 logger.error("ErrorMkDirDaily", se);
             }
@@ -223,23 +208,19 @@ public class CsvHandler {
      * @return retourne l'adresse du dossier avec le mois
      */
     private String setDirMonthly(String pathDir, Date date) {
-
         SimpleDateFormat df = new SimpleDateFormat("MM_yyyy");
         String dir = pathDir + df.format(date);
         File theDirMonthly = new File(dir);
         if (!theDirMonthly.exists()) {
             try {
                 boolean done = theDirMonthly.mkdir();
-                if(done)
-                {
+                if (done) {
                     logger.info("Monthly folder created the :" + df.format(date));
                 }
             } catch (SecurityException de) {
-                logger.error("ErrorDirMonth",de);
+                logger.error("ErrorDirMonth", de);
             }
         }
         return dir;
-
     }
-
 }

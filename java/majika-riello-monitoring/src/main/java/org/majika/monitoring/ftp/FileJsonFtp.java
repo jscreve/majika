@@ -34,7 +34,7 @@ public class FileJsonFtp {
     private JSONObject dataWest = new JSONObject();//Objet qui formatte
     public String pathDir;
     private Properties prop = new Properties();
-    private Logger logger = LogManager.getLogger();
+    private Logger logger = LogManager.getLogger(FileJsonFtp.class);
 
     private String[] tabAdSPS;
     private String[] tabAdSol;

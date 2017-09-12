@@ -3,6 +3,7 @@ package org.majika.monitoring;
 import org.majika.monitoring.csv.ApplicationCsv;
 import org.majika.monitoring.ftp.AppFtp;
 import org.majika.monitoring.ftpZip.AppFtpZip;
+import org.majika.monitoring.logs.RemoteLogManager;
 import org.majika.monitoring.shell.ShellManager;
 import org.majika.monitoring.updateProgram.ProgramUpdate;
 import org.apache.logging.log4j.LogManager;
@@ -27,10 +28,6 @@ public class Application {
                     AppFtp appFtp = new AppFtp();
                     appFtp.executeFTPCommand();
                     break;
-                case "zip":
-                    //we don't store on Drive anymore
-                    //new DriveSampleZip();
-                    break;
                 case "ftpZip":
                     AppFtpZip appFtpZip = new AppFtpZip();
                     appFtpZip.executeFtpZipCommand();
@@ -38,10 +35,11 @@ public class Application {
                 case "updateProgram":
                     ProgramUpdate programUpdate = new ProgramUpdate();
                     programUpdate.executeUpdateCommand();
-                    //TODO temporary, remove
-                    shellManager = new ShellManager();
-                    shellManager.executeShellCommand();
-                    //END TODO
+                    break;
+                case "uploadLogs":
+                    RemoteLogManager remoteLogManager = new RemoteLogManager();
+                    remoteLogManager.writeConnectionStat();
+                    remoteLogManager.sendLogs();
                     break;
                 case "shell":
                     shellManager = new ShellManager();
