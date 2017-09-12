@@ -20,30 +20,49 @@ public class Zip {
     private Date date;
     private SimpleDateFormat month;
     private SimpleDateFormat df;
-    private Properties prop = new Properties();
-    public static void FilePath() {
+
+    public Zip() {
+        try {
+            InputStream input = getClass().getClassLoader().getResourceAsStream("config.properties");
+            Properties prop = new Properties();
+            prop.load(input);
+            input.close();
+            pathDir = prop.getProperty("pathDirFile");
+            if (!pathDir.endsWith("/")) {
+                pathDir += "/";
+            }
+            date = new Date();
+            month = new SimpleDateFormat("dd_MM_yyyy");
+            df = new SimpleDateFormat("MM_yyyy");
+        } catch(IOException e) {
+            logger.error("Error reading properties file", e);
+        }
+    }
+
+    public String getZipDir(String inputPathDir) {
+        String zipPath = inputPathDir + df.format(date) + separateur + month.format(date);
+        return zipPath;
+    }
+
+    public String getZipPath() throws IOException {
+        String zipPath = getZipDir(pathDir) + ".zip";
+        return zipPath;
     }
 
     /**
      * Cette méthode prend tous les fichiers dans un dossier indiqué depuis la methode FileOutputStream et les compresse dans un zip
-     * @return, la methode retourne un String qui est le chemin retournée
+     *
+     * @return, la methode retourne un String qui est le chemin retourné
      */
 
-    public String setZipPath() {
-        String dir;
-        try {
-            InputStream input = getClass().getClassLoader().getResourceAsStream("config.properties");
-            prop.load(input); // open the connection to the properties file
-            pathDir = prop.getProperty("pathDirFile");
-            date = new Date();
-            month = new SimpleDateFormat("dd_MM_yyyy");
-            //Path pour créer un dossier chaque mois
-
-            df = new SimpleDateFormat("MM_yyyy");
-            dir = pathDir + df.format(date) + separateur + month.format(date);
-
-            final Path sourceDir = Paths.get(dir);
-            String zipFileName = dir.concat(".zip");
+    public String getOrCreateZipFile() throws IOException {
+        //Path pour créer un dossier chaque mois
+        String zipPath = getZipPath();
+        File zipFile = new File(zipPath);
+        if(!zipFile.exists()) {
+            String sourceDirString = pathDir + df.format(date) + separateur + month.format(date);
+            final Path sourceDir = Paths.get(sourceDirString);
+            String zipFileName = sourceDirString.concat(".zip");
             //Cette partie compresse le fichier .csv dans le dossier indiquer
             try {
                 final ZipOutputStream outputStream = new ZipOutputStream(new FileOutputStream(zipFileName));
@@ -64,10 +83,43 @@ public class Zip {
                 });
                 outputStream.close();
             } catch (IOException e) {
-                logger.error("zip",e);
+                logger.error("zip", e);
             }
-            input.close(); // close the connection to the properties file
-        }catch(IOException i){logger.error("Properties",i);}
-        return pathDir + df.format(date) + separateur + month.format(date) + ".zip";
+        }
+        return zipPath;
     }
+
+    public String getPathDir() {
+        return pathDir;
+    }
+
+    public void setPathDir(String pathDir) {
+        this.pathDir = pathDir;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public SimpleDateFormat getMonth() {
+        return month;
+    }
+
+    public void setMonth(SimpleDateFormat month) {
+        this.month = month;
+    }
+
+    public SimpleDateFormat getDf() {
+        return df;
+    }
+
+    public void setDf(SimpleDateFormat df) {
+        this.df = df;
+    }
+
+
 }

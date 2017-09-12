@@ -44,6 +44,7 @@ public class FileJsonFtp {
     private String[] tabAdNameSol;
     private String[] array;
     private String[] tabAdArduino;
+    private String pathDirFile;
 
     public FileJsonFtp() {
         try {
@@ -59,6 +60,10 @@ public class FileJsonFtp {
             modbusClientSolEast = new ModbusClient(prop.getProperty("ipAdresseSolEast"), 502);
             modbusClientSolWest = new ModbusClient(prop.getProperty("ipAdresseSolWest"), 502);
             modbusClientSPS = new ModbusClient(prop.getProperty("ipAdresseSPS"), 502);
+            pathDirFile = prop.getProperty("pathDirFile");
+            if (!pathDirFile.endsWith("/")) {
+                pathDirFile += "/";
+            }
         } catch (IOException e1) {
             logger.error("Error reading properties file", e1);
         }
@@ -122,7 +127,7 @@ public class FileJsonFtp {
             }
 
             obj.put("Date", list);
-            FileWriter file = new FileWriter(prop.getProperty("pathDirFile") + "ups.json");
+            FileWriter file = new FileWriter(pathDirFile + "ups.json");
             file.write(obj.toJSONString());// Ecrit l'objet dans le fichier Json
             file.flush();
 

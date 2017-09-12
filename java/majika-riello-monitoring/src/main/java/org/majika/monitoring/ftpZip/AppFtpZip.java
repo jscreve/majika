@@ -1,6 +1,5 @@
 package org.majika.monitoring.ftpZip;
 
-import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -10,6 +9,7 @@ import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by etienne on 09/08/2017.
@@ -19,6 +19,7 @@ public class AppFtpZip {
     private static Logger logger = LogManager.getLogger(AppFtpZip.class);
     private Properties prop = new Properties();
     private String csvZipRemoteDirectory;
+    private int retryCounter = 0;
 
     public static void main(String[] args) {
         new AppFtpZip();
@@ -48,7 +49,7 @@ public class AppFtpZip {
                 ftpClient.makeDirectory(csvZipRemoteDirectory + dirMonthly);
             }
             // APPROACH #1: uploads first file using an InputStream
-            File firstLocalFile = new File(zip.setZipPath());
+            File firstLocalFile = new File(zip.getOrCreateZipFile());
             String firstRemoteFile = csvZipRemoteDirectory + dirMonthly + "/" + zipFormat.format(date).toString() + ".zip";
             InputStream inputStream = new FileInputStream(firstLocalFile);
             logger.info("Start uploading first file");
@@ -59,6 +60,19 @@ public class AppFtpZip {
             }
         } catch (IOException ex) {
             logger.error("Ftp connection failed", ex);
+            //retry mechanism
+            retryCounter++;
+            if(retryCounter <= 3) {
+                logger.error("Retry ftp sending");
+                try {
+                    TimeUnit.SECONDS.sleep(5);
+                } catch (InterruptedException e) {
+                }
+                executeFtpZipCommand();
+            } else {
+                logger.error("Do not retry ftp sending, max counter is reached");
+                retryCounter = 0;
+            }
         } finally {
             try {
                 if (ftpClient.isConnected()) {

@@ -49,6 +49,9 @@ public class ApplicationCsv {
             ipAdresseSPS = prop.getProperty("ipAdresseSPS");
             pathArduinoPython = prop.getProperty("pathArduinoPython");
             pathDirFile = prop.getProperty("pathDirFile");
+            if (!pathDirFile.endsWith("/")) {
+                pathDirFile += "/";
+            }
         } catch(IOException e) {
             logger.error("Error in properties loading", e);
         }

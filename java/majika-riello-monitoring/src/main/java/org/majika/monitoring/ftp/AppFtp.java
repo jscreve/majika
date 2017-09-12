@@ -36,6 +36,9 @@ public class AppFtp {
             prop.load(input);
             input.close();
             pathDirFile = prop.getProperty("pathDirFile");
+            if (!pathDirFile.endsWith("/")) {
+                pathDirFile += "/";
+            }
             jsonRemoteDirectory = prop.getProperty("jsonRemoteDirectory");
             jsonFileName = prop.getProperty("jsonFileName");
             ftpServer = prop.getProperty("ftpServer");
