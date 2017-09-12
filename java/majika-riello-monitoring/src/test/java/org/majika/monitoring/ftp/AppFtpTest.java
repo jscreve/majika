@@ -46,8 +46,13 @@ public class AppFtpTest {
         prop.load(input);
         input.close();
         FTPClient ftpClient = FtpHelper.connectToFTP(prop);
-        String output = FtpHelper.getRemoteFileContent(ftpClient, "majika/DevelopperFolder/testFtp/ftp.json");
+        String remoteFileName = "majika/DevelopperFolder/testFtp/ftp.json";
+        String output = FtpHelper.getRemoteFileContent(ftpClient, remoteFileName);
         logger.info(output);
         Assert.assertNotNull(output);
+
+        //remove remote file
+        FtpHelper.removeRemoteFile(ftpClient, remoteFileName);
+
     }
 }

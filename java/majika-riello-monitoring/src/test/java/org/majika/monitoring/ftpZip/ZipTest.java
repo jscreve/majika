@@ -19,7 +19,6 @@ public class ZipTest {
 
     @Before
     public void init() throws IOException {
-
     }
 
     @Test

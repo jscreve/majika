@@ -22,6 +22,10 @@ public class FtpHelper {
         return result;
     }
 
+    public static boolean removeRemoteFile(FTPClient ftpClient, String remoteFileName) throws IOException{
+        return ftpClient.deleteFile(remoteFileName);
+    }
+
     public static FTPClient connectToFTP(Properties properties) throws IOException {
         String ftpServer = properties.getProperty("ftpServer");
         String ftpUser = properties.getProperty("ftpUser");

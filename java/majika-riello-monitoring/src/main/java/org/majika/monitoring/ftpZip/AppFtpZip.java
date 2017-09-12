@@ -20,6 +20,12 @@ public class AppFtpZip {
     private Properties prop = new Properties();
     private String csvZipRemoteDirectory;
     private int retryCounter = 0;
+    private Zip zip = new Zip();
+    private FTPClient ftpClient = null;
+    private Date date = new Date();
+    private SimpleDateFormat zipFormat = new SimpleDateFormat("dd_MM_yyyy");
+    private SimpleDateFormat folderMonthly = new SimpleDateFormat("MM_yyyy");
+    private String dirMonthly;
 
     public static void main(String[] args) {
         new AppFtpZip();
@@ -31,26 +37,26 @@ public class AppFtpZip {
             prop.load(input);
             input.close();
             csvZipRemoteDirectory = prop.getProperty("csvZipRemoteDirectory");
+            dirMonthly = folderMonthly.format(date).toString();
         }  catch (IOException ex) {
             logger.error("Could not load properties file", ex);
         }
     }
 
+    public String getRemoteFileName() {
+        String remoteFileName = csvZipRemoteDirectory + dirMonthly + "/" + zipFormat.format(date).toString() + ".zip";
+        return remoteFileName;
+    }
+
     public void executeFtpZipCommand() {
-        FTPClient ftpClient = null;
-        Zip zip = new Zip();
-        Date date = new Date();
-        SimpleDateFormat zipFormat = new SimpleDateFormat("dd_MM_yyyy");
-        SimpleDateFormat folderMonthly = new SimpleDateFormat("MM_yyyy");
         try {
             ftpClient = FtpHelper.connectToFTP(prop);
-            String dirMonthly = folderMonthly.format(date).toString();
             if (!ftpClient.changeWorkingDirectory(csvZipRemoteDirectory + dirMonthly)) {
                 ftpClient.makeDirectory(csvZipRemoteDirectory + dirMonthly);
             }
             // APPROACH #1: uploads first file using an InputStream
             File firstLocalFile = new File(zip.getOrCreateZipFile());
-            String firstRemoteFile = csvZipRemoteDirectory + dirMonthly + "/" + zipFormat.format(date).toString() + ".zip";
+            String firstRemoteFile = getRemoteFileName();
             InputStream inputStream = new FileInputStream(firstLocalFile);
             logger.info("Start uploading first file");
             boolean done = ftpClient.storeFile(firstRemoteFile, inputStream);
@@ -85,4 +91,35 @@ public class AppFtpZip {
         }
     }
 
+    public Zip getZip() {
+        return zip;
+    }
+
+    public void setZip(Zip zip) {
+        this.zip = zip;
+    }
+
+    public FTPClient getFtpClient() {
+        return ftpClient;
+    }
+
+    public void setFtpClient(FTPClient ftpClient) {
+        this.ftpClient = ftpClient;
+    }
+
+    public Properties getProp() {
+        return prop;
+    }
+
+    public void setProp(Properties prop) {
+        this.prop = prop;
+    }
+
+    public String getCsvZipRemoteDirectory() {
+        return csvZipRemoteDirectory;
+    }
+
+    public void setCsvZipRemoteDirectory(String csvZipRemoteDirectory) {
+        this.csvZipRemoteDirectory = csvZipRemoteDirectory;
+    }
 }
