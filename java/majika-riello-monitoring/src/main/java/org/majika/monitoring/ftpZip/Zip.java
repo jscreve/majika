@@ -17,7 +17,6 @@ public class Zip {
     private static final String separateur = "/";
     private static final Logger logger = LogManager.getLogger(Zip.class);
     private String pathDir;
-    private Date date;
     private SimpleDateFormat month;
     private SimpleDateFormat df;
 
@@ -31,7 +30,6 @@ public class Zip {
             if (!pathDir.endsWith("/")) {
                 pathDir += "/";
             }
-            date = new Date();
             month = new SimpleDateFormat("dd_MM_yyyy");
             df = new SimpleDateFormat("MM_yyyy");
         } catch(IOException e) {
@@ -39,13 +37,13 @@ public class Zip {
         }
     }
 
-    public String getZipDir(String inputPathDir) {
+    public String getZipDir(String inputPathDir, Date date) {
         String zipPath = inputPathDir + df.format(date) + separateur + month.format(date);
         return zipPath;
     }
 
-    public String getZipPath() throws IOException {
-        String zipPath = getZipDir(pathDir) + ".zip";
+    public String getZipPath(Date date) throws IOException {
+        String zipPath = getZipDir(pathDir, date) + ".zip";
         return zipPath;
     }
 
@@ -55,9 +53,9 @@ public class Zip {
      * @return, la methode retourne un String qui est le chemin retourné
      */
 
-    public String getOrCreateZipFile() throws IOException {
+    public String getOrCreateZipFile(Date date) throws IOException {
         //Path pour créer un dossier chaque mois
-        String zipPath = getZipPath();
+        String zipPath = getZipPath(date);
         File zipFile = new File(zipPath);
         if(!zipFile.exists()) {
             String sourceDirString = pathDir + df.format(date) + separateur + month.format(date);
@@ -95,14 +93,6 @@ public class Zip {
 
     public void setPathDir(String pathDir) {
         this.pathDir = pathDir;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
     }
 
     public SimpleDateFormat getMonth() {

@@ -9,6 +9,8 @@ import org.majika.monitoring.updateProgram.ProgramUpdate;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Date;
+
 /**
  * Created by etienne on 28/07/2017.
  */
@@ -30,6 +32,7 @@ public class Application {
                     break;
                 case "ftpZip":
                     AppFtpZip appFtpZip = new AppFtpZip();
+                    appFtpZip.init(new Date());
                     appFtpZip.executeFtpZipCommand();
                     break;
                 case "updateProgram":

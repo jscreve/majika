@@ -5,9 +5,13 @@ import org.apache.commons.net.ftp.FTPFile;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.majika.monitoring.ftp.FtpHelper;
+import org.majika.monitoring.ftpZip.AppFtpZip;
 import org.majika.monitoring.util.CommandHelper;
 
 import java.io.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Properties;
 
 /**
@@ -17,9 +21,12 @@ public class CommandManager {
 
     private static Logger logger = LogManager.getLogger(CommandManager.class);
     private Properties prop = new Properties();
+    private AppFtpZip appFtpZip = new AppFtpZip();
     private String commandRemoteFolder;
     private String commandResultFile;
     private static final String SHELL_COMMAND = "shell:";
+    private static final String FTPZIP_COMMAND = "ftpzip:";
+    private static SimpleDateFormat ftpzipFormat = new SimpleDateFormat("dd_MM_yyyy");
 
     public static void main(String[] args) {
         new CommandManager();
@@ -55,6 +62,17 @@ public class CommandManager {
                     if(command.startsWith(SHELL_COMMAND)) {
                         String shellCommand = command.substring(command.indexOf(SHELL_COMMAND) + SHELL_COMMAND.length());
                         outputCommand = CommandHelper.executeCommand(shellCommand);
+                    } else if(command.startsWith(FTPZIP_COMMAND)) {
+                        String ftpzipCommand = command.substring(command.indexOf(FTPZIP_COMMAND) + FTPZIP_COMMAND.length());
+                        //get Date
+                        try {
+                            Date date = ftpzipFormat.parse(ftpzipCommand);
+                            appFtpZip.init(date);
+                            appFtpZip.executeFtpZipCommand();
+                            outputCommand = ftpzipCommand;
+                        } catch (ParseException e) {
+                            logger.error("Could not parse date in command : " + ftpzipCommand);
+                        }
                     }
                     String remoteCommandOutput = commandRemoteFolder + commandResultFile;
                     //TODO investigate why reconnection is required to store file
@@ -75,6 +93,14 @@ public class CommandManager {
                 logger.error("Error in ftp disconnection", ex);
             }
         }
+    }
+
+    public AppFtpZip getAppFtpZip() {
+        return appFtpZip;
+    }
+
+    public void setAppFtpZip(AppFtpZip appFtpZip) {
+        this.appFtpZip = appFtpZip;
     }
 
     public String getCommandRemoteFolder() {

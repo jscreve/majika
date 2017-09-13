@@ -24,7 +24,7 @@ public class AppFtpZip {
     private int retryCounter = 0;
     private Zip zip = new Zip();
     private FTPClient ftpClient = null;
-    private Date date = new Date();
+    private Date date;
     private SimpleDateFormat zipFormat = new SimpleDateFormat("dd_MM_yyyy");
     private SimpleDateFormat folderMonthly = new SimpleDateFormat("MM_yyyy");
     private String dirMonthly;
@@ -34,13 +34,17 @@ public class AppFtpZip {
     }
 
     public AppFtpZip() {
+    }
+
+    public void init(Date inputDate) {
         try {
+            date = inputDate;
             InputStream input = getClass().getClassLoader().getResourceAsStream("config.properties");
             prop.load(input);
             input.close();
             csvZipRemoteDirectory = prop.getProperty("csvZipRemoteDirectory");
             dirMonthly = folderMonthly.format(date).toString();
-        }  catch (IOException ex) {
+        } catch (IOException ex) {
             logger.error("Could not load properties file", ex);
         }
     }
@@ -56,8 +60,7 @@ public class AppFtpZip {
             if (!FtpHelper.isSubDirectory(ftpClient, csvZipRemoteDirectory, dirMonthly)) {
                 ftpClient.makeDirectory(csvZipRemoteDirectory + dirMonthly);
             }
-            // APPROACH #1: uploads first file using an InputStream
-            File firstLocalFile = new File(zip.getOrCreateZipFile());
+            File firstLocalFile = new File(zip.getOrCreateZipFile(date));
             String firstRemoteFile = getRemoteFileName();
             InputStream inputStream = new FileInputStream(firstLocalFile);
             logger.info("Start uploading first file");
@@ -69,7 +72,7 @@ public class AppFtpZip {
                 logger.error("File not uploaded");
             }
         } catch (IOException ex) {
-            logger.error("Ftp connection failed", ex);
+            logger.error("Error in execute FtpZip command", ex);
             //retry mechanism
             retryCounter++;
             if(retryCounter <= 3) {

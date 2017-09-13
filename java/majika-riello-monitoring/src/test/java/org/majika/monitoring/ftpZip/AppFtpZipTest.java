@@ -18,8 +18,10 @@ import org.mockito.junit.MockitoJUnitRunner;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Date;
 import java.util.Properties;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -44,7 +46,8 @@ public class AppFtpZipTest {
     @Test
     public void testSuccessExecuteFtpZipCommand() throws IOException {
         String pathToNewFile = folder.newFile().getPath();
-        when(zip.getOrCreateZipFile()).thenReturn(pathToNewFile);
+        when(zip.getOrCreateZipFile(any())).thenReturn(pathToNewFile);
+        appFtpZip.init(new Date());
         appFtpZip.executeFtpZipCommand();
 
         //check remote ftp
