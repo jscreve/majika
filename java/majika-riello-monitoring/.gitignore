@@ -2,3 +2,7 @@
 /logs/
 /build/
 
+/out/
+/.gradle/
+/.idea/
+/gradle/
