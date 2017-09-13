@@ -35,8 +35,6 @@ public class AppFtpTest {
         //override ftp files path
         String filePath = Paths.get("ftp.json").toAbsolutePath().normalize().toString();
         String directoryPath = new File(filePath).getParent().toString() + "/src/test/resources/";
-        appFtp.setJsonRemoteDirectory("majika/DevelopperFolder/testFtp/");
-        appFtp.setJsonFileName("ftp.json");
         appFtp.setPathDirFile(directoryPath);
         appFtp.executeFTPCommand();
 
@@ -53,6 +51,5 @@ public class AppFtpTest {
 
         //remove remote file
         FtpHelper.removeRemoteFile(ftpClient, remoteFileName);
-
     }
 }

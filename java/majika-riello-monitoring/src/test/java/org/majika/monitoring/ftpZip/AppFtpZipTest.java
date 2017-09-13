@@ -45,7 +45,6 @@ public class AppFtpZipTest {
     public void testSuccessExecuteFtpZipCommand() throws IOException {
         String pathToNewFile = folder.newFile().getPath();
         when(zip.getOrCreateZipFile()).thenReturn(pathToNewFile);
-        appFtpZip.setCsvZipRemoteDirectory("majika/DevelopperFolder/testCsvZip");
         appFtpZip.executeFtpZipCommand();
 
         //check remote ftp

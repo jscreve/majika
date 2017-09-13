@@ -1,6 +1,8 @@
 package org.majika.monitoring.ftpZip;
 
+import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
+import org.apache.commons.net.ftp.FTPFile;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.majika.monitoring.ftp.FtpHelper;
@@ -51,7 +53,7 @@ public class AppFtpZip {
     public void executeFtpZipCommand() {
         try {
             ftpClient = FtpHelper.connectToFTP(prop);
-            if (!ftpClient.changeWorkingDirectory(csvZipRemoteDirectory + dirMonthly)) {
+            if (!FtpHelper.isSubDirectory(ftpClient, csvZipRemoteDirectory, dirMonthly)) {
                 ftpClient.makeDirectory(csvZipRemoteDirectory + dirMonthly);
             }
             // APPROACH #1: uploads first file using an InputStream
@@ -62,7 +64,9 @@ public class AppFtpZip {
             boolean done = ftpClient.storeFile(firstRemoteFile, inputStream);
             inputStream.close();
             if (done) {
-                logger.info("File Uploaded");
+                logger.info("File uploaded");
+            } else {
+                logger.error("File not uploaded");
             }
         } catch (IOException ex) {
             logger.error("Ftp connection failed", ex);

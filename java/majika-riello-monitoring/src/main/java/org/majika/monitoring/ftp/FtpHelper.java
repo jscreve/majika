@@ -2,6 +2,7 @@ package org.majika.monitoring.ftp;
 
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
+import org.apache.commons.net.ftp.FTPFile;
 import org.apache.logging.log4j.Logger;
 
 import java.io.*;
@@ -31,6 +32,16 @@ public class FtpHelper {
         String ftpUser = properties.getProperty("ftpUser");
         String ftpPass = properties.getProperty("ftpPass");
         return connectToFTP(ftpServer, ftpUser, ftpPass);
+    }
+
+    public static boolean isSubDirectory(FTPClient ftpClient, String parent, String child) throws IOException {
+        FTPFile[] files = ftpClient.listDirectories(parent);
+        for(FTPFile file : files) {
+            if(file.getName().equals(child)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public static FTPClient connectToFTP(String ftpServer, String ftpUser, String ftpPass) throws IOException {

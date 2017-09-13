@@ -1,4 +1,4 @@
-package org.majika.monitoring.shell;
+package org.majika.monitoring.command;
 
 import org.apache.commons.net.ftp.FTPClient;
 import org.junit.Assert;
@@ -13,34 +13,33 @@ import java.io.InputStream;
 import java.util.Properties;
 
 @RunWith(MockitoJUnitRunner.class)
-public class ShellManagerTest {
+public class CommandManagerTest {
 
     private static org.apache.logging.log4j.Logger logger = org.apache.logging.log4j.LogManager.getLogger(ApplicationCsv.class);
 
     @Test
-    public void testExecuteShellCommand() throws IOException {
+    public void testExecuteCommand() throws IOException {
         FTPClient ftpClient = null;
         try {
-            ShellManager shellManager = new ShellManager();
+            CommandManager commandManager = new CommandManager();
 
             //connect to FTP
             InputStream input = getClass().getClassLoader().getResourceAsStream("config.properties");
             Properties properties = new Properties();
             properties.load(input);
+            String remoteFolder =  properties.getProperty("commandRemoteFolder");
 
             //put a remote command remotely, command may depend on System
-            String command = "ls";
-            String remoteFolder = "majika/DevelopperFolder/testShell/";
+            String command = "shell:ls";
             String remoteFile = remoteFolder + "TestCommand";
-            shellManager.setShellRemoteFolder(remoteFolder);
             ftpClient = FtpHelper.connectToFTP(properties);
             FtpHelper.storeRemoteFile(ftpClient, command, remoteFile);
 
             //test it
-            shellManager.executeShellCommand();
+            commandManager.executeCommand();
 
             //retrieve remote file result, need to get a new ftp connection
-            String remoteFileResult = remoteFolder + properties.getProperty("shellResultFile");
+            String remoteFileResult = remoteFolder + properties.getProperty("commandResultFile");
             ftpClient = FtpHelper.connectToFTP(properties);
             String output = FtpHelper.getRemoteFileContent(ftpClient, remoteFileResult);
             logger.info(output);
