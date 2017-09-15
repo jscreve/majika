@@ -8,7 +8,7 @@
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="${pattern}"/>
         </Console>
-        <RollingFile name="RollingFile" fileName="logs/errorLog.log"
+        <RollingFile name="RollingFile" fileName="logs/monitoringLog.log"
                      filePattern="logs/$${date:yyyy-MM}/${name}-%d{yyyy-MM-dd}-%i.log.gz">
             <PatternLayout>
                 <pattern>${pattern}</pattern>
@@ -18,8 +18,13 @@
                 <SizeBasedTriggeringPolicy size="102400"/> <!-- Or every 100 MB // 102400 = 100KB -->
             </Policies>
         </RollingFile>
-        <RollingFile name="FtpLogFile" fileName="logs/ftpLogFile.log"
-                     filePattern="logs/$${date:yyyy-MM}/${name}-%d{yyyy-MM-dd}-%i.log.gz">
+        <RollingFile name="RemoteLogFile" fileName="logs/remoteLog.log"
+                     filePattern="logs/$${date:yyyy-MM}/${name}-%d{yyyy-MM-dd}-%i.remoteLog.gz">
+            <Filters>
+                <MarkerFilter marker="STAT" onMatch="ACCEPT" onMismatch="NEUTRAL"/>
+                <ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+
             <PatternLayout>
                 <pattern>${pattern}</pattern>
             </PatternLayout>
@@ -30,12 +35,13 @@
         </RollingFile>
     </appenders>
     <loggers>
-        <root level="info"> <!-- We log everything -->
-            <appender-ref ref="Console"/> <!-- To console -->
-            <appender-ref ref="RollingFile"/> <!-- And to a rotated file -->
+        <root level="info">
+            <appender-ref ref="Console"/>
+            <appender-ref ref="RollingFile"/>
         </root>
-        <logger name="org.majika.monitoring" level="error">
-            <appender-ref ref="FtpLogFile"/>
+        <logger name="org.majika.monitoring" level="info" additivity="false">
+            <appender-ref ref="RollingFile"/>
+            <appender-ref ref="RemoteLogFile"/>
         </logger>
     </loggers>
 </configuration>

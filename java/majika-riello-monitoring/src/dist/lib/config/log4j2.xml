@@ -21,7 +21,7 @@
         <RollingFile name="RemoteLogFile" fileName="logs/remoteLog.log"
                      filePattern="logs/$${date:yyyy-MM}/${name}-%d{yyyy-MM-dd}-%i.remoteLog.gz">
             <Filters>
-                <MarkerFilter marker="STAT_MARKET" onMatch="ACCEPT" onMismatch="NEUTRAL"/>
+                <MarkerFilter marker="STAT" onMatch="ACCEPT" onMismatch="NEUTRAL"/>
                 <ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
             </Filters>
 
