@@ -42,9 +42,10 @@ public class FileJsonFtp {
     private String[] tabAd10Sol;
     private String[] tabAdNameSPS;
     private String[] tabAdNameSol;
-    private String[] array;
     private String[] tabAdArduino;
     private String pathDirFile;
+    private String raspberryTempCommand;
+    private String arduinoDir;
 
     public FileJsonFtp() {
         try {
@@ -60,7 +61,9 @@ public class FileJsonFtp {
             modbusClientSolEast = new ModbusClient(prop.getProperty("ipAdresseSolEast"), 502);
             modbusClientSolWest = new ModbusClient(prop.getProperty("ipAdresseSolWest"), 502);
             modbusClientSPS = new ModbusClient(prop.getProperty("ipAdresseSPS"), 502);
+            raspberryTempCommand = prop.getProperty("raspberryTempCommand");
             pathDirFile = prop.getProperty("pathDirFile");
+            arduinoDir = prop.getProperty("arduinoDir");
             if (!pathDirFile.endsWith("/")) {
                 pathDirFile += "/";
             }
@@ -194,7 +197,7 @@ public class FileJsonFtp {
                 float VA = 0;
                 try {
                     //Reading the file created by the csv one
-                    FileReader arduinoFile = new FileReader("/home/pi/CentraleSolaireData/Programmes/majika-drive-sample-1.0/bin/arduino");
+                    FileReader arduinoFile = new FileReader(arduinoDir);
                     BufferedReader arduinoB = new BufferedReader(arduinoFile);
                     String[] array = arduinoB.readLine().split(",");
                     int i = 0;
@@ -214,7 +217,7 @@ public class FileJsonFtp {
                 VA = (VA1 + VA2 + VA3) / 3;
                 data.put("OUTSPS", VA);
                 try {// Dans le SPS on ajoute l'execution de la commande de temperature du raspberry Pi pour avoir un Visuel sur son fonctionnement
-                    Process i = Runtime.getRuntime().exec("cat /sys/class/thermal/thermal_zone0/temp");
+                    Process i = Runtime.getRuntime().exec(raspberryTempCommand);
                     BufferedReader rp = new BufferedReader(new InputStreamReader(i.getInputStream()));
                     double returned = Double.parseDouble(rp.readLine()) / 1000;
                     data.put("RaspBerry Pi Temperature", returned);
