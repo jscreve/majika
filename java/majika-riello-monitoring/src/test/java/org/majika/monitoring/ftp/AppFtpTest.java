@@ -51,5 +51,7 @@ public class AppFtpTest {
 
         //remove remote file
         FtpHelper.removeRemoteFile(ftpClient, remoteFileName);
+
+        FtpHelper.disconnectFTP(ftpClient);
     }
 }

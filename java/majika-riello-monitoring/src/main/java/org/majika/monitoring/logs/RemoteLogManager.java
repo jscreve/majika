@@ -11,6 +11,7 @@ import org.majika.monitoring.ftp.FtpHelper;
 import org.majika.monitoring.util.CommandHelper;
 
 import java.io.*;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Properties;
 
@@ -22,6 +23,7 @@ public class RemoteLogManager {
     private static Logger logger = LogManager.getLogger(RemoteLogManager.class);
     //private static Logger statConnectionLogger = LogManager.getLogger("monitoring.stat");
     private static final Marker STAT_MARKET = MarkerManager.getMarker("STAT");
+    private static SimpleDateFormat ftpFileFormat = new SimpleDateFormat("dd_MM_yyyy");
     private Properties prop = new Properties();
     private String ftpLogFolder;
     private String connectionInfoCommand;
@@ -52,7 +54,7 @@ public class RemoteLogManager {
             if (ftpLogFile.exists()) {
                 InputStream ftpLogFileInputStream = new BufferedInputStream(new FileInputStream(ftpLogFile));
                 logger.info("Start uploading ftp log file");
-                String remoteFtpLogFile = ftpLogFolder + prop.getProperty("ftpLogFile");
+                String remoteFtpLogFile = ftpLogFolder + prop.getProperty("ftpLogFile") + "_" + ftpFileFormat.format(new Date());
                 ftpClient.storeFile(remoteFtpLogFile, ftpLogFileInputStream);
                 ftpLogFileInputStream.close();
             }

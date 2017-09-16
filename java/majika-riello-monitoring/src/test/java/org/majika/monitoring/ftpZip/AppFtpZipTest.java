@@ -62,6 +62,8 @@ public class AppFtpZipTest {
 
         //remove file
         FtpHelper.removeRemoteFile(ftpClient, appFtpZip.getRemoteFileName());
+
+        FtpHelper.disconnectFTP(ftpClient);
     }
 
     //TODO test retry
