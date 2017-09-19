@@ -54,7 +54,13 @@ public class RemoteLogManager {
             if (ftpLogFile.exists()) {
                 InputStream ftpLogFileInputStream = new BufferedInputStream(new FileInputStream(ftpLogFile));
                 logger.info("Start uploading ftp log file");
-                String remoteFtpLogFile = ftpLogFolder + prop.getProperty("ftpLogFile") + "_" + ftpFileFormat.format(new Date());
+                String remoteFtpLogFile = ftpLogFolder + prop.getProperty("ftpLogFile");
+                //remove file extension
+                remoteFtpLogFile = remoteFtpLogFile.substring(0, remoteFtpLogFile.lastIndexOf('.'));
+                //add date
+                remoteFtpLogFile += "_" + ftpFileFormat.format(new Date());
+                //add extension
+                remoteFtpLogFile += ".log";
                 ftpClient.storeFile(remoteFtpLogFile, ftpLogFileInputStream);
                 ftpLogFileInputStream.close();
             }
@@ -70,9 +76,5 @@ public class RemoteLogManager {
                 logger.error("Disconnection FTP", ex);
             }
         }
-    }
-
-    public static void main(String[] args) {
-        new RemoteLogManager();
     }
 }
