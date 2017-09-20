@@ -76,8 +76,8 @@ public class CommandManager {
                     }
                     String remoteCommandOutput = commandRemoteFolder + commandResultFile;
                     //TODO investigate why reconnection is required to store file
-                    //FtpHelper.disconnectFTP(ftpClient);
-                    //ftpClient = FtpHelper.connectToFTP(prop);
+                    FtpHelper.disconnectFTP(ftpClient);
+                    ftpClient = FtpHelper.connectToFTP(prop);
                     FtpHelper.storeRemoteFile(ftpClient, outputCommand, remoteCommandOutput);
                 }
             }

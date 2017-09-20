@@ -7,6 +7,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.majika.monitoring.util.CommandHelper;
 import org.majika.monitoring.util.FileLock;
 
 import java.io.*;
@@ -213,15 +214,19 @@ public class FileJsonFtp {
                 VA3 = mod.ReadHoldingRegisters(39, 1)[0];
                 VA = (VA1 + VA2 + VA3) / 3;
                 data.put("OUTSPS", VA);
-                try {// Dans le SPS on ajoute l'execution de la commande de temperature du raspberry Pi pour avoir un Visuel sur son fonctionnement
-                    Process i = Runtime.getRuntime().exec(raspberryTempCommand);
-                    BufferedReader rp = new BufferedReader(new InputStreamReader(i.getInputStream()));
-                    double returned = Double.parseDouble(rp.readLine()) / 1000;
-                    data.put("RaspBerry Pi Temperature", returned);
+                String temperature = "undefined";
+                try {
+                    // Dans le SPS on ajoute l'execution de la commande de temperature du raspberry Pi pour avoir un Visuel sur son fonctionnement
+                    temperature = CommandHelper.executeCommand(raspberryTempCommand);
+                    try {
+                        Double tempDouble = Double.parseDouble(temperature) / 1000;
+                        temperature = Integer.valueOf(tempDouble.intValue()).toString();
+                    } catch (NumberFormatException e) {
+                    }
                 } catch (Exception e) {
                     logger.error("fail to get RPBI temperature", e);
                 }
-
+                data.put("RaspBerry Pi Temperature", temperature);
             }
             liste.add(data);
             obj.put(name, liste);
