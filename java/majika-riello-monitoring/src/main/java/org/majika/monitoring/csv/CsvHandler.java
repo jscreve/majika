@@ -8,6 +8,7 @@ import de.re.easymodbus.exceptions.ModbusException;
 import de.re.easymodbus.modbusclient.ModbusClient;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.majika.monitoring.util.FileLock;
 
 import java.io.*;
 import java.text.SimpleDateFormat;
@@ -86,9 +87,7 @@ public class CsvHandler {
                     modbusClientSPS.Connect();
 
                     //Ecriture dans un fichier arduino, qui sera lu par le programme Json
-                    FileWriter arduinoWF = new FileWriter(arduinoDir);
-                    BufferedWriter arduinoWB = new BufferedWriter(arduinoWF);
-
+                    FileLock arduinoFileLock = new FileLock(arduinoDir);
                     try {
 
                         Process p = Runtime.getRuntime().exec(pathArduino);// execution d'une ligne de commande qui se trouve dans le config.properties
@@ -98,23 +97,24 @@ public class CsvHandler {
                         if (returnedValue.equals("Error in socket connection"))// Dans le cas ou la connexion à été interrompu toutes les valeurs sont initialisées à 0
                         {
                             String[] nbrVariableArduino = arduinoNomVariable.split(",");
+                            String dataToWrite = "";
                             for (int i = 0; i < nbrVariableArduino.length; i++) {//Le fait de prendre les nom de variables permet de determiner à l'avance grâce au config properties le nombre de données reçue
                                 out.print(0 + ";");//Ecriture dans le csv
-                                arduinoWB.write("0,");//Ecriture dans le fichier
+                                //arduinoWB.write("0,");//Ecriture dans le fichier
+                                dataToWrite += "0,";
                             }
+                            arduinoFileLock.writeToFileWithLock(dataToWrite);
                         } else {//Si il n'y a pas eu de probleme de communication
                             String[] array = returnedValue.split(",");//Convertit la chaîne de caractere en tableau avec comme séparateur le ","
                             String pointToComma = ""; //Initialisation de la variable
-                            arduinoWB.write(returnedValue);// Ecriture dans le fichier pour l'arduino tel quel
+                            arduinoFileLock.writeToFileWithLock(returnedValue);
                             for (String compteur : array) {// decomposition de chaque donnée
                                 pointToComma = compteur.replace(".", ",");// remplacement des . par des ,
                                 out.print(pointToComma + ";");//On ecrit dans le csv les valeurs retournées
                             }
-                            arduinoWB.close();//On oublie pas de fermer le fichier dans lequel on a écrit pour laisser place à la lecture
-                            arduinoWF.close();
                         }
-                    } catch (Exception e) {
-                        logger.error("Arduino Bluetooth", e);// A ne pas oublier si il y a des erreurs
+                    } catch (FileNotFoundException e) {
+                        logger.error("Could not write arduino file", e);// A ne pas oublier si il y a des erreurs
                     }
                     writeToCsv(modbusClientSPS, tabAdresseRegisterSPS, tabAd10SPS, out);//Methode pour lire les données du SPS
                     modbusClientSPS.Disconnect();//Deconnexion du SPS

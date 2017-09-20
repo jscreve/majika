@@ -7,6 +7,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.majika.monitoring.util.FileLock;
 
 import java.io.*;
 import java.text.SimpleDateFormat;
@@ -197,19 +198,15 @@ public class FileJsonFtp {
                 float VA = 0;
                 try {
                     //Reading the file created by the csv one
-                    FileReader arduinoFile = new FileReader(arduinoDir);
-                    BufferedReader arduinoB = new BufferedReader(arduinoFile);
-                    String[] array = arduinoB.readLine().split(",");
+                    FileLock arduinoFile = new FileLock(arduinoDir);
+                    String[] array = arduinoFile.readFromFileWithLock().split(",");
                     int i = 0;
                     for (String compteur : array) {
                         data.put(tabAdArduino[i], compteur);
                         i++;
                     }
-                    arduinoB.close();
-                    arduinoFile.close();
-
-                } catch (Exception e) {
-                    logger.error("Reading File", e);
+                } catch (FileNotFoundException e) {
+                    logger.error("Could not read arduino file", e);
                 }
                 VA1 = mod.ReadHoldingRegisters(37, 1)[0];
                 VA2 = mod.ReadHoldingRegisters(38, 1)[0];
