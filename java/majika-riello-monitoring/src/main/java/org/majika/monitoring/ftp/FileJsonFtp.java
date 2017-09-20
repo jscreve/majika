@@ -209,24 +209,24 @@ public class FileJsonFtp {
                 } catch (FileNotFoundException e) {
                     logger.error("Could not read arduino file", e);
                 }
-                VA1 = mod.ReadHoldingRegisters(37, 1)[0];
-                VA2 = mod.ReadHoldingRegisters(38, 1)[0];
-                VA3 = mod.ReadHoldingRegisters(39, 1)[0];
-                VA = (VA1 + VA2 + VA3) / 3;
-                data.put("OUTSPS", VA);
-                String temperature = "undefined";
+                data.put("RaspBerry Pi Temperature", " ");
                 try {
-                    // Dans le SPS on ajoute l'execution de la commande de temperature du raspberry Pi pour avoir un Visuel sur son fonctionnement
-                    temperature = CommandHelper.executeCommand(raspberryTempCommand);
-                    try {
-                        Double tempDouble = Double.parseDouble(temperature) / 1000;
-                        temperature = Integer.valueOf(tempDouble.intValue()).toString();
-                    } catch (NumberFormatException e) {
-                    }
+                    String temperature = CommandHelper.executeCommand(raspberryTempCommand);
+                    Integer temp = Integer.parseInt(temperature) / 1000;
+                    data.put("RaspBerry Pi Temperature", temp.toString());
                 } catch (Exception e) {
                     logger.error("fail to get RPBI temperature", e);
                 }
-                data.put("RaspBerry Pi Temperature", temperature);
+                try {
+                    VA1 = mod.ReadHoldingRegisters(37, 1)[0];
+                    VA2 = mod.ReadHoldingRegisters(38, 1)[0];
+                    VA3 = mod.ReadHoldingRegisters(39, 1)[0];
+                } catch(Exception e) {
+                    logger.error("Modbus Exception", e);
+                    VA1 = VA2 = VA3 = 0;
+                }
+                VA = (VA1 + VA2 + VA3) / 3;
+                data.put("OUTSPS", VA);
             }
             liste.add(data);
             obj.put(name, liste);
