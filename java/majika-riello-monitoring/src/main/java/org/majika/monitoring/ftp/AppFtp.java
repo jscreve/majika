@@ -65,8 +65,8 @@ public class AppFtp {
             if (done) {
                 logger.info("File Uploaded");
             }
-        } catch (IOException ex) {
-            logger.error("Ftp connection failed", ex);
+        } catch (Exception ex) {
+            logger.error("Error in executing ftp command", ex);
             //Unless it works otherwise
             //try{Runtime.getRuntime().exec("sudo /usr/bin/modem3g/sakis3g connect OTHER=\"USBMODEM\" USBMODEM=\"12d1:1506\" USBINTERFACE=\"0\"");}catch(IOException h){logger.error("USB Modem bugging",h);}
         } finally {

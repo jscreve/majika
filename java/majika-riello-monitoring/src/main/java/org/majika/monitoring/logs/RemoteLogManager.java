@@ -65,17 +65,10 @@ public class RemoteLogManager {
                 ftpClient.storeFile(remoteFtpLogFile, ftpLogFileInputStream);
                 ftpLogFileInputStream.close();
             }
-        } catch (IOException ex) {
-            logger.error("Connection Internet off", ex);
+        } catch (Exception ex) {
+            logger.error("Error sending logs", ex);
         } finally {
-            try {
-                if (ftpClient.isConnected()) {
-                    ftpClient.logout();
-                    ftpClient.disconnect();
-                }
-            } catch (IOException ex) {
-                logger.error("Disconnection FTP", ex);
-            }
+            FtpHelper.disconnectFTP(ftpClient);
         }
     }
 }

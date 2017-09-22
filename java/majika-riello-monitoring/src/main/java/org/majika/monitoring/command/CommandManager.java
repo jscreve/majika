@@ -1,5 +1,6 @@
 package org.majika.monitoring.command;
 
+import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
 import org.apache.logging.log4j.LogManager;
@@ -89,17 +90,10 @@ public class CommandManager {
                     FtpHelper.storeRemoteFile(ftpClient, outputCommand, remoteCommandOutput);
                 }
             }
-        } catch (IOException ex) {
-            logger.error("Error in ftp connection", ex);
+        } catch (Exception ex) {
+            logger.error("Error in executing executeCommandFromFTP", ex);
         } finally {
-            try {
-                if (ftpClient != null && ftpClient.isConnected()) {
-                    ftpClient.logout();
-                    ftpClient.disconnect();
-                }
-            } catch (IOException ex) {
-                logger.error("Error in ftp disconnection", ex);
-            }
+            FtpHelper.disconnectFTP(ftpClient);
         }
     }
 

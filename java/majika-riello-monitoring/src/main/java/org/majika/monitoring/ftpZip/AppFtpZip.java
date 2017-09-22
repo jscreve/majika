@@ -71,7 +71,7 @@ public class AppFtpZip {
             } else {
                 logger.error("File not uploaded");
             }
-        } catch (IOException ex) {
+        } catch (Exception ex) {
             logger.error("Error in execute FtpZip command", ex);
             //retry mechanism
             retryCounter++;
@@ -87,14 +87,7 @@ public class AppFtpZip {
                 retryCounter = 0;
             }
         } finally {
-            try {
-                if (ftpClient.isConnected()) {
-                    ftpClient.logout();
-                    ftpClient.disconnect();
-                }
-            } catch (IOException ex) {
-                logger.error("Disconnection FTP", ex);
-            }
+            FtpHelper.disconnectFTP(ftpClient);
         }
     }
 

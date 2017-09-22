@@ -60,17 +60,10 @@ public class ProgramUpdate {
                     logger.error("Problem to create Dowloading file", e);
                 }
             }
-        } catch (IOException ex) {
-            logger.error("Connection Internet off", ex);
+        } catch (Exception ex) {
+            logger.error("Error updating program", ex);
         } finally {
-            try {
-                if (ftpClient.isConnected()) {
-                    ftpClient.logout();
-                    ftpClient.disconnect();
-                }
-            } catch (IOException ex) {
-                logger.error("Disconnection FTP", ex);
-            }
+            FtpHelper.disconnectFTP(ftpClient);
         }
     }
 
