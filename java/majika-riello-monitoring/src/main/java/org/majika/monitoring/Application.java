@@ -46,7 +46,7 @@ public class Application {
                     break;
                 case "command":
                     commandManager = new CommandManager();
-                    commandManager.executeCommand();
+                    commandManager.executeCommandFromFTP();
                     break;
                 default:
                     logger.error("Wrong input argument");

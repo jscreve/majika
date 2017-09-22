@@ -27,6 +27,7 @@ public class RemoteLogManager {
     private Properties prop = new Properties();
     private String ftpLogFolder;
     private String connectionInfoCommand;
+    private CommandHelper commandHelper = new CommandHelper();
 
     public RemoteLogManager() {
         try {
@@ -40,7 +41,7 @@ public class RemoteLogManager {
     }
 
     public void writeConnectionStat() {
-        String connectionInfo = CommandHelper.executeCommand(connectionInfoCommand);
+        String connectionInfo = commandHelper.executeCommand(connectionInfoCommand);
         //only error level is written
         logger.info(STAT_MARKET,"Connection stat : " + connectionInfo);
     }

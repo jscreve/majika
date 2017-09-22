@@ -27,8 +27,9 @@ public class FileLockTest {
         File tempFile = folder.newFile();
         String fileName = tempFile.getPath();
         FileLock fileLock = new FileLock(fileName);
-        fileLock.writeToFileWithLock("toto");
+        fileLock.writeToFileWithLock("totototo");
+        fileLock.flushAndWriteToFileWithLock("titi");
         String dataReadFromFile = fileLock.readFromFileWithLock();
-        Assert.assertTrue(dataReadFromFile.equals("toto"));
+        Assert.assertTrue(dataReadFromFile.equals("titi"));
     }
 }

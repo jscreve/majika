@@ -45,6 +45,28 @@ public class FileLock {
     }
 
     /**
+     * Blocking writing function
+     * @param data to write to file
+     */
+    public void flushAndWriteToFileWithLock(String data) throws FileNotFoundException {
+        ByteBuffer buffer = null;
+        try (RandomAccessFile  randomAccessFile = new RandomAccessFile(fileName, "rw");
+             FileChannel fc = randomAccessFile.getChannel();
+             java.nio.channels.FileLock fileLock = fc.lock()) {
+            if (null != fileLock) {
+                fc.truncate(0);
+                buffer = ByteBuffer.wrap(data.getBytes());
+                buffer.put(data.toString().getBytes());
+                buffer.flip();
+                while (buffer.hasRemaining())
+                    fc.write(buffer);
+            }
+        } catch (OverlappingFileLockException | IOException ex) {
+            logger.error("Exception occured while trying to get a lock on File... " + ex.getMessage());
+        }
+    }
+
+    /**
      * Blocking reading function
      * @return the data read from file
      */

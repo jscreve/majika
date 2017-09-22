@@ -107,7 +107,7 @@ public class CsvHandler {
                         } else {//Si il n'y a pas eu de probleme de communication
                             String[] array = returnedValue.split(",");//Convertit la chaîne de caractere en tableau avec comme séparateur le ","
                             String pointToComma = ""; //Initialisation de la variable
-                            arduinoFileLock.writeToFileWithLock(returnedValue);
+                            arduinoFileLock.flushAndWriteToFileWithLock(returnedValue);
                             for (String compteur : array) {// decomposition de chaque donnée
                                 pointToComma = compteur.replace(".", ",");// remplacement des . par des ,
                                 out.print(pointToComma + ";");//On ecrit dans le csv les valeurs retournées

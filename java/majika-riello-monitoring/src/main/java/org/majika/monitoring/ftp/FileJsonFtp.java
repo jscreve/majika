@@ -17,12 +17,9 @@ import java.util.Properties;
 
 
 public class FileJsonFtp {
-
-
     private ModbusClient modbusClientSolEast;
     private ModbusClient modbusClientSolWest;
     private ModbusClient modbusClientSPS;
-
 
     private float valeur;
 
@@ -34,7 +31,6 @@ public class FileJsonFtp {
     private JSONObject dataSPS = new JSONObject();//Objet qui formatte
     private JSONObject dataEast = new JSONObject();//Objet qui formatte
     private JSONObject dataWest = new JSONObject();//Objet qui formatte
-    public String pathDir;
     private Properties prop = new Properties();
     private Logger logger = LogManager.getLogger(FileJsonFtp.class);
 
@@ -48,6 +44,7 @@ public class FileJsonFtp {
     private String pathDirFile;
     private String raspberryTempCommand;
     private String arduinoDir;
+    private CommandHelper commandHelper = new CommandHelper();
 
     public FileJsonFtp() {
         try {
@@ -90,7 +87,7 @@ public class FileJsonFtp {
                 //Même technique que pour le csv
                 dataUPS(prop.getProperty("nameSPS"), modbusClientSPS, tabAdNameSPS, tabAdSPS, tabAd10SPS, dataSPS, listSPS);
                 modbusClientSPS.Disconnect();
-            } catch (Exception e) {//Dans le cas où les données n'ont pas pu être récupéré, on revoie la valeur 0 sur chacune des valeurs
+            } catch (Exception e) {//Dans le cas où les données n'ont pas pu être récupérées, on revoie la valeur 0 sur chacune des valeurs
                 for (int i = 0; i < tabAdNameSPS.length; i++) {
                     dataSPS.put(tabAdNameSPS[i], 0);
                 }
@@ -203,20 +200,24 @@ public class FileJsonFtp {
                     String[] array = arduinoFile.readFromFileWithLock().split(",");
                     int i = 0;
                     for (String compteur : array) {
-                        data.put(tabAdArduino[i], compteur);
+                        if(i < tabAdArduino.length) {
+                            data.put(tabAdArduino[i], compteur);
+                        }
                         i++;
                     }
                 } catch (FileNotFoundException e) {
                     logger.error("Could not read arduino file", e);
                 }
-                data.put("RaspBerry Pi Temperature", " ");
+                String tempData = " ";
                 try {
-                    String temperature = CommandHelper.executeCommand(raspberryTempCommand);
+                    String temperature = commandHelper.executeCommand(raspberryTempCommand).replace("\n", "").trim();
                     Integer temp = Integer.parseInt(temperature) / 1000;
-                    data.put("RaspBerry Pi Temperature", temp.toString());
+                    tempData = temp.toString();
                 } catch (Exception e) {
                     logger.error("fail to get RPBI temperature", e);
                 }
+                data.put("RaspBerry Pi Temperature", tempData);
+
                 try {
                     VA1 = mod.ReadHoldingRegisters(37, 1)[0];
                     VA2 = mod.ReadHoldingRegisters(38, 1)[0];

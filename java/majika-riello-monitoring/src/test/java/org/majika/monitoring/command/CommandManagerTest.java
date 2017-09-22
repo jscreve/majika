@@ -2,16 +2,15 @@ package org.majika.monitoring.command;
 
 import org.apache.commons.net.ftp.FTPClient;
 import org.junit.Assert;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
 import org.junit.runner.RunWith;
 import org.majika.monitoring.csv.ApplicationCsv;
 import org.majika.monitoring.ftp.FtpHelper;
 import org.majika.monitoring.ftpZip.AppFtpZip;
-import org.majika.monitoring.ftpZip.Zip;
+import org.majika.monitoring.util.CommandHelper;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Spy;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.io.IOException;
@@ -20,7 +19,6 @@ import java.util.Properties;
 
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class CommandManagerTest {
@@ -30,9 +28,13 @@ public class CommandManagerTest {
     @Mock
     private AppFtpZip appFtpZip;
 
+    @Spy
+    private CommandHelper commandHelper;
+
     @InjectMocks
     private CommandManager commandManager;
 
+    //full tests
     @Test
     public void testExecuteShellCommand() throws IOException {
         FTPClient ftpClient = null;
@@ -50,7 +52,7 @@ public class CommandManagerTest {
             FtpHelper.storeRemoteFile(ftpClient, command, remoteFile);
 
             //test it
-            commandManager.executeCommand();
+            commandManager.executeCommandFromFTP();
 
             //retrieve remote file result, need to get a new ftp connection
             String remoteFileResult = remoteFolder + properties.getProperty("commandResultFile");
@@ -83,7 +85,7 @@ public class CommandManagerTest {
             FtpHelper.storeRemoteFile(ftpClient, command, remoteFile);
 
             //test it
-            commandManager.executeCommand();
+            commandManager.executeCommandFromFTP();
 
             //retrieve remote file result, need to get a new ftp connection
             String remoteFileResult = remoteFolder + properties.getProperty("commandResultFile");
@@ -98,5 +100,39 @@ public class CommandManagerTest {
         } finally {
             FtpHelper.disconnectFTP(ftpClient);
         }
+    }
+
+    //unit tests
+    @Test
+    public void testExecuteAddCronCommand() throws IOException {
+        //put a remote command remotely, command may depend on System
+        String command = "cron:add:toto:*/2 * * * *";
+        commandManager.internalExecuteCommand(command);
+        verify(commandHelper).executeShellCommand("(crontab -l ; echo '*/2 * * * * /home/pi/CentraleSolaireData/Programmes/majika-riello-monitoring-1.0/bin/majika-riello-monitoring toto') > ~/crontab.txt && crontab ~/crontab.txt");
+    }
+
+    @Test
+    public void testExecuteRemoveCronCommand() throws IOException {
+        //put a remote command remotely, command may depend on System
+        String command = "cron:remove:toto";
+        commandManager.internalExecuteCommand(command);
+        verify(commandHelper).executeShellCommand("crontab -l | grep -v '/home/pi/CentraleSolaireData/Programmes/majika-riello-monitoring-1.0/bin/majika-riello-monitoring toto'  >~/crontab.txt && crontab ~/crontab.txt");
+    }
+
+    @Test
+    public void testExecuteUpdateCronCommand() throws IOException {
+        //put a remote command remotely, command may depend on System
+        String command = "cron:update:toto:*/2 * * * *";
+        commandManager.internalExecuteCommand(command);
+        verify(commandHelper).executeShellCommand("crontab -l | grep -v '/home/pi/CentraleSolaireData/Programmes/majika-riello-monitoring-1.0/bin/majika-riello-monitoring toto'  >~/crontab.txt && crontab ~/crontab.txt");
+        verify(commandHelper).executeShellCommand("(crontab -l ; echo '*/2 * * * * /home/pi/CentraleSolaireData/Programmes/majika-riello-monitoring-1.0/bin/majika-riello-monitoring toto') > ~/crontab.txt && crontab ~/crontab.txt");
+    }
+
+    @Test
+    public void testExecuteGetLogsCommand() throws IOException {
+        //put a remote command remotely, command may depend on System
+        String command = "getlog";
+        commandManager.internalExecuteCommand(command);
+        verify(commandHelper).executeCommand("/home/pi/CentraleSolaireData/Programmes/majika-riello-monitoring-1.0/bin/majika-riello-monitoring uploadLogs");
     }
 }
