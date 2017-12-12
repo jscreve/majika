@@ -9,8 +9,8 @@
 // Data wire is plugged into pin 2,3 and 7 on the Arduino
 #define ONE_WIRE_BUS_BATTERY 2
 #define ONE_WIRE_BUS_CENTRAL 3
-//#define ONE_WIRE_BUS_BATTERY_FLOOR 7 modif
-#define ONE_WIRE_BUS_OUTSIDE 7 //MODIF
+#define ONE_WIRE_BUS_OUTSIDE 7
+#define LIGHT_SENSOR A0
 //#define echo_USB //envoie toutes les trames téléinfo sur l'USB
 #define message_système_USB //envoie des messages sur l'USB (init SD, heure au demarrage, et echo des erreures)
 
@@ -18,7 +18,6 @@
 // (not just Maxim/Dallas temperature ICs)
 OneWire oneWireBattery(ONE_WIRE_BUS_BATTERY);
 OneWire oneWireCentral(ONE_WIRE_BUS_CENTRAL);
-//OneWire oneWireBatteryFloor(ONE_WIRE_BUS_BATTERY_FLOOR);MODIF
 OneWire oneWireOutside(ONE_WIRE_BUS_OUTSIDE);//MODIF
 // Pass our oneWire reference to Dallas Temperature.
 DallasTemperature sensorsBattery(&oneWireBattery);
@@ -103,7 +102,6 @@ void setup()
   // Start up the library
   sensorsBattery.begin();
   sensorsCentral.begin();
-//  sensorsBatteryFloor.begin();//modif
   sensorsOutside.begin();
 
   //Teleinfo
@@ -167,34 +165,33 @@ void loop()
   else {
     saveTeleInfo();
   }
-
+      
   //Temperature part
   //write result to bluetooth
   if (bluetooth.available() > 0) {
-    Serial.println (F("Bluetooth available"));
+    Serial.println(F("Bluetooth available"));
     int bluetoothInputData = bluetooth.read();
     Serial.print(F("Bluetooth data :"));
     Serial.print(bluetoothInputData);
 
-    if (bluetoothInputData == 49) { // if number 0 is read we send all teleinfo data
+    if (bluetoothInputData == 49) { // if number 1 is read we send all teleinfo data
       digitalWrite(LEDPin, 1);
-      sensorsBattery.requestTemperatures(); // Send the command to get temperatures
-      bluetooth.print(sensorsBattery.getTempCByIndex(0));
+      sensorsOutside.requestTemperatures(); // Send the command to get temperatures
+      bluetooth.print(sensorsOutside.getTempCByIndex(0));
       bluetooth.print(",");
       sensorsCentral.requestTemperatures(); // Send the command to get temperatures
       bluetooth.print(sensorsCentral.getTempCByIndex(0));
       bluetooth.print(",");
-      //debut
-      sensorsOutside.requestTemperatures(); // Send the command to get temperatures
-      bluetooth.print(sensorsOutside.getTempCByIndex(0));
+      sensorsBattery.requestTemperatures(); // Send the command to get temperatures
+      bluetooth.print(sensorsBattery.getTempCByIndex(0));
       bluetooth.print(",");
-//      sensorsBatteryFloor.requestTemperatures(); // Send the command to get temperatures
-//      bluetooth.print(sensorsBatteryFloor.getTempCByIndex(0));
-//      bluetooth.print(",");
-      
-      //fin
       String realTimeTeleInfo = getRealTimeTeleInfo();
       bluetooth.print(realTimeTeleInfo);
+      //read light sensor
+      bluetooth.print(",");
+      int light_value = analogRead(LIGHT_SENSOR);
+      bluetooth.print(light_value);
+      //end read light sensor
       bluetooth.print("END");
     }
   } else {
