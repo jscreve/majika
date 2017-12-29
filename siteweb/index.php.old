@@ -1,0 +1,344 @@
+<?php
+
+// indiquÃÂÃÂÃÂÃÂ© le chemin de votre fichier JSON, il peut s'agir d'une URL
+$json = file_get_contents("ups.json", true);
+$data = json_decode($json);           // decode le fichier json
+
+?>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv='refresh' content='30'/>
+    <meta charset='utf-8'/>
+    <link rel="icon" type="image/png" href="images/majika.png"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="css/my.css" type="text/css" media="screen"/>
+    <title> monitoring Ampasindava </title>
+</head>
+<body>
+<div class="container" id="block_page">
+    <!-- En-tÃÂÃÂÃÂÃÂªte du page -->
+    <header>
+        <section>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div id="logo"><img src="images/majika_logo.png" alt="logo_de_majika"/></div>
+                    <h2 id="titre_principal">Monitoring Ampasindava</h2>
+                </div>
+            </div>
+    </header>
+
+    <!-- Les tableau -->
+    <!-- Les tableaux mesure SPS -->
+    <div class="col-sm-6">
+        <table class="table table-bordered table-striped table-condensed">
+            <caption><h3> SPS - Mesures <span class="pull-right small"><?php echo $data->{'Date'}[0]; ?></span></h3>
+            </caption>
+
+            <thead> <!-- En-tÃÂÃÂÃÂÃÂªte du tableau -->
+            <tr>
+                <th>Nom</th>
+                <th>Valeur</th>
+                <th>Unité</th>
+            </tr>
+            </thead>
+
+            <tbody> <!-- Corps du tableau -->
+            <tr>
+                <td>Etat charge batteries</td>
+                <td><?php echo $data->{'UPS_SPS_Battery_'}[0]->{'Capacity Battery'}; ?></td>
+                <td>[%]</td>
+            </tr>
+
+            <tr>
+                <td>Courant charge parc batteries</td>
+                <td><?php echo $data->{'UPS_SPS_Battery_'}[0]->{'Battery Current'}; ?></td>
+                <td>[±A]</td>
+            </tr>
+
+            <tr>
+                <td>Tension parc batteries</td>
+                <td><?php echo $data->{'UPS_SPS_Battery_'}[0]->{'Battery Voltage'}; ?></td>
+                <td>[V]</td>
+            </tr>
+
+            <tr>
+                <td>Autonomie parc batterie</td>
+                <td><?php echo $data->{'UPS_SPS_Battery_'}[0]->{'Autonomy Battery'}; ?></td>
+                <td>[mn]</td>  <!--il faut divise en 60mn -->
+            </tr>
+
+            <tr>
+                <td>OUT SPS</td>
+                <td><?php echo $data->{'UPS_SPS_Battery_'}[0]->{'OUTSPS'}; ?></td>
+                <td>[%VA]</td>
+            </tr>
+
+            <tr>
+                <td>Temperature système</td>
+                <td><?php echo $data->{'UPS_SPS_Battery_'}[0]->{'Temperature SPS'}; ?></td>
+                <td>[°C]</td>
+            </tr>
+
+            <!-- division du tableau en 3 valeur par phase -->
+
+            <tr>
+                <td rowspan=3>Tensions réseaux <p> Phase 1,2 et 3</p></td>
+                <td><?php echo $data->{'UPS_SPS_Battery_'}[0]->{'Output V1'}; ?></td>
+                <td rowspan=3>[V]</td> <!--mofi-->
+            </tr>
+
+            <tr>
+                <td><?php echo $data->{'UPS_SPS_Battery_'}[0]->{'Output V2'}; ?></td>
+
+            </tr>
+
+            <tr>
+                <td><?php echo $data->{'UPS_SPS_Battery_'}[0]->{'Output V3'}; ?></td>
+            </tr>
+
+
+            <!-- Courant reseau -->
+            <tr>
+                <td rowspan=3>Courants réseaux
+                    <p> Phase 1,2 et 3</p></td>
+                <td><?php echo $data->{'UPS_SPS_Battery_'}[0]->{'Output I1'}; ?></td>
+                <td rowspan=3>[A]</td>
+            </tr>
+
+            <tr>
+                <td> <?php echo $data->{'UPS_SPS_Battery_'}[0]->{'Output I2'}; ?> </td>
+            </tr>
+
+            <tr>
+                <td> <?php echo $data->{'UPS_SPS_Battery_'}[0]->{'Output I3'}; ?> </td>
+            </tr>
+
+            <!-- Courant CrÃÂÃÂÃÂÃÂªte -->
+            <tr>
+                <td rowspan=3>Courants crÊtes
+                    <p> Phase 1,2 et 3</p></td>
+                <td> <?php echo $data->{'UPS_SPS_Battery_'}[0]->{'Output Peak I1'}; ?> </td>
+                <td rowspan=3>[A]</td>
+            </tr>
+
+            <tr>
+                <td> <?php echo $data->{'UPS_SPS_Battery_'}[0]->{'Output Peak I2'}; ?> </td>
+            </tr>
+
+            <tr>
+                <td> <?php echo $data->{'UPS_SPS_Battery_'}[0]->{'Output Peak I3'}; ?> </td>
+            </tr>
+            </tr>
+            </tbody>
+        </table>
+
+
+        <!-- Les tableaux mesure des SIRIO -->
+        <table width=50% border=2 class="table table-bordered table-striped table-condensed">
+            <caption><h3> Mesure des Sirio </h3></caption>
+
+            <thead>
+            <tr>
+                <th rowspan="2">Nom</th>
+                <th colspan="2">Valeurs</th>
+                <th rowspan="2">Unité</th>
+            </tr>
+            <tr>
+                <th>SIRIO I Ouest</th>
+                <th>SIRIO II Est</th>
+            </tr>
+            </thead
+
+            <tbody>
+            <tr>
+                <td>Puissance</td>
+                <td> <?php echo $data->{'UPS_SolarWest_'}[0]->{'Power'}; ?> </td>  <!-- SIRIO1 l'autre 2   -->
+                <td><?php echo $data->{'UPS_SolarEast_'}[0]->{'Power'}; ?> </td>
+                <td>[W]</td>
+            </tr>
+
+            <tr>
+                <td> Tempèrature</td>
+                <td> <?php echo $data->{'UPS_SolarWest_'}[0]->{'Temperature Ups'}; ?>  </td><!-- SIRIO1 west-->
+                <td> <?php echo $data->{'UPS_SolarEast_'}[0]->{'Temperature Ups'}; ?>  </td>
+                <td>[ºC]</td>
+            </tr>
+
+            <tr>
+                <td> Fréquences réseau</td>
+                <td> <?php echo $data->{'UPS_SolarWest_'}[0]->{'Grid Frequency'}; ?>  </td><!-- SIRIO1 west-->
+                <td> <?php echo $data->{'UPS_SolarEast_'}[0]->{'Grid Frequency'}; ?>  </td>
+                <td>[Hz]</td>
+            </tr>
+
+            <tr>
+                <td> Energie totale réseau</td>
+                <td> <?php echo $data->{'UPS_SolarWest_'}[0]->{'Total Energy To Grid'}; ?>  </td><!-- SIRIO1 west-->
+                <td> <?php echo $data->{'UPS_SolarEast_'}[0]->{'Total Energy To Grid'}; ?>  </td>
+                <td>[kWh]</td>
+            </tr>
+
+            <tr>
+                <td> Heures totales de fonctionnement</td>
+                <td> <?php echo $data->{'UPS_SolarWest_'}[0]->{'Total Operating Hours'}; ?>  </td><!-- SIRIO1 west-->
+                <td> <?php echo $data->{'UPS_SolarEast_'}[0]->{'Total Operating Hours'}; ?>  </td>
+                <td>[H]</td>
+            </tr>
+
+            <tr>
+                <td rowspan=3>Tensions phase 1,2 et 3</td>
+                <td> <?php echo $data->{'UPS_SolarWest_'}[0]->{'Voltage L1'}; ?> </td> <!-- SIRIO1 -->
+                <td> <?php echo $data->{'UPS_SolarEast_'}[0]->{'Voltage L1'}; ?> </td>
+                <td rowspan=3>[V]</td>
+            </tr>
+
+            <tr>
+                <td> <?php echo $data->{'UPS_SolarWest_'}[0]->{'Voltage L2'}; ?> </td> <!-- SIRIO1 -->
+                <td> <?php echo $data->{'UPS_SolarEast_'}[0]->{'Voltage L2'}; ?> </td>
+            </tr>
+
+            <tr>
+                <td> <?php echo $data->{'UPS_SolarWest_'}[0]->{'Voltage L3'}; ?> </td> <!-- SIRIO1 -->
+                <td> <?php echo $data->{'UPS_SolarEast_'}[0]->{'Voltage L3'}; ?> </td>
+            </tr>
+
+            <tr>
+                <td rowspan=3>Courants phase 1,2 et 3</td>
+                <td> <?php echo $data->{'UPS_SolarWest_'}[0]->{'Current L1'}; ?> </td> <!-- SIRIO1 -->
+                <td> <?php echo $data->{'UPS_SolarEast_'}[0]->{'Current L1'}; ?> </td>
+                <td rowspan=3>[A]</td>
+            </tr>
+
+            <tr>
+                <td> <?php echo $data->{'UPS_SolarWest_'}[0]->{'Current L2'}; ?> </td> <!-- SIRIO1 -->
+                <td> <?php echo $data->{'UPS_SolarEast_'}[0]->{'Current L2'}; ?> </td>
+            </tr>
+
+            <tr>
+                <td> <?php echo $data->{'UPS_SolarWest_'}[0]->{'Current L3'}; ?> </td> <!-- SIRIO1 -->
+                <td> <?php echo $data->{'UPS_SolarEast_'}[0]->{'Current L3'}; ?> </td>
+            </tr>
+            <!-- Courent crÃÂÃÂÃÂÃÂte Respective Phase lien vers majika/courent crete.php-->
+            </tbody>
+        </table>
+
+        <!-- Les tableaux comptage des compteur et temperature des locaux -->
+        <table width=50% border=2 class="table table-bordered table-striped table-condensed">
+            <caption><h3>Temperatures des locaux et autres </h3></caption>
+
+            <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Valeurs</th>
+                <th>Unité</th>
+            </tr>
+            </thead
+            <tbody>
+            <tr>
+                <td> Local batteries</td>
+
+                <td>
+                    <?php
+                    $temp = $data->{'UPS_SPS_Battery_'}[0]->{'Local Batterie'};
+                    if($temp > 0)
+                        echo $temp;
+                    else
+                        echo "";
+                    ?>
+                </td>
+                <td>[ºC]</td>
+            </tr>
+
+            <tr>
+                <td> Local onduleurs</td>
+                <td>
+                    <?php
+                    $temp = $data->{'UPS_SPS_Battery_'}[0]->{'Local Onduleurs'};
+                    if($temp > 0)
+                        echo $temp;
+                    else
+                        echo "";
+                    ?>
+                </td>
+                <td>[ºC]</td>
+            </tr>
+
+            <tr>
+                <td> Extèrieur</td>
+                <td>
+                    <?php
+                    $temp = $data->{'UPS_SPS_Battery_'}[0]->{'Exterieur'};
+                    if($temp > 0)
+                        echo $temp;
+                    else
+                        echo "";
+                    ?>
+                </td>
+                <td>[ºC]</td>
+            </tr>
+
+            <tr>
+                <td> Raspberry Pi</td>
+                <td><?php echo $data->{'UPS_SPS_Battery_'}[0]->{'RaspBerry Pi Temperature'}; ?></td>
+                <td>[ºC]</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <!-- LuminositÃÂÃÂÃÂÃÂ© -->
+        <table width=50% border=2 class="table table-bordered table-striped table-condensed">
+            <caption><h3>Luminosité</h3></caption>
+
+            <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Valeur</th>
+            </tr>
+            </thead
+            <tbody>
+            <tr>
+                <td>Indice luminosité (0-100)</td>
+                <td><?php echo floor(($data->{'UPS_SPS_Battery_'}[0]->{'Light'})*100/1024); ?></td>
+            </tr>
+
+            </tbody>
+        </table>
+
+
+        <table width=50% border=2 class="table table-bordered table-striped table-condensed">
+            <caption><h3>Compteurs de la centrale</h3></caption>
+
+            <thead>
+            <tr>
+                <th rowspan="2">Nom</th>
+                <th colspan="5">Valeurs</th>
+            </tr>
+
+            <tr>
+                <th> HCHP [Kwh]</th>
+                <th>I1 [A]</th>
+                <th>I2 [A]</th>
+                <th>I3 [A]</th>
+                <th>P [VA]</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td> Compteur</td>
+                <td><?php echo $data->{'UPS_SPS_Battery_'}[0]->{'HCHP'}/1000; ?> </td>
+                <td><?php echo $data->{'UPS_SPS_Battery_'}[0]->{'I1'}; ?></td>
+                <td><?php echo $data->{'UPS_SPS_Battery_'}[0]->{'I2'}; ?></td>
+                <td><?php echo $data->{'UPS_SPS_Battery_'}[0]->{'I3'}; ?></td>
+                <td><?php echo  $data->{'UPS_SPS_Battery_'}[0]->{'P'}; ?></td>
+            </tr>
+            </tbody>
+    </div>
+    </section>
+</div>
+</body>
+
+
+</html>
