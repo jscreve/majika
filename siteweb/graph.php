@@ -283,7 +283,7 @@ function displayYearBarChart($powerValues, $powerUsage)
         </section>
     </header>
 
-    <section>
+    <section id="day">
         <div class="container">
             <div class=row>
                 <div class="col-sm-6"> <!-- Les tableaux mesure SPS -->
@@ -292,7 +292,8 @@ function displayYearBarChart($powerValues, $powerUsage)
                     <form method="POST" action="graph.php">
                         <?php
                         include 'html-php-date-picker.php';
-                        ?><input type="submit" value="Choisir" name="choisir">
+                        ?>
+                        <input type="submit" value="Choisir" name="choisir">
                         <?php
                         $year = (isset($_POST['year']) ? $_POST['year'] : null);
                         $month = (isset($_POST['month']) ? $_POST['month'] : null);
@@ -316,7 +317,7 @@ function displayYearBarChart($powerValues, $powerUsage)
         </div>
     </section>
 
-    <section>
+    <section id="month">
         <div class="container">
             <div class=row>
                 <div class="col-sm-6">
@@ -325,7 +326,8 @@ function displayYearBarChart($powerValues, $powerUsage)
                     <form method="POST" action="graph.php">
                         <?php
                         include 'html-php-month-picker.php';
-                        ?><input type="submit" value="Choisir" name="choisir">
+                        ?>
+                        <input type="submit" value="Choisir" name="choisir">
                         <?php
                         $year = (isset($_POST['year_month']) ? $_POST['year_month'] : null);
                         $month = (isset($_POST['month_month']) ? $_POST['month_month'] : null);
@@ -349,7 +351,7 @@ function displayYearBarChart($powerValues, $powerUsage)
         </div>
     </section>
 
-    <section>
+    <section id="year">
         <div class="container">
             <div class=row>
                 <div class="col-sm-6">
@@ -358,7 +360,8 @@ function displayYearBarChart($powerValues, $powerUsage)
                     <form method="POST" action="graph.php">
                         <?php
                         include 'html-php-year-picker.php';
-                        ?><input type="submit" value="Choisir" name="choisir">
+                        ?>
+                        <input type="submit" value="Choisir" name="choisir">
                         <?php
                         $year = (isset($_POST['year_year']) ? $_POST['year_year'] : null);
                         ?>
