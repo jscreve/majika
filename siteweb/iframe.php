@@ -48,24 +48,50 @@ function extractCsvYear($year)
     return $csvFiles;
 }
 
+function getVariableIndexes($tab, $variableName) {
+    for($i = 0; $i < count($tab); $i++) {
+        if (strpos($tab[$i], $variableName) !== false) {
+            $variableIndex[] = $i;
+        }
+    }
+    return $variableIndex;
+}
+
+function getVariableIndex($tab, $variableName) {
+    for($i = 0; $i < count($tab); $i++) {
+        if($tab[$i] === $variableName) {
+            $variableIndex = $i;
+        }
+    }
+    return $variableIndex;
+}
+
 function computePowerValues($csvFile)
 {
     //extract data
     $line = 1; // compteur de ligne
     $fic = fopen($csvFile, "a+");
     while ($tab = fgetcsv($fic, 1024, ';')) {
+        //get variables index
+        if($line == 1) {
+            $powerValuesIndexes = getVariableIndexes($tab, 'Grid Power');
+            $powerUsageIndex = getVariableIndex($tab, 'P');
+            $timeIndex = getVariableIndex($tab, 'Time');
+        }
         if(isset($tab[1])) {
             $line++;
             if ($line % 5 == 0) { //display every 5 lines
-                $date = date_parse_from_format('H:0', $tab[1]);
+                $date = date_parse_from_format('H:0', $tab[$timeIndex]);
                 $timestamp = mktime($date['hour'], $date['minute'], 0, 0, 0, 2000);
                 $timeValues[] = $timestamp;
-                if (isset($tab[47]) && isset($tab[48]) && isset($tab[49]) && isset($tab[60]) && isset($tab[61]) && isset($tab[62])) {
-                    $powerValues[] = $tab[47] + $tab[48] + $tab[49] + $tab[60] + $tab[61] + $tab[62];
-                } else {
-                    $powerValues[] = 0;
+                $powerValue = 0;
+                foreach($powerValuesIndexes as $powerValueIndex) {
+                    if (isset($tab[$powerValueIndex])) {
+                        $powerValue += $tab[$powerValueIndex];
+                    }
                 }
-                $powerUsage[] = $tab[9];
+                $powerValues[] = $powerValue;
+                $powerUsage[] = $tab[$powerUsageIndex];
             }
         }
     }
