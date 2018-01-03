@@ -12,6 +12,13 @@
     <link href="css/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/my.css" type="text/css" media="screen"/>
     <title> monitoring ampasindava </title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.colorbox/1.6.4/jquery.colorbox-min.js"></script>
+    <style>
+        #colorbox {
+            background-color: #FFF; /* Add a color of your choice */
+        }
+    </style>
 </head>
 <body>
 <div class="container" id="block_page">  <!-- En-tête du page -->
@@ -47,13 +54,12 @@
                 <div class="col-sm-6"> <!-- Les tableaux mesure SPS -->
                     <h4> Consommation - production quotidiennes</h4>
 
-                    <form method="POST" name="day_form" action="iframe.php" target="_blank">
+                    <form action="iframe.php" method="GET" onSubmit='$.colorbox({ opacity:1, width:"1000px", height:"300px", iframe:false, href:"iframe.php?" + $(this).serialize()}); return false;'>
                         <?php
                         include 'html-php-date-picker.php';
                         ?>
+                        <input type="submit" name="submit" id="submit" value="Choisir" />
                     </form>
-                    <a href="iframe.php"
-                       onClick="document.forms['day_form'].submit(); return false;">Ouvrir dans une autre fenêtre</a>
                 </div>
             </div>
         </div>
@@ -65,13 +71,12 @@
                 <div class="col-sm-6">
                     <h4> Consommation - production mensuelles</h4>
 
-                    <form method="POST" name="month_form" action="iframe.php" target="my-iframe">
+                    <form action="iframe.php" method="GET" onSubmit='$.colorbox({ opacity:1, width:"1000px", height:"300px", iframe:false, href:"iframe.php?" + $(this).serialize()}); return false;'>
                         <?php
                         include 'html-php-month-picker.php';
                         ?>
+                        <input type="submit" name="submit" id="submit" value="Choisir" />
                     </form>
-                    <a href="iframe.php"
-                       onClick="document.forms['month_form'].submit(); return false;">Ouvrir dans une autre fenêtre</a>
                 </div>
             </div>
         </div>
@@ -83,13 +88,12 @@
                 <div class="col-sm-6">
                     <h4> Consommation - production annuelles</h4>
 
-                    <form method="POST" name="year_form" action="iframe.php" target="my-iframe">
+                    <form action="iframe.php" method="GET" onSubmit='$.colorbox({ opacity:1, width:"1000px", height:"300px", iframe:false, href:"iframe.php?" + $(this).serialize()}); return false;'>
                         <?php
                         include 'html-php-year-picker.php';
                         ?>
+                        <input type="submit" name="submit" id="submit" value="Choisir" />
                     </form>
-                    <a href="iframe.php"
-                       onClick="document.forms['year_form'].submit(); return false;">Ouvrir dans une autre fenêtre</a>
                 </div>
             </div>
         </div>
@@ -108,6 +112,8 @@
         </div>
     </footer>
 </div>
+
+
 
 </body>
 

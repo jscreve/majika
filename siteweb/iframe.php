@@ -232,13 +232,12 @@ function displayYearBarChart($powerValues, $powerUsage)
 <!DOCTYPE html>
 
 <html>
-<br/>
 <body>
 <div class="container" id="block_page">  <!-- En-tête du page -->
     <?php
-    $year = (isset($_POST['year']) ? $_POST['year'] : null);
-    $month = (isset($_POST['month']) ? $_POST['month'] : null);
-    $day = (isset($_POST['day']) ? $_POST['day'] : null);
+    $year = (isset($_GET['year']) ? $_GET['year'] : null);
+    $month = (isset($_GET['month']) ? $_GET['month'] : null);
+    $day = (isset($_GET['day']) ? $_GET['day'] : null);
     ?>
     <?php
     if($year != null && $month != null && $day != null) {
@@ -255,8 +254,8 @@ function displayYearBarChart($powerValues, $powerUsage)
     ?>
 
     <?php
-    $year = (isset($_POST['year_month']) ? $_POST['year_month'] : null);
-    $month = (isset($_POST['month_month']) ? $_POST['month_month'] : null);
+    $year = (isset($_GET['year_month']) ? $_GET['year_month'] : null);
+    $month = (isset($_GET['month_month']) ? $_GET['month_month'] : null);
     ?>
     <?php
     if($year != null && $month != null) {
@@ -273,7 +272,7 @@ function displayYearBarChart($powerValues, $powerUsage)
     }
     ?>
     <?php
-    $year = (isset($_POST['year_year']) ? $_POST['year_year'] : null);
+    $year = (isset($_GET['year_year']) ? $_GET['year_year'] : null);
     ?>
     <?php
     if($year != null) {
